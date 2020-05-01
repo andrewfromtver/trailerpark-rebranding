@@ -10,41 +10,47 @@
 </head>
 <body>
 
+    <div class="up__btn">
+        <img src="./img/upBtn.png" onclick="up()">
+    </div>
+
     <div class="header">
         <div class="header__link" onclick="main_day()">
             <img src="./img/day.png" width="25" height="25" class="d-inline-block align-top" alt="">
-            <a class="header__link__desc">Топ сегодня</a>
+            <a class="header__link1__desc">Топ сегодня</a>
         </div>
         <div class="header__link" onclick="main_week()">
             <img src="./img/week.png" width="25" height="25" class="d-inline-block align-top" alt="">
-            <a class="header__link__desc">Топ за неделю</a>
+            <a class="header__link2__desc">Топ за неделю</a>
         </div>
         <div class="header__link"onclick="top_chart()">
             <img src="./img/upBtn.png" width="25" height="25" class="d-inline-block align-top" alt="">
-            <a class="header__link__desc">Аналитика трендов</a>
+            <a class="header__link3__desc">Аналитика трендов</a>
         </div>
         <div class="header__link" href="https://vk.com/id_69_tver/" target="_blank">
             <img src="./img/soc.png" width="25" height="25" class="d-inline-block align-top" alt="">
-            <a class="header__link__desc">Напишите мне vk.com</a>
+            <a class="header__link4__desc">Напишите мне vk.com</a>
         </div>
     </div>
 
-    <div class="search__form">
-        <form id="search-form">
-            <input type="text" class="form-control" id='searchText' placeholder="Введите название фильма или сериала">
-            <button type="submit" class="btn btn-dark col-3">Найти</button>
-        </form>
+    <div class="main__section__search">
+        <div class="search__form">
+            <form id="search-form">
+                <input type="text" class="form-control" id='searchText' placeholder="Введите название фильма или сериала">
+                <button type="submit" class="btn btn-dark col-3">Найти</button>
+            </form>
+        </div>
     </div>
 
-    <div id="title"></div>
+    <div class="main__section__title">
+        <div id="title"></div>
+    </div>    
 
     <div id="movies" class="row"></div>
 
     <div class="main__section">
-
         <div id="title__item"></div>
         <div id="item" class="container"></div>
-
         <div id="trailer" class="trailer"></div>
     </div>
 
