@@ -1,9 +1,27 @@
+/* -- Google fonts API -- */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 html {
     box-sizing: border-box;
 }
 body {
     margin: 0;
-    background-color: #444;
+    background-image: url("./img/background.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: 100%;
+    -moz-background-size: 100%;
+    -webkit-background-size: 100%; 
+    -o-background-size: 100%;
+    font-family: 'Roboto', sans-serif;
+}
+A {
+    color: #fff;
+    font-size: 15px;
+    opacity: 0.75;
+}
+A:hover {
+    opacity: 1;
 }
 .up__btn {
     cursor: pointer;
@@ -11,6 +29,9 @@ body {
     right: 5vw;
     bottom: 5vh;
     opacity: 0.25;
+}
+.up__btn:hover {
+    opacity: 0.75;
 }
 .up__btn > img {
     height: 45px;
@@ -21,7 +42,6 @@ body {
     color: #fff;
     display: flex;
     justify-content: center;
-    opacity: 0.85;
 }
 .header__link {
     cursor: pointer;
@@ -57,9 +77,22 @@ body {
     padding: 10px 25px;
     cursor: pointer;
 }
+.btn__info {
+    background-color: rgb(241, 155, 48);
+    border-width: 2px;
+    border-style: solid;
+    border-color: darkorange;
+    color: #fff;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
 .btn:hover {
     background-color: white;
     color: darkorange;
+}
+.btn__info:hover {
+    background-color: tomato;
 }
 /* Title */
 .title {
@@ -78,6 +111,9 @@ body {
     padding: 20px;
     min-height: 263px;
     opacity: 0.85;
+}
+.row:hover {
+    opacity: 1;
 }
 .item {
     margin: 5px;
@@ -111,13 +147,6 @@ body {
     border-radius: 5px;
     padding: 10px;
     background-color: #242424;
-}
-A {
-    color: #fff;
-    font-size: 15px;
-}
-A:hover {
-    color: darkorange;
 }
 .item__poster > img {
     max-height: 300px;
@@ -156,11 +185,12 @@ A:hover {
 }
 /* Footer*/
 .footer {
+    opacity: 0.75;
     text-align: center;
-    background-color: #444;
     color: #fff;
     padding: 10px;
     margin-top: 20px;
+    background-color: #242424;
 }
 /* Loader animation */
 .loader__placeholder{
