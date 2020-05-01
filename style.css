@@ -157,11 +157,10 @@ A:hover {
 /* Footer*/
 .footer {
     text-align: center;
-    background-color: #242424;
+    background-color: #444;
     color: #fff;
     padding: 10px;
     margin-top: 20px;
-    opacity: 0.85;
 }
 /* Loader animation */
 .loader__placeholder{
