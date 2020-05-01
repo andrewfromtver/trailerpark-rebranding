@@ -97,11 +97,12 @@ A:hover {
 /* Title */
 .title {
     text-align: center;
-    font-size: 15px;
+    font-size: 21.75px;
     margin: 20px 7px;
     background-color: #fff;
     border: 2px solid #ccc;
     border-radius: 5px;
+    height: 
 }
 /* Main */
 .row {
