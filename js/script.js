@@ -331,6 +331,7 @@ function apiSearch(event){
 serachForm.addEventListener('submit', apiSearch);
 /* Charts & table of top movies */
 function top_chart() {
+    devCheck();
     title__item.innerHTML = `
     <div class="loader__placeholder">
         <div class="lds-ellipsis loader"><div></div><div></div><div></div><div></div></div>
