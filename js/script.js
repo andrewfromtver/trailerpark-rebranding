@@ -3,7 +3,7 @@ const movie = document.querySelector('#movies');
 const img = 'https://image.tmdb.org/t/p/w500';
 
 document.addEventListener('DOMContentLoaded', main_day());
-document.addEventListener('DOMContentLoaded', hideUpBtn());
+document.addEventListener('DOMContentLoaded', top_chart());
 
 /* JS delay */
 function sleep(milliseconds) {
@@ -26,6 +26,10 @@ function devCheck() {
     else if (document.documentElement.clientWidth > 1500) {
         document.querySelector(".main__section").style = "margin: 0 25vw 0 25vw;";
         document.querySelector(".main__section__title").style = "margin: 0 25vw 0 25vw;";
+        document.querySelector(".header__link1__desc").style.display = "";
+        document.querySelector(".header__link2__desc").style.display = "";
+        document.querySelector(".header__link3__desc").style.display = "";
+        document.querySelector(".header__link4__desc").style.display = "";
     }
     else {
         document.querySelector(".main__section").style = "";
@@ -36,7 +40,7 @@ function devCheck() {
         document.querySelector(".header__link4__desc").style.display = "none";
     };
 }
-window.addEventListener("resize", function() {devCheck();}, false);
+window.addEventListener("resize", function() {devCheck();});
 /* Scroll control */
 function up() {
 	var t;
@@ -61,6 +65,8 @@ function hideUpBtn () {
 }
 /* Main features */
 function main_day() {
+    hideUpBtn();
+    devCheck();
     title.innerHTML = `
     <div class="loader__placeholder">
         <div class="lds-ellipsis loader"><div></div><div></div><div></div><div></div></div>
@@ -162,6 +168,13 @@ function main_week() {
     console.error('error: ' + reason);
     });
 }
+function addEventMedia(){
+    const media = movie.querySelectorAll('img[data-id]');
+            media.forEach(function(elem){
+                elem.style.cursor = 'pointer';
+                elem.addEventListener('click', showFullInfo);
+            });
+}
 function showFullInfo(){
     title__item.innerHTML = `
     <div class="loader__placeholder">
@@ -191,8 +204,8 @@ function showFullInfo(){
         item.innerHTML = `
         <div class="item__poster">
             <img src='${poster1}' alt='${output.name || output.title}' class='poster__info'>
-            ${(output.homepage) ? `<p class='center'> <a href="${output.homepage}" target="_blank"> Официальная страница </a> </p>` : ''}
-            ${(output.imdb_id) ? `<p class='center'> <a href="https://imdb.com/title/${output.imdb_id}" target="_blank"> Страница на IMDB.COM </a> </p>` : ''}
+            ${(output.homepage) ? `<p class='btn__info'> <a href="${output.homepage}" target="_blank"> Официальная страница </a> </p>` : ''}
+            ${(output.imdb_id) ? `<p class='btn__info'> <a href="https://imdb.com/title/${output.imdb_id}" target="_blank"> Страница на IMDB.COM </a> </p>` : ''}
         </div>
         <div class="item__info">
             <p>Рейтинг: ${output.vote_average}</p>
@@ -209,14 +222,6 @@ function showFullInfo(){
         movie.innerHTML = `<h4 class="title">Упс, что-то пошло не так!</h4>`;
         console.error('error: ' + reason);
     });
-    devCheck();
-}
-function addEventMedia(){
-    const media = movie.querySelectorAll('img[data-id]');
-            media.forEach(function(elem){
-                elem.style.cursor = 'pointer';
-                elem.addEventListener('click', showFullInfo);
-            });
 }
 /* Youtube trailers search */
 function getVideo(id, type){
@@ -331,7 +336,6 @@ function apiSearch(event){
 serachForm.addEventListener('submit', apiSearch);
 /* Charts & table of top movies */
 function top_chart() {
-    devCheck();
     title__item.innerHTML = `
     <div class="loader__placeholder">
         <div class="lds-ellipsis loader"><div></div><div></div><div></div><div></div></div>
