@@ -1,14 +1,19 @@
-
-
 html {
     box-sizing: border-box;
 }
 body {
     margin: 0;
-    background-image: url("./img/background.jpg");
-    background-repeat: round;
-    background-attachment: fixed;
-    background-position: inherit;
+    background-color: #444;
+}
+.up__btn {
+    cursor: pointer;
+    position: fixed;
+    right: 5vw;
+    bottom: 5vh;
+    opacity: 0.25;
+}
+.up__btn > img {
+    height: 45px;
 }
 /* Header */
 .header {
@@ -20,15 +25,14 @@ body {
 }
 .header__link {
     cursor: pointer;
-    font-size: 15px;
     margin: 5px 3.4vw 5px 3.4vw;
 }
-.header__link__desc {
+.header__link1__desc, .header__link2__desc, .header__link3__desc, .header__link4__desc {
     vertical-align: super;
 }
 /* Search form */
 .search__form {
-    margin: 20px;
+    margin: 20px 0;
     display: flex;
     justify-content: center;
 }
@@ -37,7 +41,7 @@ body {
     border-radius: 5px;
     padding:  10px 15px;
     outline: transparent;
-    width: 40vw;
+    width: 58vw;
 }
 .form-control:focus{
     border: 2px solid darkorange;
@@ -110,6 +114,7 @@ body {
 }
 A {
     color: #fff;
+    font-size: 15px;
 }
 A:hover {
     color: darkorange;
@@ -139,7 +144,7 @@ A:hover {
 }
 .iframe {
     width: 100%;
-    height: 50vh;
+    height: 60vh;
 }
 .chart {
     border: 2px solid #ccc;
