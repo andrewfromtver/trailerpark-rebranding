@@ -5,7 +5,7 @@ html {
 }
 body {
     margin: 0;
-    background-image: url("/img/background.jpg");
+    background-image: url("./img/background.jpg");
     background-repeat: round;
     background-attachment: fixed;
     background-position: inherit;
