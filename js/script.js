@@ -2,11 +2,10 @@ const serachForm = document.querySelector('#search-form');
 const movie = document.querySelector('#movies');
 const img = 'https://image.tmdb.org/t/p/w500';
 
-window.addEventListener("resize", function() {devCheck();}, false);
-document.addEventListener('DOMContentLoaded', main_day())
-serachForm.addEventListener('submit', apiSearch);
-window.addEventListener(`resize`, devCheck());
+document.addEventListener('DOMContentLoaded', main_day());
+document.addEventListener('DOMContentLoaded', hideUpBtn());
 
+/* JS delay */
 function sleep(milliseconds) {
     const date = Date.now();
     let currentDate = null;
@@ -14,27 +13,30 @@ function sleep(milliseconds) {
       currentDate = Date.now();
     } while (currentDate - date < milliseconds);
 }
-
-
-
 /* Device screen width check */
 function devCheck() {
     if (document.documentElement.clientWidth > 900 && document.documentElement.clientWidth < 1500) {
         document.querySelector(".main__section").style = "margin: 0 15vw 0 15vw;";
-        document.querySelector(".header__link__desc").style.display = "";
-        console.log('dev width > 1000');
+        document.querySelector(".main__section__title").style = "margin: 0 15vw 0 15vw;";
+        document.querySelector(".header__link1__desc").style.display = "";
+        document.querySelector(".header__link2__desc").style.display = "";
+        document.querySelector(".header__link3__desc").style.display = "";
+        document.querySelector(".header__link4__desc").style.display = "";
     }
     else if (document.documentElement.clientWidth > 1500) {
         document.querySelector(".main__section").style = "margin: 0 25vw 0 25vw;";
-        document.querySelector(".header__link__desc").style.display = "";
-        console.log('dev width > 1400');
+        document.querySelector(".main__section__title").style = "margin: 0 25vw 0 25vw;";
     }
     else {
         document.querySelector(".main__section").style = "";
-        document.querySelector(".header__link__desc").style.display = "none";
-        console.log('dev width < 1000');
+        document.querySelector(".main__section__title").style = "";
+        document.querySelector(".header__link1__desc").style.display = "none";
+        document.querySelector(".header__link2__desc").style.display = "none";
+        document.querySelector(".header__link3__desc").style.display = "none";
+        document.querySelector(".header__link4__desc").style.display = "none";
     };
 }
+window.addEventListener("resize", function() {devCheck();}, false);
 /* Scroll control */
 function up() {
 	var t;
@@ -45,6 +47,17 @@ function up() {
 	}
 	else clearTimeout(t);
 	return false;
+}
+window.onscroll = function() {
+    var scrolled = window.pageYOffset || document.documentElement.scrollTop;
+    if (scrolled > 100) {
+      document.querySelector(".up__btn").style.display = "";
+    } else {
+      document.querySelector(".up__btn").style.display = "none";
+    }
+}
+function hideUpBtn () {
+    document.querySelector(".up__btn").style.display = "none";
 }
 /* Main features */
 function main_day() {
@@ -259,7 +272,6 @@ function apiSearch(event){
 	const searchText = document.querySelector('.form-control').value;
 	if(searchText.trim().length === 0){
 		title.innerHTML = '<h4 class="title">Пожалуйста заполните поисковую форму!</h4>';
-		trailer.innerHTML = '';
 		return;
 	}
 	title.innerHTML = `
@@ -305,8 +317,6 @@ function apiSearch(event){
             });
             sleep(1000);
             movie.innerHTML = inner;
-            trailer.innerHTML = '';
-            
             addEventMedia();
         })
         .catch(function(reason){
@@ -318,10 +328,9 @@ function apiSearch(event){
             console.error('error: ' + reason);
         });
 }
+serachForm.addEventListener('submit', apiSearch);
 /* Charts & table of top movies */
 function top_chart() {
-    up();
-    item.innerHTML = '';
     title__item.innerHTML = `
     <div class="loader__placeholder">
         <div class="lds-ellipsis loader"><div></div><div></div><div></div><div></div></div>
@@ -361,8 +370,9 @@ function top_chart() {
             )
         })
         sleep(1000);
+        item.innerHTML = '';
+        title__item.innerHTML =' <h4 class="title" >Кассовые сборы самых популярных фильмов и сериалов</h4>';
         let inner = `
-            <h4 class="title" >Кассовые сборы самых популярных фильмов и сериалов</h4>
             <div class="chart">
                 <div id="chartContainer" style="height: 40vh; max-height: 300px; margin: 5px auto;"></div>
             </div>
@@ -395,6 +405,5 @@ function top_chart() {
             }]
         });
         chart2.render();
-        title__item.innerHTML = '';
 })
 }
