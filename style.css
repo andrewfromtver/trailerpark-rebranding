@@ -102,9 +102,9 @@ A:hover {
     background-color: #fff;
     border: 2px solid #ccc;
     border-radius: 5px;
-    height: 
 }
 /* Main */
+
 .row {
     display: flex;
     overflow-x: scroll;
@@ -113,6 +113,10 @@ A:hover {
     min-height: 263px;
     opacity: 0.85;
 }
+.row::-webkit-scrollbar-track {border-radius: 5px;}
+.row::-webkit-scrollbar {height: 10px;}
+.row::-webkit-scrollbar-thumb {border-radius: 5px;background: #242424;}
+.row:hover::-webkit-scrollbar-thumb {background: #555;}
 .row:hover {
     opacity: 1;
 }
