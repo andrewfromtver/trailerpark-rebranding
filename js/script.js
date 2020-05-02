@@ -63,6 +63,21 @@ window.onscroll = function() {
 function hideUpBtn () {
     document.querySelector(".up__btn").style.display = "none";
 }
+document.getElementById("movies").addEventListener('wheel', function(event) {
+    if (event.deltaMode == event.DOM_DELTA_PIXEL) {
+      var modifier = 1;
+      // иные режимы возможны в Firefox
+    } else if (event.deltaMode == event.DOM_DELTA_LINE) {
+      var modifier = parseInt(getComputedStyle(this).lineHeight);
+    } else if (event.deltaMode == event.DOM_DELTA_PAGE) {
+      var modifier = this.clientHeight;
+    }
+    if (event.deltaY != 0) {
+      // замена вертикальной прокрутки горизонтальной
+      this.scrollLeft += modifier * event.deltaY;
+      event.preventDefault();
+    }
+  });
 /* Main features */
 function main_day() {
     hideUpBtn();
@@ -216,7 +231,7 @@ function showFullInfo(){
         </div>
         `;
         sleep(1000);
-    getVideo(id, type);
+        getVideo(id, type);
     })
     .catch(function(reason){
         movie.innerHTML = `<h4 class="title">Упс, что-то пошло не так!</h4>`;
@@ -316,7 +331,7 @@ function apiSearch(event){
                 inner += `
                 <div class="item">
                     <img src="${poster}" class="poster" alt="${nameItem}" ${dataInfo}>
-                    <h5>${nameItem}</h5>
+                    <h5>${nameItem.substr(0, 25)}</h5>
                 </div>
                 `;
             });
@@ -353,21 +368,24 @@ function top_chart() {
         let chart2data = []
         let tabledata = []
         output.results.forEach(function (item){
+            let title = item.name || item.title
             chartdata.push(
                 {
                     y: item.popularity,
-                    name: item.name || item.title
+                    name: title.substr(0, 25),
+                    name_long: title
                 },
             )
             chart2data.push(
                 {
-                    label: item.name || item.title,
+                    label: title.substr(0, 25),
+                    label_long: title,
                     y: item.vote_average
                 },
             )
             tabledata.push(
                 {
-                    name: item.name || item.title,
+                    name: title.substr(0, 25),
                     x: item.popularity,
                     y: item.vote_average
 
@@ -394,7 +412,7 @@ function top_chart() {
             data: [{
                 type: "doughnut",
                 innerRadius: 90,
-                toolTipContent: "<b>{name}</b>: ${y} (#percent%)",
+                toolTipContent: "<b>{name_long}</b>: ${y} (#percent%)",
                 indexLabel: "{name} - #percent%",
                 dataPoints: chartdata
             }]
@@ -406,6 +424,7 @@ function top_chart() {
             data: [{
                 type: "bar",
                 yValueFormatString: "Рейтинг - #,##0.00",
+                toolTipContent: "<b>{label_long}</b>",
                 dataPoints: chart2data
             }]
         });
