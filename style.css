@@ -14,6 +14,7 @@ body {
     -webkit-background-size: 100%; 
     -o-background-size: 100%;
     font-family: 'Roboto', sans-serif;
+    overflow-y:scroll;
 }
 A {
     color: #fff;
