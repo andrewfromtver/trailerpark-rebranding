@@ -29,6 +29,7 @@ A:hover {
     right: 5vw;
     bottom: 5vh;
     opacity: 0.6;
+    z-index: 9999999;
 }
 .up__btn:hover {
     opacity: 0.9;
