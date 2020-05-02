@@ -28,10 +28,10 @@ A:hover {
     position: fixed;
     right: 5vw;
     bottom: 5vh;
-    opacity: 0.5;
+    opacity: 0.6;
 }
 .up__btn:hover {
-    opacity: 0.85;
+    opacity: 0.9;
 }
 .up__btn > img {
     height: 45px;
@@ -116,7 +116,7 @@ A:hover {
 .row::-webkit-scrollbar-track {border-radius: 5px;}
 .row::-webkit-scrollbar {height: 10px;}
 .row::-webkit-scrollbar-thumb {border-radius: 5px;background: #242424;}
-.row:hover::-webkit-scrollbar-thumb {background: #555;}
+.row:hover::-webkit-scrollbar-thumb {background: #777;}
 .row:hover {
     opacity: 1;
 }
@@ -190,12 +190,14 @@ A:hover {
 }
 /* Footer*/
 .footer {
-    opacity: 0.75;
+    opacity: 0.5;
     text-align: center;
     color: #fff;
     padding: 10px;
-    margin-top: 20px;
     background-color: #242424;
+    border: 1px solid #242424;
+    border-radius: 5px;
+    margin: 20px 7px 0 7px;
 }
 /* Loader animation */
 .loader__placeholder{
