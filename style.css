@@ -28,10 +28,10 @@ A:hover {
     position: fixed;
     right: 5vw;
     bottom: 5vh;
-    opacity: 0.25;
+    opacity: 0.5;
 }
 .up__btn:hover {
-    opacity: 0.75;
+    opacity: 0.85;
 }
 .up__btn > img {
     height: 45px;
