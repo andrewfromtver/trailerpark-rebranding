@@ -5,14 +5,6 @@ const img = 'https://image.tmdb.org/t/p/w500';
 document.addEventListener('DOMContentLoaded', main_day());
 document.addEventListener('DOMContentLoaded', top_chart());
 
-/* JS delay */
-function sleep(milliseconds) {
-    const date = Date.now();
-    let currentDate = null;
-    do {
-      currentDate = Date.now();
-    } while (currentDate - date < milliseconds);
-}
 /* Device screen width check */
 function devCheck() {
     if (document.documentElement.clientWidth > 900 && document.documentElement.clientWidth < 1500) {
@@ -118,7 +110,6 @@ function main_day() {
             </div>
             `;
         });
-        sleep(1000);
         title.innerHTML = '<h4 class="title" >Самые популярные фильмы и сериалы сегодня</h4>';
         movie.innerHTML = inner;
         addEventMedia();
@@ -169,7 +160,6 @@ function main_week() {
             </div>
             `;
         });
-        sleep(1000);
         title.innerHTML = '<h4 class="title" >Самые популярные фильмы и сериалы за неделю</h4>';
         movie.innerHTML = inner;
         addEventMedia();
@@ -230,7 +220,6 @@ function showFullInfo(){
             <div class='youtube'></div>
         </div>
         `;
-        sleep(1000);
         getVideo(id, type);
     })
     .catch(function(reason){
@@ -335,7 +324,6 @@ function apiSearch(event){
                 </div>
                 `;
             });
-            sleep(1000);
             movie.innerHTML = inner;
             addEventMedia();
         })
@@ -392,7 +380,6 @@ function top_chart() {
                 },
             )
         })
-        sleep(1000);
         item.innerHTML = '';
         title__item.innerHTML =' <h4 class="title" >Кассовые сборы самых популярных фильмов и сериалов</h4>';
         let inner = `
