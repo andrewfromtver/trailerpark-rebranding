@@ -9,7 +9,7 @@ body {
     background-position: center;
     margin: 0;
     background-color: #343434;
-    font-family: 'Roboto', sans-serif;
+    font-family: sans-serif;
 }
 A {
     color: #ddd;
@@ -28,8 +28,6 @@ A:hover {
 }
 .up__btn > img {
     height: 55px;
-    border: #fff solid 2px;
-    border-radius: 250px;
 }
 .up__btn:hover {
     opacity: 1;
@@ -108,13 +106,13 @@ A:hover {
     background-color: #242424;
     padding: 20px;
     min-height: 263px;
-    opacity: 0.85;
+    opacity: 0.75;
 }
 .row:hover {
     opacity: 1;
 }
 .row::-webkit-scrollbar-track {border-radius: 5px;}
-.row::-webkit-scrollbar {height: 10px;}
+.row::-webkit-scrollbar {height: 7px;}
 .row::-webkit-scrollbar-thumb {border-radius: 5px;background: #242424;}
 .row:hover::-webkit-scrollbar-thumb {background: #777;}
 .item {
