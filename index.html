@@ -3,27 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="description" content="Поиск трейлеров к вильмам и сериалам">
-    <meta property="og:title" content="Трейлер парк"/>
-    <meta property="og:description" content="Поиск трейлеров к вильмам и сериалам"/>
-    <meta property="og:image" content="./img/logo.jpg"/>
-    <meta property="og:type" content="profile"/>
-    <meta property="og:url" content= "https://andrewfromtver.github.io/trailerpark-rebranding/" />
+    <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'"/>
+    <meta name="description" content="Поиск трейлеров к фильмам и сериалам">
     <link rel="shortcut icon" href="./img/favicon.png">
     <link rel="stylesheet" href="./style.css" type="text/css">
     <title>Трейлер-парк</title>
 </head>
 <body>
-
     <div class="up__btn">
         <img src="./img/upBtn.png" onclick="up()">
     </div>
-
     <div class="header">
         <div class="header__link" onclick="main_day()">
             <img src="./img/day.png" width="25" height="25" class="d-inline-block align-top" alt="">
-            <a class="header__link1__desc">Топ сегодня</a>
+            <a class="header__link1__desc">Топ на сегодня</a>
         </div>
         <div class="header__link" onclick="main_week()">
             <img src="./img/week.png" width="25" height="25" class="d-inline-block align-top" alt="">
@@ -31,14 +24,9 @@
         </div>
         <div class="header__link"onclick="top_chart()">
             <img src="./img/upBtn.png" width="25" height="25" class="d-inline-block align-top" alt="">
-            <a class="header__link3__desc">Аналитика трендов</a>
-        </div>
-        <div class="header__link" href="https://vk.com/id_69_tver/" target="_blank">
-            <img src="./img/soc.png" width="25" height="25" class="d-inline-block align-top" alt="">
-            <a class="header__link4__desc" href="https://vk.com/id_69_tver" target="_blank">Напишите мне vk.com</a>
+            <a class="header__link3__desc">Аналитика</a>
         </div>
     </div>
-
     <div class="main__section__search">
         <div class="search__form">
             <form id="search-form">
@@ -47,25 +35,21 @@
             </form>
         </div>
     </div>
-
     <div class="main__section__title">
         <div id="title"></div>
     </div>    
-
     <div id="movies" class="row"></div>
-
     <div class="main__section">
         <div id="title__item"></div>
         <div id="item" class="container"></div>
         <div id="trailer" class="trailer"></div>
-
+        <div id="small__frame" class="small__frame"></div>
         <footer class="footer">
             <div class="footer__text">
-            Andranik Sarkisyan 2020  ||  andrewsarkisyan@gmail.com
+                Trailerpark
             </div>
         </footer>
     </div>
-
     <script src="./js/script.js"></script>
     <script src="./js/canvasjs.min.js"></script>
 </body>
