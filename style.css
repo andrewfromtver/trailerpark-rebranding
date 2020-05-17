@@ -109,7 +109,7 @@ A:hover {
     opacity: 0.75;
 }
 .row:hover {
-    opacity: 1;
+    opacity: 0.9;
 }
 .row::-webkit-scrollbar-track {border-radius: 5px;}
 .row::-webkit-scrollbar {height: 7px;}
