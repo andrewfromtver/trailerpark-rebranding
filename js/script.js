@@ -3,7 +3,6 @@ const movie = document.querySelector('#movies');
 const img = 'https://image.tmdb.org/t/p/w500';
 
 document.addEventListener('DOMContentLoaded', main_day());
-document.addEventListener('DOMContentLoaded', top_chart());
 
 /* Device screen width check */
 function devCheck() {
@@ -13,7 +12,6 @@ function devCheck() {
         document.querySelector(".header__link1__desc").style.display = "";
         document.querySelector(".header__link2__desc").style.display = "";
         document.querySelector(".header__link3__desc").style.display = "";
-        document.querySelector(".header__link4__desc").style.display = "";
     }
     else if (document.documentElement.clientWidth > 1500) {
         document.querySelector(".main__section").style = "margin: 0 25vw 0 25vw;";
@@ -21,7 +19,6 @@ function devCheck() {
         document.querySelector(".header__link1__desc").style.display = "";
         document.querySelector(".header__link2__desc").style.display = "";
         document.querySelector(".header__link3__desc").style.display = "";
-        document.querySelector(".header__link4__desc").style.display = "";
     }
     else {
         document.querySelector(".main__section").style = "";
@@ -29,7 +26,7 @@ function devCheck() {
         document.querySelector(".header__link1__desc").style.display = "none";
         document.querySelector(".header__link2__desc").style.display = "none";
         document.querySelector(".header__link3__desc").style.display = "none";
-        document.querySelector(".header__link4__desc").style.display = "none";
+        small__frame.innerHTML = '';
     };
 }
 window.addEventListener("resize", function() {devCheck();});
@@ -38,7 +35,7 @@ function up() {
 	var t;
 	var top = Math.max(document.body.scrollTop,document.documentElement.scrollTop);
 	if(top > 0) {
-		window.scrollBy(0,-100);
+		window.scrollBy(0,-150);
 		t = setTimeout('up()', 50);
 	}
 	else clearTimeout(t);
@@ -227,6 +224,20 @@ function showFullInfo(){
         console.error('error: ' + reason);
     });
 }
+function frameHide() {
+    small__frame.innerHTML = '';
+    let id = event.target.getAttribute('id');
+    small__frame.append(document.querySelector(`.${id}`));
+    var elemCount  = document.querySelector('.trailer').childElementCount;
+    small__frame.innerHTML += '<img src="./img/close.png" class="close" onclick="hideSmallFrame()">';
+    if (elemCount == 1) {
+        document.querySelector(".trailer").innerHTML = '';
+    }
+    document.querySelector(".small__frame").style.display = "";
+}
+function hideSmallFrame() {
+    small__frame.innerHTML = '';
+}
 /* Youtube trailers search */
 function getVideo(id, type){
     trailer.innerHTML = `
@@ -254,9 +265,12 @@ function getVideo(id, type){
 		let videoFrame = '<h3 class="title" >Трейлеры</h3>';
 		if(output.results.length === 0){
 		    videoFrame = `<h3 class="title" >К сожалению трейлеры отсутствуют</h3>`;
-		}
+        }
 		output.results.forEach((item)=>{
-		    videoFrame += '<div class="trailer__frame"><iframe class="iframe" src="https://www.youtube.com/embed/' + item.key + '" frameborder="0"></iframe></div>';
+            videoFrame += `<div class="trailer__frame id__${item.key}">
+                <img src="./img/video.png" class="frame__hide" id="id__${item.key}" onclick="frameHide()">
+                <iframe class="iframe" src="https://www.youtube.com/embed/${item.key}" frameborder="0"></iframe>
+            </div>`;
 		});
         trailer.innerHTML = videoFrame;
 	    })
@@ -266,7 +280,10 @@ function getVideo(id, type){
 	    });
         }
         output.results.forEach((item)=>{
-            videoFrame += '<div class="trailer__frame"><iframe class="iframe" src="https://www.youtube.com/embed/' + item.key + '" frameborder="0"></iframe></div>';
+            videoFrame += `<div class="trailer__frame id__${item.key}">
+                <img src="./img/video.png" class="frame__hide" id="id__${item.key}" onclick="frameHide()">
+                <iframe class="iframe" src="https://www.youtube.com/embed/${item.key}" frameborder="0"></iframe>
+            </div>`;
         });
         trailer.innerHTML = videoFrame;
     })
@@ -310,7 +327,7 @@ function apiSearch(event){
                 title.innerHTML = '<h4 class="title" >По вашему запросу ничего не обнаруженно!</h4>';
             }
             else {
-            title.innerHTML = `<h4 class="title">Поиск по запросу - ${searchText}</h4>`;
+                title.innerHTML = `<h4 class="title">Поиск по запросу - ${searchText}</h4>`;
             }
             output.results.forEach(function (item){
                 let nameItem = item.name || item.title;
