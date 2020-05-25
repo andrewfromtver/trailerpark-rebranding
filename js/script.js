@@ -3,7 +3,6 @@ const movie = document.querySelector('#movies');
 const img = 'https://image.tmdb.org/t/p/w500';
 
 document.addEventListener('DOMContentLoaded', main_day());
-
 /* Device screen width check */
 function devCheck() {
     if (document.documentElement.clientWidth > 900 && document.documentElement.clientWidth < 1500) {
@@ -68,6 +67,137 @@ document.getElementById("movies").addEventListener('wheel', function(event) {
     }
   });
 /* Main features */
+function mv() {
+    hideUpBtn();
+    devCheck();
+    title.innerHTML = `
+    <div class="loader__placeholder">
+        <div class="lds-ellipsis loader"><div></div><div></div><div></div><div></div></div>
+    </div>`;
+	fetch(`https://api.themoviedb.org/3/trending/movie/day?api_key=dcaf7f5ea224596464b7714bac28142f&language=ru`)
+    .then(function(value){
+        if(value.status !== 200){
+            return Promise.reject(new Error('Ошибка'));
+        }
+            return value.json();
+    })
+    .then(function(output){
+        let inner = '';
+        if(output.results.length === 0){
+            title.innerHTML = '<h4 class="title" >Упс, что-то пошло не так!</h4>';
+        }
+        output.results.forEach(function (item){
+            let nameItem = item.name || item.title;
+            let mediaType = item.title ? 'movie' : 'tv';
+            const poster = item.poster_path ? img + item.poster_path : './img/noposter.png';
+            let dataInfo = `data-id="${item.id}" data-type="${mediaType}"`;
+            inner += `
+            <div class="item">
+                <img src="${poster}" class="poster" alt="${nameItem}" ${dataInfo}>
+                <h5>${nameItem.substr(0, 25)}</h5>
+            </div>
+            `;
+        });
+        title.innerHTML = '<h4 class="title" >Самые популярные фильмы</h4>';
+        movie.innerHTML = inner;
+        addEventMedia();
+    })
+    .catch(function(reason){
+        title.innerHTML = `
+        <h4 class="title">
+            Упс, что-то пошло не так!
+        </h4>
+        `;
+    console.error('error: ' + reason);
+    });
+}
+function tv() {
+    hideUpBtn();
+    devCheck();
+    title.innerHTML = `
+    <div class="loader__placeholder">
+        <div class="lds-ellipsis loader"><div></div><div></div><div></div><div></div></div>
+    </div>`;
+	fetch(`https://api.themoviedb.org/3/trending/tv/day?api_key=dcaf7f5ea224596464b7714bac28142f&language=ru`)
+    .then(function(value){
+        if(value.status !== 200){
+            return Promise.reject(new Error('Ошибка'));
+        }
+            return value.json();
+    })
+    .then(function(output){
+        let inner = '';
+        if(output.results.length === 0){
+            title.innerHTML = '<h4 class="title" >Упс, что-то пошло не так!</h4>';
+        }
+        output.results.forEach(function (item){
+            let nameItem = item.name || item.title;
+            let mediaType = item.title ? 'movie' : 'tv';
+            const poster = item.poster_path ? img + item.poster_path : './img/noposter.png';
+            let dataInfo = `data-id="${item.id}" data-type="${mediaType}"`;
+            inner += `
+            <div class="item">
+                <img src="${poster}" class="poster" alt="${nameItem}" ${dataInfo}>
+                <h5>${nameItem.substr(0, 25)}</h5>
+            </div>
+            `;
+        });
+        title.innerHTML = '<h4 class="title" >Самые популярные сериалы</h4>';
+        movie.innerHTML = inner;
+        addEventMedia();
+    })
+    .catch(function(reason){
+        title.innerHTML = `
+        <h4 class="title">
+            Упс, что-то пошло не так!
+        </h4>
+        `;
+    console.error('error: ' + reason);
+    });
+}
+function person() {
+    hideUpBtn();
+    devCheck();
+    title.innerHTML = `
+    <div class="loader__placeholder">
+        <div class="lds-ellipsis loader"><div></div><div></div><div></div><div></div></div>
+    </div>`;
+	fetch(`https://api.themoviedb.org/3/trending/person/day?api_key=dcaf7f5ea224596464b7714bac28142f&language=ru`)
+    .then(function(value){
+        if(value.status !== 200){
+            return Promise.reject(new Error('Ошибка'));
+        }
+            return value.json();
+    })
+    .then(function(output){
+        let inner = '';
+        if(output.results.length === 0){
+            title.innerHTML = '<h4 class="title" >Упс, что-то пошло не так!</h4>';
+        }
+        output.results.forEach(function (item){
+            let nameItem = item.name || item.title;
+            let mediaType = item.title ? 'movie' : 'tv';
+            const poster = item.profile_path ? img + item.profile_path : './img/noposter.png';
+            let dataInfo = `data-id="${item.id}" data-type="${mediaType}"`;
+            inner += `
+            <div class="item">
+                <img src="${poster}" class="poster" alt="${nameItem}" ${dataInfo}>
+                <h5>${nameItem.substr(0, 25)}</h5>
+            </div>
+            `;
+        });
+        title.innerHTML = '<h4 class="title" >Самые популярные актёры</h4>';
+        movie.innerHTML = inner;
+    })
+    .catch(function(reason){
+        title.innerHTML = `
+        <h4 class="title">
+            Упс, что-то пошло не так!
+        </h4>
+        `;
+    console.error('error: ' + reason);
+    });
+}
 function main_day() {
     hideUpBtn();
     devCheck();
@@ -305,16 +435,7 @@ function apiSearch(event){
         <div class="lds-ellipsis loader"><div></div><div></div><div></div><div></div></div>
     </div>`;
 	let searchType = '';
-	if(1 === 2){
-        searchType = 'movie';
-    }
-    else if(1 === 2){
-        searchType = 'tv';
-    }
-    else{
-        searchType = 'multi';
-    }
-    fetch(`https://api.themoviedb.org/3/search/${searchType}?api_key=dcaf7f5ea224596464b7714bac28142f&language=ru&query=${searchText}`)
+    fetch(`https://api.themoviedb.org/3/search/multi?api_key=dcaf7f5ea224596464b7714bac28142f&language=ru&query=${searchText}`)
         .then(function(value){
             if(value.status !== 200){
                 return Promise.reject(new Error('Ошибка!'));
@@ -331,7 +452,7 @@ function apiSearch(event){
             }
             output.results.forEach(function (item){
                 let nameItem = item.name || item.title;
-                const poster = item.poster_path ? img + item.poster_path : './img/noposter.png';
+                const poster = item.poster_path ? img + item.poster_path : item.profile_path ? img + item.profile_path : './img/noposter.png';
                 let dataInfo = '';
                 if(item.media_type !== 'person') dataInfo = `data-id="${item.id}" data-type="${item.media_type}"`;
                 inner += `
