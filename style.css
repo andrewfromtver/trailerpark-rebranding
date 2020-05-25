@@ -80,6 +80,28 @@ A:hover {
     color: darkorange;
     background-color: #fff;
 }
+.type {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.btn_type {
+    width: 33%;
+    background-color: rgb(241, 155, 48);
+    border-width: 2px;
+    border-style: solid;
+    border-color: darkorange;
+    color: #fff;
+    border-radius: 5px;
+    font-weight: 700;
+    padding: 5px;
+    cursor: pointer;
+    margin: 15px 7px 0 7px;
+}
+.btn_type:hover {
+    color: darkorange;
+    background-color: #fff;
+}
 .btn__info {
     background-color: rgb(241, 155, 48);
     border-width: 2px;
