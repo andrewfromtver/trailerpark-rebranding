@@ -110,6 +110,7 @@ A:hover {
     background-color: #fff;
 }
 .btn__info {
+    box-shadow: 5px 5px 5px #777;
     background-color: rgb(241, 155, 48);
     border-width: 2px;
     border-style: solid;
