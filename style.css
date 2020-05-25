@@ -28,6 +28,9 @@ A:hover {
 }
 .up__btn > img {
     height: 55px;
+    border: 3px solid #ccc;
+    border-radius: 50px;
+    box-shadow: 10px 7px 10px #333;
 }
 .up__btn:hover {
     opacity: 1;
@@ -38,6 +41,7 @@ A:hover {
     color: #fff;
     display: flex;
     justify-content: center;
+    box-shadow: 10px 7px 15px #333;
 }
 .header__link {
     margin: 5px 5.5vw 5px 5.5vw;
@@ -61,6 +65,7 @@ A:hover {
     padding:  10px 15px;
     outline: transparent;
     width: 58vw;
+    box-shadow: 10px 7px 15px #333;
 }
 .form-control:focus{
     border: 2px solid darkorange;
@@ -75,6 +80,7 @@ A:hover {
     font-weight: 700;
     padding: 10px 25px;
     cursor: pointer;
+    box-shadow: 10px 7px 15px #333;
 }
 .btn:hover {
     color: darkorange;
@@ -86,6 +92,7 @@ A:hover {
     justify-content: space-between;
 }
 .btn_type {
+    box-shadow: 10px 7px 15px #333;
     width: 33%;
     background-color: rgb(241, 155, 48);
     border-width: 2px;
@@ -113,6 +120,7 @@ A:hover {
 }
 /* Title */
 .title {
+    box-shadow: 10px 7px 15px #333;
     text-align: center;
     font-size: 19px;
     min-height: 26px;
@@ -123,21 +131,23 @@ A:hover {
 }
 /* Main */
 .row {
+    box-shadow: 10px 7px 15px #333;
     display: flex;
     overflow-x: scroll;
     background-color: #242424;
     padding: 20px;
     min-height: 263px;
-    opacity: 0.75;
+    opacity: 0.8;
 }
 .row:hover {
-    opacity: 0.9;
+    opacity: 0.95;
 }
 .row::-webkit-scrollbar-track {border-radius: 5px;}
 .row::-webkit-scrollbar {height: 7px;}
 .row::-webkit-scrollbar-thumb {border-radius: 5px;background: #242424;}
 .row:hover::-webkit-scrollbar-thumb {background: #777;}
 .item {
+    box-shadow: 5px 5px 5px #777;
     margin: 5px;
     text-align: center;
     border: 2px solid #ccc;
@@ -172,10 +182,12 @@ A:hover {
     background-color: #242424;
 }
 .item__poster > img {
+    box-shadow: 10px 7px 15px #333;
     max-height: 300px;
     max-width: 150px;
 }
 .item__info {
+    box-shadow: 10px 7px 15px #333;
     margin-left: 5px;
     margin-right: 7px;
     border: 2px solid #ccc;
@@ -188,6 +200,7 @@ A:hover {
 }
 /* Youtube trailers */
 .trailer__frame {
+    box-shadow: 10px 7px 15px #333;
     border: 2px solid #ccc;
     border-radius: 5px;
     padding: 5px;
@@ -195,6 +208,7 @@ A:hover {
     margin: 0 7px 20px 7px;
 }
 .frame__hide {
+    box-shadow: 10px 7px 15px #333;
     position: absolute;
     margin-left: -45px;
     margin-top: -30px;
@@ -222,6 +236,7 @@ A:hover {
     opacity: 0.85;
 }
 .close {
+    box-shadow: 10px 7px 15px #333;
     opacity: 0.75;
     margin-right: -25px;
     position: absolute;
@@ -241,10 +256,12 @@ A:hover {
     display: none;
 }
 .small__frame > div > iframe {
+    box-shadow: 10px 7px 15px #333;
     height: 18vh;
     min-height: 150px;
 }
 .chart {
+    box-shadow: 10px 7px 15px #333;
     border: 2px solid #ccc;
     border-radius: 5px;
     background-color: #242424;
@@ -254,6 +271,7 @@ A:hover {
 }
 /* Footer*/
 .footer {
+    box-shadow: 10px 7px 15px #333;
     opacity: 0.5;
     text-align: center;
     color: #fff;
