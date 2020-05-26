@@ -235,7 +235,6 @@ A:hover {
     bottom: 0;
     left: 0;
     z-index: 999999;
-    opacity: 0.85;
 }
 .close {
     box-shadow: 10px 7px 15px #333;
