@@ -22,7 +22,7 @@ A:hover {
     position: fixed;
     right: 6vw;
     bottom: 5vh;
-    opacity: 0.5;
+    opacity: 0.85;
     z-index: 9999999;
     cursor: pointer;
 }
