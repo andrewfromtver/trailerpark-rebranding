@@ -314,7 +314,7 @@ function apiSearch(event){
                 let nameItem = item.name || item.title;
                 const poster = item.poster_path ? img + item.poster_path : item.profile_path ? img + item.profile_path : './img/noposter.png';
                 let dataInfo = '';
-                if(item.media_type !== 'person') dataInfo = `data-id="${item.id}" data-type="${item.media_type}"`;
+                dataInfo = `data-id="${item.id}" data-type="${item.media_type}"`;
                 inner += `
                 <div class="item">
                     <img src="${poster}" class="poster" alt="${nameItem}" ${dataInfo}>
