@@ -31,6 +31,7 @@ A:hover {
     border: 3px solid #ccc;
     border-radius: 50px;
     box-shadow: 10px 7px 10px #333;
+    background-color: #fff;
 }
 .up__btn:hover {
     opacity: 1;
