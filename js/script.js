@@ -2,7 +2,9 @@ const serachForm = document.querySelector('#search-form');
 const movie = document.querySelector('#movies');
 const img = 'https://image.tmdb.org/t/p/w500';
 
-document.addEventListener('DOMContentLoaded', main_day());
+document.addEventListener('DOMContentLoaded', show('multi', 'day', 'day'));
+window.addEventListener("resize", function() {devCheck();});
+
 /* Device screen width check */
 function devCheck() {
     if (document.documentElement.clientWidth > 900 && document.documentElement.clientWidth < 1500) {
@@ -28,7 +30,6 @@ function devCheck() {
         small__frame.innerHTML = '';
     };
 }
-window.addEventListener("resize", function() {devCheck();});
 /* Scroll control */
 function up() {
 	var t;
@@ -65,16 +66,16 @@ document.getElementById("movies").addEventListener('wheel', function(event) {
       this.scrollLeft += modifier * event.deltaY;
       event.preventDefault();
     }
-  });
+});
 /* Main features */
-function mv() {
+function show(type, time, timestamp) {
     hideUpBtn();
     devCheck();
     title.innerHTML = `
     <div class="loader__placeholder">
         <div class="lds-ellipsis loader"><div></div><div></div><div></div><div></div></div>
     </div>`;
-	fetch(`https://api.themoviedb.org/3/trending/movie/day?api_key=dcaf7f5ea224596464b7714bac28142f&language=ru`)
+	fetch(`https://api.themoviedb.org/3/trending/${type}/${time}?api_key=dcaf7f5ea224596464b7714bac28142f&language=ru`)
     .then(function(value){
         if(value.status !== 200){
             return Promise.reject(new Error('Ошибка'));
@@ -89,7 +90,15 @@ function mv() {
         output.results.forEach(function (item){
             let nameItem = item.name || item.title;
             let mediaType = item.title ? 'movie' : 'tv';
-            const poster = item.poster_path ? img + item.poster_path : './img/noposter.png';
+            let poster = null;
+            if (type == 'person') {
+                const posterVar = item.profile_path ? img + item.profile_path : './img/noposter.png';
+                poster = posterVar;
+            }
+            else {
+                const posterVar = item.poster_path ? img + item.poster_path : './img/noposter.png';
+                poster = posterVar;
+            } 
             let dataInfo = `data-id="${item.id}" data-type="${mediaType}"`;
             inner += `
             <div class="item">
@@ -98,196 +107,24 @@ function mv() {
             </div>
             `;
         });
-        title.innerHTML = '<h4 class="title" >Самые популярные фильмы</h4>';
-        movie.innerHTML = inner;
-        addEventMedia();
-    })
-    .catch(function(reason){
-        title.innerHTML = `
-        <h4 class="title">
-            Упс, что-то пошло не так!
-        </h4>
-        `;
-    console.error('error: ' + reason);
-    });
-}
-function tv() {
-    hideUpBtn();
-    devCheck();
-    title.innerHTML = `
-    <div class="loader__placeholder">
-        <div class="lds-ellipsis loader"><div></div><div></div><div></div><div></div></div>
-    </div>`;
-	fetch(`https://api.themoviedb.org/3/trending/tv/day?api_key=dcaf7f5ea224596464b7714bac28142f&language=ru`)
-    .then(function(value){
-        if(value.status !== 200){
-            return Promise.reject(new Error('Ошибка'));
+        if (type == 'movie') {
+            title.innerHTML = '<h4 class="title" >Самые популярные фильмы</h4>';
         }
-            return value.json();
-    })
-    .then(function(output){
-        let inner = '';
-        if(output.results.length === 0){
-            title.innerHTML = '<h4 class="title" >Упс, что-то пошло не так!</h4>';
+        if (type == 'tv') {
+            title.innerHTML = '<h4 class="title" >Самые популярные сериалы</h4>';
         }
-        output.results.forEach(function (item){
-            let nameItem = item.name || item.title;
-            let mediaType = item.title ? 'movie' : 'tv';
-            const poster = item.poster_path ? img + item.poster_path : './img/noposter.png';
-            let dataInfo = `data-id="${item.id}" data-type="${mediaType}"`;
-            inner += `
-            <div class="item">
-                <img src="${poster}" class="poster" alt="${nameItem}" ${dataInfo}>
-                <h5>${nameItem.substr(0, 25)}</h5>
-            </div>
-            `;
-        });
-        title.innerHTML = '<h4 class="title" >Самые популярные сериалы</h4>';
-        movie.innerHTML = inner;
-        addEventMedia();
-    })
-    .catch(function(reason){
-        title.innerHTML = `
-        <h4 class="title">
-            Упс, что-то пошло не так!
-        </h4>
-        `;
-    console.error('error: ' + reason);
-    });
-}
-function person() {
-    hideUpBtn();
-    devCheck();
-    title.innerHTML = `
-    <div class="loader__placeholder">
-        <div class="lds-ellipsis loader"><div></div><div></div><div></div><div></div></div>
-    </div>`;
-	fetch(`https://api.themoviedb.org/3/trending/person/day?api_key=dcaf7f5ea224596464b7714bac28142f&language=ru`)
-    .then(function(value){
-        if(value.status !== 200){
-            return Promise.reject(new Error('Ошибка'));
+        if (type == 'multi') {
+            title.innerHTML = '<h4 class="title" >Самые популярные фильмы и сериалы</h4>';
         }
-            return value.json();
-    })
-    .then(function(output){
-        let inner = '';
-        if(output.results.length === 0){
-            title.innerHTML = '<h4 class="title" >Упс, что-то пошло не так!</h4>';
+        if (type == 'person') {
+            title.innerHTML = '<h4 class="title" >Самые популярные актёры</h4>';
         }
-        output.results.forEach(function (item){
-            let nameItem = item.name || item.title;
-            let mediaType = item.title ? 'movie' : 'tv';
-            const poster = item.profile_path ? img + item.profile_path : './img/noposter.png';
-            let dataInfo = `data-id="${item.id}" data-type="${mediaType}"`;
-            inner += `
-            <div class="item">
-                <img src="${poster}" class="poster" alt="${nameItem}" ${dataInfo}>
-                <h5>${nameItem.substr(0, 25)}</h5>
-            </div>
-            `;
-        });
-        title.innerHTML = '<h4 class="title" >Самые популярные актёры</h4>';
-        movie.innerHTML = inner;
-    })
-    .catch(function(reason){
-        title.innerHTML = `
-        <h4 class="title">
-            Упс, что-то пошло не так!
-        </h4>
-        `;
-    console.error('error: ' + reason);
-    });
-}
-function main_day() {
-    hideUpBtn();
-    devCheck();
-    title.innerHTML = `
-    <div class="loader__placeholder">
-        <div class="lds-ellipsis loader"><div></div><div></div><div></div><div></div></div>
-    </div>`;
-    let trendType = '';
-    if(1 === 2){
-        trendType = 'movie';
-    }else if(1 === 2){
-        trendType = 'tv';
-    }else{
-        trendType = 'all';
-    };
-	fetch(`https://api.themoviedb.org/3/trending/${trendType}/day?api_key=dcaf7f5ea224596464b7714bac28142f&language=ru`)
-    .then(function(value){
-        if(value.status !== 200){
-            return Promise.reject(new Error('Ошибка'));
+        if (timestamp == 'day') {
+            title.innerHTML = '<h4 class="title" >Самые популярные фильмы и сериалы сегодня</h4>';
         }
-            return value.json();
-    })
-    .then(function(output){
-        let inner = '';
-        if(output.results.length === 0){
-            title.innerHTML = '<h4 class="title" >Упс, что-то пошло не так!</h4>';
+        if (timestamp == 'week') {
+            title.innerHTML = '<h4 class="title" >Самые популярные фильмы и сериалы за неделю</h4>';
         }
-        output.results.forEach(function (item){
-            let nameItem = item.name || item.title;
-            let mediaType = item.title ? 'movie' : 'tv';
-            const poster = item.poster_path ? img + item.poster_path : './img/noposter.png';
-            let dataInfo = `data-id="${item.id}" data-type="${mediaType}"`;
-            inner += `
-            <div class="item">
-                <img src="${poster}" class="poster" alt="${nameItem}" ${dataInfo}>
-                <h5>${nameItem.substr(0, 25)}</h5>
-            </div>
-            `;
-        });
-        title.innerHTML = '<h4 class="title" >Самые популярные фильмы и сериалы сегодня</h4>';
-        movie.innerHTML = inner;
-        addEventMedia();
-    })
-    .catch(function(reason){
-        title.innerHTML = `
-        <h4 class="title">
-            Упс, что-то пошло не так!
-        </h4>
-        `;
-    console.error('error: ' + reason);
-    });
-}
-function main_week() {
-    title.innerHTML = `
-    <div class="loader__placeholder">
-        <div class="lds-ellipsis loader"><div></div><div></div><div></div><div></div></div>
-    </div>`;
-    let trendType = '';
-    if(1 === 2){
-        trendType = 'movie';
-    }else if(1 === 2){
-        trendType = 'tv';
-    }else{
-        trendType = 'all';
-    };
-	fetch(`https://api.themoviedb.org/3/trending/${trendType}/week?api_key=dcaf7f5ea224596464b7714bac28142f&language=ru`)
-    .then(function(value){
-        if(value.status !== 200){
-            return Promise.reject(new Error('Ошибка'));
-        }
-            return value.json();
-    })
-    .then(function(output){
-        let inner = '';
-        if(output.results.length === 0){
-            title.innerHTML = '<h4 class="title" >Упс, что-то пошло не так!</h4>';
-        }
-        output.results.forEach(function (item){
-            let nameItem = item.name || item.title;
-            let mediaType = item.title ? 'movie' : 'tv';
-            const poster = item.poster_path ? img + item.poster_path : './img/noposter.png';
-            let dataInfo = `data-id="${item.id}" data-type="${mediaType}"`;
-            inner += `
-            <div class="item">
-                <img src="${poster}" class="poster" alt="${nameItem}" ${dataInfo}>
-                <h5>${nameItem.substr(0, 25)}</h5>
-            </div>
-            `;
-        });
-        title.innerHTML = '<h4 class="title" >Самые популярные фильмы и сериалы за неделю</h4>';
         movie.innerHTML = inner;
         addEventMedia();
     })
