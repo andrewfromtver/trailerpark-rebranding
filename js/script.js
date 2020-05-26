@@ -3,6 +3,7 @@ const movie = document.querySelector('#movies');
 const img = 'https://image.tmdb.org/t/p/w500';
 
 document.addEventListener('DOMContentLoaded', show('multi', 'day', 'day'));
+document.querySelector(".up__btn").style.display = "none";
 window.addEventListener("resize", function() {devCheck();});
 
 /* Device screen width check */
@@ -49,9 +50,6 @@ window.onscroll = function() {
       document.querySelector(".up__btn").style.display = "none";
     }
 }
-function hideUpBtn () {
-    document.querySelector(".up__btn").style.display = "none";
-}
 document.getElementById("movies").addEventListener('wheel', function(event) {
     if (event.deltaMode == event.DOM_DELTA_PIXEL) {
       var modifier = 1;
@@ -69,7 +67,6 @@ document.getElementById("movies").addEventListener('wheel', function(event) {
 });
 /* Main features */
 function show(type, time, timestamp) {
-    hideUpBtn();
     devCheck();
     title.innerHTML = `
     <div class="loader__placeholder">
@@ -89,7 +86,7 @@ function show(type, time, timestamp) {
         }
         output.results.forEach(function (item){
             let nameItem = item.name || item.title;
-            let mediaType = item.title ? 'movie' : 'tv';
+            let mediaType = item.media_type;
             let poster = null;
             if (type == 'person') {
                 const posterVar = item.profile_path ? img + item.profile_path : './img/noposter.png';
@@ -101,10 +98,10 @@ function show(type, time, timestamp) {
             } 
             let dataInfo = `data-id="${item.id}" data-type="${mediaType}"`;
             inner += `
-            <div class="item">
+                <div class="item">
                 <img src="${poster}" class="poster" alt="${nameItem}" ${dataInfo}>
                 <h5>${nameItem.substr(0, 25)}</h5>
-            </div>
+                </div>
             `;
         });
         if (type == 'movie') {
@@ -154,6 +151,8 @@ function showFullInfo(){
         url = 'https://api.themoviedb.org/3/movie/' + this.dataset.id + '?api_key=dcaf7f5ea224596464b7714bac28142f&language=ru';
     }else if(this.dataset.type === 'tv'){
         url = 'https://api.themoviedb.org/3/tv/' + this.dataset.id + '?api_key=dcaf7f5ea224596464b7714bac28142f&language=ru';
+    }else if(this.dataset.type === 'person'){
+        url = 'https://api.themoviedb.org/3/person/' + this.dataset.id + '?api_key=dcaf7f5ea224596464b7714bac28142f&language=ru';
     }else{
         title__item.innerHTML = '<h4 class="title" >Упс, что-то пошло не так!</h4>';
     };
@@ -167,42 +166,66 @@ function showFullInfo(){
         return value.json();
     })
     .then(function (output) {
-        const poster1 = output.poster_path ? img + output.poster_path : './img/noposter.png';
-        title__item.innerHTML = 
-        item.innerHTML = `<h4 class="title" >${output.name || output.title}</h4>`;
-        item.innerHTML = `
-        <div class="item__poster">
-            <img src='${poster1}' alt='${output.name || output.title}' class='poster__info'>
-            ${(output.homepage) ? `<p class='btn__info'> <a href="${output.homepage}" target="_blank"> Официальная страница </a> </p>` : ''}
-            ${(output.imdb_id) ? `<p class='btn__info'> <a href="https://imdb.com/title/${output.imdb_id}" target="_blank"> Страница на IMDB.COM </a> </p>` : ''}
-        </div>
-        <div class="item__info">
-            <p>Рейтинг: ${output.vote_average}</p>
-            <p>Премьера: ${output.first_air_date || output.release_date} </p>
-            <p>Описание: ${output.overview.substr(0, 600) || 'К сожалению описание отсутствует.'}</p>
-            <br>
-            <div class='youtube'></div>
-        </div>
-        `;
-        getVideo(id, type);
+        if (type == 'person') {
+            console.log(output);
+            const poster1 = output.profile_path ? img + output.profile_path : './img/noposter.png';
+            title__item.innerHTML = `<h4 class="title" >${output.name}</h4>`;
+            let bio = '';
+            if (output.biography) {
+                bio = output.biography.substr(0, 600) + '...';
+            }else {
+                bio = 'К сожалению биография отсутствует.';
+            }
+            item.innerHTML = `
+            <div class="item__poster">
+                <img src='${poster1}' alt='${output.name}' class='poster__info'>
+            </div>
+            <div class="item__info">
+                <p>Дата рождения: ${output.birthday}</p>
+                <p>Биография: ${bio}</p>
+                <br>
+                <div class='youtube'></div>
+            </div>
+            `;
+            trailer.innerHTML = '';
+        }else {
+            const poster1 = output.poster_path ? img + output.poster_path : './img/noposter.png';
+            title__item.innerHTML = `<h4 class="title" >${output.name || output.title}</h4>`;
+            item.innerHTML = `
+            <div class="item__poster">
+                <img src='${poster1}' alt='${output.name || output.title}' class='poster__info'>
+                ${(output.homepage) ? `<p class='btn__info'> <a href="${output.homepage}" target="_blank"> Официальная страница </a> </p>` : ''}
+                ${(output.imdb_id) ? `<p class='btn__info'> <a href="https://imdb.com/title/${output.imdb_id}" target="_blank"> Страница на IMDB.COM </a> </p>` : ''}
+            </div>
+            <div class="item__info">
+                <p>Рейтинг: ${output.vote_average}</p>
+                <p>Премьера: ${output.first_air_date || output.release_date} </p>
+                <p>Описание: ${output.overview.substr(0, 600) || 'К сожалению описание отсутствует.'}</p>
+                <br>
+                <div class='youtube'></div>
+            </div>
+            `;
+            getVideo(id, type);
+        }
     })
     .catch(function(reason){
         movie.innerHTML = `<h4 class="title">Упс, что-то пошло не так!</h4>`;
         console.error('error: ' + reason);
     });
 }
+/* Picture in picture mode */
 function frameHide() {
     small__frame.innerHTML = '';
     let id = event.target.getAttribute('id');
     small__frame.append(document.querySelector(`.${id}`));
     var elemCount  = document.querySelector('.trailer').childElementCount;
-    small__frame.innerHTML += '<img src="./img/close.png" class="close" onclick="hideSmallFrame()">';
+    small__frame.innerHTML += '<img src="./img/close.png" class="close" onclick="closeSmallFrame()">';
     if (elemCount == 1) {
         document.querySelector(".trailer").innerHTML = '';
     }
     document.querySelector(".small__frame").style.display = "";
 }
-function hideSmallFrame() {
+function closeSmallFrame() {
     small__frame.innerHTML = '';
 }
 /* Youtube trailers search */
