@@ -14,11 +14,11 @@
         <img src="./img/upBtn.png" onclick="up()">
     </div>
     <div class="header">
-        <div class="header__link" onclick="main_day()">
+        <div class="header__link" onclick="show('multi', 'day', 'day')">
             <img src="./img/day.png" width="25" height="25" class="d-inline-block align-top" alt="">
             <a class="header__link1__desc">Топ на сегодня</a>
         </div>
-        <div class="header__link" onclick="main_week()">
+        <div class="header__link" onclick="show('multi', 'week', 'week')">
             <img src="./img/week.png" width="25" height="25" class="d-inline-block align-top" alt="">
             <a class="header__link2__desc">Топ за неделю</a>
         </div>
@@ -41,9 +41,9 @@
     <div id="movies" class="row"></div>
     <div class="main__section">
         <div class="type">
-            <button class="btn_type" onclick="mv()">Фильмы</button>
-            <button class="btn_type" onclick="tv()">Сериалы</button>
-            <button class="btn_type" onclick="person()">Актеры</button>
+            <button class="btn_type" onclick="show('movie', 'week')">Фильмы</button>
+            <button class="btn_type" onclick="show('tv', 'week')">Сериалы</button>
+            <button class="btn_type" onclick="show('person', 'week')">Актеры</button>
         </div>
         <div id="title__item"></div>
         <div id="item" class="container"></div>
