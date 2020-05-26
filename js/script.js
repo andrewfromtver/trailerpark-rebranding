@@ -167,7 +167,6 @@ function showFullInfo(){
     })
     .then(function (output) {
         if (type == 'person') {
-            console.log(output);
             const poster1 = output.profile_path ? img + output.profile_path : './img/noposter.png';
             title__item.innerHTML = `<h4 class="title" >${output.name}</h4>`;
             let bio = '';
@@ -179,9 +178,11 @@ function showFullInfo(){
             item.innerHTML = `
             <div class="item__poster">
                 <img src='${poster1}' alt='${output.name}' class='poster__info'>
+                ${(output.homepage) ? `<p class='btn__info'> <a href="${output.homepage}" target="_blank"> Официальная страница </a> </p>` : ''}
             </div>
             <div class="item__info">
                 <p>Дата рождения: ${output.birthday}</p>
+                <p>Место рождения: ${output.place_of_birth}</p>
                 <p>Биография: ${bio}</p>
                 <br>
                 <div class='youtube'></div>
