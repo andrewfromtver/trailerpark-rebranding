@@ -9,6 +9,7 @@ body {
     background-position: center;
     margin: 0;
     background-color: #242424;
+    background-size: cover;
     font-family: sans-serif;
 }
 A {
