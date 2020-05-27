@@ -36,14 +36,8 @@ function devCheck() {
 }
 /* Scroll control */
 function up() {
-	var t;
-	var top = Math.max(document.body.scrollTop,document.documentElement.scrollTop);
-	if(top > 0) {
-		window.scrollBy(0,-150);
-		t = setTimeout('up()', 50);
-	}
-	else clearTimeout(t);
-	return false;
+    const el = document.getElementById('movies');
+    el.scrollIntoView({block: "center", inline: "center", behavior: "smooth"});
 }
 window.onscroll = function() {
     var scrolled = window.pageYOffset || document.documentElement.scrollTop;
@@ -126,7 +120,6 @@ function show(type, time, timestamp) {
         movie.innerHTML = inner;
         const media = movie.querySelectorAll('img[data-id]');
         media.forEach(function(elem){
-            elem.style.cursor = 'pointer';
             elem.addEventListener('click', showFullInfo);
         });
     })
@@ -134,6 +127,8 @@ function show(type, time, timestamp) {
         title.innerHTML = `<h4 class="title">Упс, что-то пошло не так!</h4>`;
         console.error('error: ' + reason);
     });
+    const el = document.getElementById('movies');
+    el.scrollIntoView({block: "center", inline: "center", behavior: "smooth"});
 }
 function showFullInfo(){
     document.querySelector('.rec__list').innerHTML = ``;
@@ -460,7 +455,6 @@ function showRecomendations(id) {
     .then(function(output){
         let inner = '';
         let i = output.results.length;
-        console.log(i);
         output.results.forEach(function (item){
             let nameItem = item.name || item.title;
             let poster = null;
@@ -468,7 +462,7 @@ function showRecomendations(id) {
             poster = posterVar;
             inner += `
                 <div class="item">
-                <img src="${poster}" class="poster" id="${item.id}" alt ="${nameItem}">
+                <img src="${poster}" class="poster" onclick="showById(${item.id})" alt ="${nameItem}">
                 <h5>${nameItem.substr(0, 25)}</h5>
                 </div>
             `;
@@ -483,5 +477,52 @@ function showRecomendations(id) {
         console.error('error: ' + reason);
     });
     const el = document.getElementById('movies__rec');
+    el.scrollIntoView({block: "center", inline: "center", behavior: "smooth"});
+}
+function showById(id){
+    let url = `https://api.themoviedb.org/3/movie/${id}?api_key=dcaf7f5ea224596464b7714bac28142f&language=ru`;
+    fetch(url)
+    .then(function(value){
+        if(value.status !== 200){
+            return Promise.reject(new Error('Ошибка!'));
+        }
+        return value.json();
+    })
+    .then(function (output) {
+            const poster1 = output.poster_path ? img + output.poster_path : './img/noposter.png';
+            title__item.innerHTML = `<h4 class="title" >${output.name || output.title}</h4>`;
+            let vote = '';
+            if (!output.vote_average == 0) {
+                vote = output.vote_average;
+            }else {
+                vote = 'К сожалению рейтинг отсутствует.';
+            }
+            let first_air_date = '';
+            if (output.first_air_date || output.release_date) {
+                first_air_date = output.first_air_date || output.release_date;
+            }else {
+                first_air_date = 'К сожалению данные отсутствуют.';
+            }
+            item.innerHTML = `
+            <div class="item__poster">
+                <img src='${poster1}' alt='${output.name || output.title}' class='poster__info'>
+                ${(output.homepage) ? `<a href="${output.homepage}" target="_blank"><p class="btn__info">Официальная страница</p></a>` : ''}
+                ${(output.imdb_id) ? `<a href="https://imdb.com/title/${output.imdb_id}" target="_blank"><p class="btn__info">Страница на IMDB.COM</p></a>` : ''}
+            </div>
+            <div class="item__info">
+                <p>Рейтинг: ${vote}</p>
+                <p>Премьера: ${first_air_date} </p>
+                <p>Описание: ${output.overview.substr(0, 600) || 'К сожалению описание отсутствует.'}</p>
+                <br>
+                <div class='youtube'></div>
+            </div>
+            `;
+    })
+    .catch(function(reason){
+        movie.innerHTML = `<h4 class="title">Упс, что-то пошло не так!</h4>`;
+        console.error('error: ' + reason);
+    });
+    getVideo(id, 'movie');
+    const el = document.getElementById('item');
     el.scrollIntoView({block: "center", inline: "center", behavior: "smooth"});
 }
