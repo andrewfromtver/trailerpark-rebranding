@@ -5,7 +5,6 @@ const img = 'https://image.tmdb.org/t/p/w500';
 document.addEventListener('DOMContentLoaded', show('multi', 'day', 'day'));
 document.querySelector(".up__btn").style.display = "none";
 window.addEventListener("resize", function() {devCheck();});
-devCheck();
 /* Device screen width check */
 function devCheck() {
     if (document.documentElement.clientWidth > 900 && document.documentElement.clientWidth < 1500) {
@@ -33,10 +32,20 @@ function devCheck() {
         document.querySelector(".header__link3__desc").style.display = "none";
         small__frame.innerHTML = '';
     };
+    if (document.documentElement.clientWidth < 460) {
+        if (document.querySelector(".item__poster")) {
+            document.querySelector(".item__poster").style.display = "none";
+        }
+    }
+    else {
+        if (document.querySelector(".item__poster")) {
+            document.querySelector(".item__poster").style.display = "";
+        }
+    }
 }
 /* Scroll control */
 function up() {
-    const el = document.getElementById('movies');
+    const el = document.getElementById('top');
     el.scrollIntoView({block: "center", inline: "center", behavior: "smooth"});
 }
 window.onscroll = function() {
@@ -75,6 +84,7 @@ document.getElementById("movies__rec").addEventListener('wheel', function(event)
 });
 /* Main features */
 function show(type, time, timestamp) {
+    devCheck();
     title.innerHTML = `
     <div class="loader__placeholder">
         <div class="lds-ellipsis loader"><div></div><div></div><div></div><div></div></div>
@@ -191,6 +201,7 @@ function showFullInfo(){
             </div>
             `;
             trailer.innerHTML = '';
+            devCheck();
         }else {
             const poster1 = output.poster_path ? img + output.poster_path : './img/noposter.png';
             title__item.innerHTML = `<h4 class="title" >${output.name || output.title}</h4>`;
@@ -207,7 +218,7 @@ function showFullInfo(){
                 first_air_date = 'К сожалению данные отсутствуют.';
             }
             item.innerHTML = `
-            <div class="item__poster">
+            <div class="item__poster pic">
                 <img src='${poster1}' alt='${output.name || output.title}' class='poster__info'>
                 ${(output.homepage) ? `<a href="${output.homepage}" target="_blank"><p class="btn__info">Официальная страница</p></a>` : ''}
                 ${(output.imdb_id) ? `<a href="https://imdb.com/title/${output.imdb_id}" target="_blank"><p class="btn__info">Страница на IMDB.COM</p></a>` : ''}
@@ -228,6 +239,7 @@ function showFullInfo(){
                     `;
             }
             getVideo(id, type);
+            devCheck();
         }
     })
     .catch(function(reason){
@@ -517,6 +529,7 @@ function showById(id){
                 <div class='youtube'></div>
             </div>
             `;
+            devCheck();
     })
     .catch(function(reason){
         movie.innerHTML = `<h4 class="title">Упс, что-то пошло не так!</h4>`;
