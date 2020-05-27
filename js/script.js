@@ -56,14 +56,12 @@ window.onscroll = function() {
 document.getElementById("movies").addEventListener('wheel', function(event) {
     if (event.deltaMode == event.DOM_DELTA_PIXEL) {
       var modifier = 1;
-      // иные режимы возможны в Firefox
     } else if (event.deltaMode == event.DOM_DELTA_LINE) {
       var modifier = parseInt(getComputedStyle(this).lineHeight);
     } else if (event.deltaMode == event.DOM_DELTA_PAGE) {
       var modifier = this.clientHeight;
     }
     if (event.deltaY != 0) {
-      // замена вертикальной прокрутки горизонтальной
       this.scrollLeft += modifier * event.deltaY;
       event.preventDefault();
     }
@@ -339,7 +337,7 @@ function apiSearch(event){
         });
 }
 serachForm.addEventListener('submit', apiSearch);
-/* Charts & table of top movies */
+/* Charts of top movies */
 function top_chart() {
     title__item.innerHTML = `
     <div class="loader__placeholder">
