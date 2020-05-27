@@ -459,9 +459,8 @@ function showRecomendations(id) {
     })
     .then(function(output){
         let inner = '';
-        if(output.results.length === 0){
-            document.querySelector('.rec__list').innerHTML = '<h4 class="title" >Упс, что-то пошло не так!</h4>';
-        }
+        let i = output.results.length;
+        console.log(i);
         output.results.forEach(function (item){
             let nameItem = item.name || item.title;
             let poster = null;
@@ -475,9 +474,14 @@ function showRecomendations(id) {
             `;
         });
         document.querySelector('.rec__list').innerHTML = inner;
+        if(i === 0){
+            document.querySelector('.rec__list').innerHTML = `<h4 class="title rec__title">Упс, что-то пошло не так!</h4>`;
+        }
     })
     .catch(function(reason){
         document.querySelector('.rec__list').innerHTML = `<h4 class="title">Упс, что-то пошло не так!</h4>`;
         console.error('error: ' + reason);
     });
+    const el = document.getElementById('movies__rec');
+    el.scrollIntoView({block: "center", inline: "center", behavior: "smooth"});
 }
