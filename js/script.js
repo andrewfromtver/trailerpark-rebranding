@@ -66,6 +66,19 @@ document.getElementById("movies").addEventListener('wheel', function(event) {
       event.preventDefault();
     }
 });
+document.getElementById("movies__rec").addEventListener('wheel', function(event) {
+    if (event.deltaMode == event.DOM_DELTA_PIXEL) {
+      var modifier = 1;
+    } else if (event.deltaMode == event.DOM_DELTA_LINE) {
+      var modifier = parseInt(getComputedStyle(this).lineHeight);
+    } else if (event.deltaMode == event.DOM_DELTA_PAGE) {
+      var modifier = this.clientHeight;
+    }
+    if (event.deltaY != 0) {
+      this.scrollLeft += modifier * event.deltaY;
+      event.preventDefault();
+    }
+});
 /* Main features */
 function show(type, time, timestamp) {
     title.innerHTML = `
@@ -123,6 +136,7 @@ function show(type, time, timestamp) {
     });
 }
 function showFullInfo(){
+    document.querySelector('.rec__list').innerHTML = ``;
     title__item.innerHTML = `
     <div class="loader__placeholder">
         <div class="lds-ellipsis loader"><div></div><div></div><div></div><div></div></div>
@@ -211,6 +225,13 @@ function showFullInfo(){
                 <div class='youtube'></div>
             </div>
             `;
+            if (type == 'movie') {
+                item.innerHTML += `
+                    <a onclick="showRecomendations(${output.id})">
+                        <p class="btn__info__rec"> Рекомендаций </p>
+                    </a>
+                    `;
+            }
             getVideo(id, type);
         }
     })
@@ -347,6 +368,7 @@ function apiSearch(event){
 serachForm.addEventListener('submit', apiSearch);
 /* Charts of top movies */
 function top_chart() {
+    document.querySelector('.rec__list').innerHTML = ``;
     title__item.innerHTML = `
     <div class="loader__placeholder">
         <div class="lds-ellipsis loader"><div></div><div></div><div></div><div></div></div>
@@ -425,4 +447,37 @@ function top_chart() {
         });
         chart2.render();
 })
+}
+/* Recomendations */
+function showRecomendations(id) {
+    fetch(`https://api.themoviedb.org/3/movie/${id}/similar?api_key=dcaf7f5ea224596464b7714bac28142f&language=ru&page=1`)
+    .then(function(value){
+        if(value.status !== 200){
+            return Promise.reject(new Error('Ошибка'));
+        }
+            return value.json();
+    })
+    .then(function(output){
+        let inner = '';
+        if(output.results.length === 0){
+            document.querySelector('.rec__list').innerHTML = '<h4 class="title" >Упс, что-то пошло не так!</h4>';
+        }
+        output.results.forEach(function (item){
+            let nameItem = item.name || item.title;
+            let poster = null;
+            const posterVar = item.poster_path ? img + item.poster_path : './img/noposter.png';
+            poster = posterVar;
+            inner += `
+                <div class="item">
+                <img src="${poster}" class="poster" id="${item.id}" alt ="${nameItem}">
+                <h5>${nameItem.substr(0, 25)}</h5>
+                </div>
+            `;
+        });
+        document.querySelector('.rec__list').innerHTML = inner;
+    })
+    .catch(function(reason){
+        document.querySelector('.rec__list').innerHTML = `<h4 class="title">Упс, что-то пошло не так!</h4>`;
+        console.error('error: ' + reason);
+    });
 }
