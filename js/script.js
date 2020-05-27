@@ -171,7 +171,7 @@ function showFullInfo(){
             item.innerHTML = `
             <div class="item__poster">
                 <img src='${poster1}' alt='${output.name}' class='poster__info'>
-                ${(output.homepage) ? `<p class='btn__info'> <a href="${output.homepage}" target="_blank"> Официальная страница </a> </p>` : ''}
+                ${(output.homepage) ? `<a href="${output.homepage}" target="_blank"><p class="btn__info"> Официальная страница </p></a>` : ''}
             </div>
             <div class="item__info">
                 <p>Дата рождения: ${birthday}</p>
@@ -200,8 +200,8 @@ function showFullInfo(){
             item.innerHTML = `
             <div class="item__poster">
                 <img src='${poster1}' alt='${output.name || output.title}' class='poster__info'>
-                ${(output.homepage) ? `<p class='btn__info'> <a href="${output.homepage}" target="_blank"> Официальная страница </a> </p>` : ''}
-                ${(output.imdb_id) ? `<p class='btn__info'> <a href="https://imdb.com/title/${output.imdb_id}" target="_blank"> Страница на IMDB.COM </a> </p>` : ''}
+                ${(output.homepage) ? `<a href="${output.homepage}" target="_blank"><p class="btn__info">Официальная страница</p></a>` : ''}
+                ${(output.imdb_id) ? `<a href="https://imdb.com/title/${output.imdb_id}" target="_blank"><p class="btn__info">Страница на IMDB.COM</p></a>` : ''}
             </div>
             <div class="item__info">
                 <p>Рейтинг: ${vote}</p>
