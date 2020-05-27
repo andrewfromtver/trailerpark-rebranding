@@ -146,6 +146,9 @@ A:hover {
     color: darkorange;
     background-color: #fff;
 }
+.rec__title {
+    margin: 0 auto !important;
+}
 .rec__list {
     display: flex;
     flex-direction: row;
