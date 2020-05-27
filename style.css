@@ -159,7 +159,6 @@ A:hover {
     border-radius: 5px;
     background-color: #242424;
     opacity: 0.8;
-    padding: 5px;
 }
 .rec__list:hover {
     opacity: 1;
@@ -185,7 +184,6 @@ A:hover {
     display: flex;
     overflow-x: scroll;
     background-color: #242424;
-    padding: 5px;
     min-height: 263px;
     opacity: 0.8;
 }
