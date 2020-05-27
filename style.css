@@ -204,6 +204,9 @@ A:hover {
     max-height: 215px;
     background-color: #fff;
 }
+.item > img {
+    cursor: pointer;
+}
 .item > h5 {
     margin: 0;
     font-size: 12px;
