@@ -124,7 +124,11 @@ function show(type, time, timestamp) {
             title.innerHTML = '<h4 class="title" >Самые популярные фильмы и сериалы за неделю</h4>';
         }
         movie.innerHTML = inner;
-        addEventMedia();
+        const media = movie.querySelectorAll('img[data-id]');
+        media.forEach(function(elem){
+            elem.style.cursor = 'pointer';
+            elem.addEventListener('click', showFullInfo);
+        });
     })
     .catch(function(reason){
         title.innerHTML = `
@@ -134,13 +138,6 @@ function show(type, time, timestamp) {
         `;
     console.error('error: ' + reason);
     });
-}
-function addEventMedia(){
-    const media = movie.querySelectorAll('img[data-id]');
-            media.forEach(function(elem){
-                elem.style.cursor = 'pointer';
-                elem.addEventListener('click', showFullInfo);
-            });
 }
 function showFullInfo(){
     title__item.innerHTML = `
@@ -176,14 +173,26 @@ function showFullInfo(){
             }else {
                 bio = 'К сожалению биография отсутствует.';
             }
+            let birthday = '';
+            if (output.birthday) {
+                birthday = output.birthday;
+            }else {
+                birthday = 'К сожалению дата рождения отсутствует.';
+            }
+            let place_of_birth = '';
+            if (output.place_of_birth) {
+                place_of_birth = output.place_of_birth;
+            }else {
+                place_of_birth = 'К сожалению данные отсутствуют.';
+            }
             item.innerHTML = `
             <div class="item__poster">
                 <img src='${poster1}' alt='${output.name}' class='poster__info'>
                 ${(output.homepage) ? `<p class='btn__info'> <a href="${output.homepage}" target="_blank"> Официальная страница </a> </p>` : ''}
             </div>
             <div class="item__info">
-                <p>Дата рождения: ${output.birthday}</p>
-                <p>Место рождения: ${output.place_of_birth}</p>
+                <p>Дата рождения: ${birthday}</p>
+                <p>Место рождения: ${place_of_birth}</p>
                 <p>Биография: ${bio}</p>
                 <br>
                 <div class='youtube'></div>
@@ -193,6 +202,18 @@ function showFullInfo(){
         }else {
             const poster1 = output.poster_path ? img + output.poster_path : './img/noposter.png';
             title__item.innerHTML = `<h4 class="title" >${output.name || output.title}</h4>`;
+            let vote = '';
+            if (!output.vote_average == 0) {
+                vote = output.vote_average;
+            }else {
+                vote = 'К сожалению рейтинг отсутствует.';
+            }
+            let first_air_date = '';
+            if (output.first_air_date || output.release_date) {
+                first_air_date = output.first_air_date || output.release_date;
+            }else {
+                first_air_date = 'К сожалению данные отсутствуют.';
+            }
             item.innerHTML = `
             <div class="item__poster">
                 <img src='${poster1}' alt='${output.name || output.title}' class='poster__info'>
@@ -200,8 +221,8 @@ function showFullInfo(){
                 ${(output.imdb_id) ? `<p class='btn__info'> <a href="https://imdb.com/title/${output.imdb_id}" target="_blank"> Страница на IMDB.COM </a> </p>` : ''}
             </div>
             <div class="item__info">
-                <p>Рейтинг: ${output.vote_average}</p>
-                <p>Премьера: ${output.first_air_date || output.release_date} </p>
+                <p>Рейтинг: ${vote}</p>
+                <p>Премьера: ${first_air_date} </p>
                 <p>Описание: ${output.overview.substr(0, 600) || 'К сожалению описание отсутствует.'}</p>
                 <br>
                 <div class='youtube'></div>
@@ -325,7 +346,11 @@ function apiSearch(event){
                 `;
             });
             movie.innerHTML = inner;
-            addEventMedia();
+            const media = movie.querySelectorAll('img[data-id]');
+            media.forEach(function(elem){
+                elem.style.cursor = 'pointer';
+                elem.addEventListener('click', showFullInfo);
+            });
         })
         .catch(function(reason){
             title.innerHTML = `
