@@ -5,7 +5,7 @@ const img = 'https://image.tmdb.org/t/p/w500';
 document.addEventListener('DOMContentLoaded', show('multi', 'day', 'day'));
 document.querySelector(".up__btn").style.display = "none";
 window.addEventListener("resize", function() {devCheck();});
-
+devCheck();
 /* Device screen width check */
 function devCheck() {
     if (document.documentElement.clientWidth > 900 && document.documentElement.clientWidth < 1500) {
@@ -68,7 +68,6 @@ document.getElementById("movies").addEventListener('wheel', function(event) {
 });
 /* Main features */
 function show(type, time, timestamp) {
-    devCheck();
     title.innerHTML = `
     <div class="loader__placeholder">
         <div class="lds-ellipsis loader"><div></div><div></div><div></div><div></div></div>
@@ -105,24 +104,12 @@ function show(type, time, timestamp) {
                 </div>
             `;
         });
-        if (type == 'movie') {
-            title.innerHTML = '<h4 class="title" >Самые популярные фильмы</h4>';
-        }
-        if (type == 'tv') {
-            title.innerHTML = '<h4 class="title" >Самые популярные сериалы</h4>';
-        }
-        if (type == 'multi') {
-            title.innerHTML = '<h4 class="title" >Самые популярные фильмы и сериалы</h4>';
-        }
-        if (type == 'person') {
-            title.innerHTML = '<h4 class="title" >Самые популярные актёры</h4>';
-        }
-        if (timestamp == 'day') {
-            title.innerHTML = '<h4 class="title" >Самые популярные фильмы и сериалы сегодня</h4>';
-        }
-        if (timestamp == 'week') {
-            title.innerHTML = '<h4 class="title" >Самые популярные фильмы и сериалы за неделю</h4>';
-        }
+        if (type == 'movie') title.innerHTML = '<h4 class="title" >Самые популярные фильмы</h4>';
+        if (type == 'tv') title.innerHTML = '<h4 class="title" >Самые популярные сериалы</h4>';
+        if (type == 'multi') title.innerHTML = '<h4 class="title" >Самые популярные фильмы и сериалы</h4>';
+        if (type == 'person') title.innerHTML = '<h4 class="title" >Самые популярные актёры</h4>';
+        if (timestamp == 'day') title.innerHTML = '<h4 class="title" >Самые популярные фильмы и сериалы сегодня</h4>';
+        if (timestamp == 'week') title.innerHTML = '<h4 class="title" >Самые популярные фильмы и сериалы за неделю</h4>';
         movie.innerHTML = inner;
         const media = movie.querySelectorAll('img[data-id]');
         media.forEach(function(elem){
@@ -131,12 +118,8 @@ function show(type, time, timestamp) {
         });
     })
     .catch(function(reason){
-        title.innerHTML = `
-        <h4 class="title">
-            Упс, что-то пошло не так!
-        </h4>
-        `;
-    console.error('error: ' + reason);
+        title.innerHTML = `<h4 class="title">Упс, что-то пошло не так!</h4>`;
+        console.error('error: ' + reason);
     });
 }
 function showFullInfo(){
