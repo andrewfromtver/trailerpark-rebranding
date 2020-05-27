@@ -56,23 +56,21 @@ A:hover {
     vertical-align: super;
 }
 /* Search form */
-.search__form {
-    margin: 20px 0;
-    display: flex;
-    justify-content: center;
-}
 .form-control {
+    margin: 15px 7px 0 7px;
     border: 2px solid #ccc;
     border-radius: 5px;
     padding:  10px 15px;
     outline: transparent;
-    width: 58vw;
+    width: 80%;
     box-shadow: 10px 7px 15px #333;
 }
 .form-control:focus{
     border: 2px solid darkorange;
 }
 .btn {
+    width: 20%;
+    margin: 15px 7px 0 7px;
     background-color: rgb(241, 155, 48);
     border-width: 2px;
     border-style: solid;
@@ -88,7 +86,7 @@ A:hover {
     color: darkorange;
     background-color: #fff;
 }
-.type {
+.type, .main__section__search {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
