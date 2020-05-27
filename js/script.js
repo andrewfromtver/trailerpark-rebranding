@@ -11,6 +11,7 @@ function devCheck() {
     if (document.documentElement.clientWidth > 900 && document.documentElement.clientWidth < 1500) {
         document.querySelector(".main__section").style = "margin: 0 15vw 0 15vw;";
         document.querySelector(".main__section__title").style = "margin: 0 15vw 0 15vw;";
+        document.querySelector(".main__section__search").style = "margin: 0 15vw 0 15vw;";
         document.querySelector(".header__link1__desc").style.display = "";
         document.querySelector(".header__link2__desc").style.display = "";
         document.querySelector(".header__link3__desc").style.display = "";
@@ -18,6 +19,7 @@ function devCheck() {
     else if (document.documentElement.clientWidth > 1500) {
         document.querySelector(".main__section").style = "margin: 0 25vw 0 25vw;";
         document.querySelector(".main__section__title").style = "margin: 0 25vw 0 25vw;";
+        document.querySelector(".main__section__search").style = "margin: 0 25vw 0 25vw;";
         document.querySelector(".header__link1__desc").style.display = "";
         document.querySelector(".header__link2__desc").style.display = "";
         document.querySelector(".header__link3__desc").style.display = "";
@@ -25,6 +27,7 @@ function devCheck() {
     else {
         document.querySelector(".main__section").style = "";
         document.querySelector(".main__section__title").style = "";
+        document.querySelector(".main__section__search").style = "";
         document.querySelector(".header__link1__desc").style.display = "none";
         document.querySelector(".header__link2__desc").style.display = "none";
         document.querySelector(".header__link3__desc").style.display = "none";
