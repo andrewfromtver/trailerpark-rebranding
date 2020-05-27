@@ -126,6 +126,45 @@ A:hover {
     color: darkorange;
     background-color: #fff;
 }
+.btn__info__rec {
+    position: absolute;
+    text-align: center;
+    box-shadow: 10px 7px 15px #555;
+    background-color: rgb(241, 155, 48);
+    border-width: 2px;
+    border-style: solid;
+    border-color: darkorange;
+    color: #fff;
+    border-radius: 5px;
+    font-weight: 700;
+    padding: 5px;
+    cursor: pointer;
+    margin: 20px 0 0 -165px;
+    width: 120px;
+}
+.btn__info__rec:hover {
+    color: darkorange;
+    background-color: #fff;
+}
+.rec__list {
+    display: flex;
+    flex-direction: row;
+    margin: 20px 7px 20px 7px;
+    max-height: 335px;
+    overflow-y: auto;
+    box-shadow: 10px 7px 15px #555;
+    border-radius: 5px;
+    background-color: #242424;
+    opacity: 0.8;
+    padding: 5px;
+}
+.rec__list:hover {
+    opacity: 1;
+}
+.rec__list::-webkit-scrollbar-track {border-radius: 5px;}
+.rec__list::-webkit-scrollbar {height: 7px;}
+.rec__list::-webkit-scrollbar-thumb {border-radius: 5px;background: #242424;}
+.rec__list:hover::-webkit-scrollbar-thumb {background: #777;}
 /* Title */
 .title {
     box-shadow: 10px 7px 15px #333;
@@ -143,7 +182,7 @@ A:hover {
     display: flex;
     overflow-x: scroll;
     background-color: #242424;
-    padding: 20px;
+    padding: 5px;
     min-height: 263px;
     opacity: 0.8;
 }
