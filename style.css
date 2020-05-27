@@ -110,14 +110,21 @@ A:hover {
     background-color: #fff;
 }
 .btn__info {
-    box-shadow: 10px 7px 15px #333;
+    box-shadow: 10px 7px 15px #555;
     background-color: rgb(241, 155, 48);
     border-width: 2px;
     border-style: solid;
     border-color: darkorange;
     color: #fff;
     border-radius: 5px;
-    padding: 5px 10px;
+    font-weight: 700;
+    padding: 5px;
+    cursor: pointer;
+    margin: 15px 0 0 0;
+}
+.btn__info:hover {
+    color: darkorange;
+    background-color: #fff;
 }
 /* Title */
 .title {
@@ -173,7 +180,7 @@ A:hover {
 }
 .item__poster {
     margin-left: 7px;
-    min-height: 350px;
+    min-height: 355px;
     min-width: 150px;
     overflow: hidden;
     text-align: center;
@@ -183,8 +190,7 @@ A:hover {
     background-color: #242424;
 }
 .item__poster > img {
-    box-shadow: 10px 7px 15px #333;
-    max-height: 300px;
+    box-shadow: 10px 7px 15px #555;
     max-width: 150px;
 }
 .item__info {
