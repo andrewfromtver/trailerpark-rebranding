@@ -184,8 +184,8 @@ A:hover {
     display: flex;
     overflow-x: scroll;
     background-color: #242424;
-    min-height: 263px;
     opacity: 0.8;
+    height: 253px;
 }
 .row:hover {
     opacity: 0.95;
@@ -196,7 +196,7 @@ A:hover {
 .row:hover::-webkit-scrollbar-thumb {background: #777;}
 .item {
     box-shadow: 5px 5px 5px #777;
-    margin: 5px;
+    margin: 5px 5px 10px 5px;
     text-align: center;
     border: 2px solid #ccc;
     border-radius: 5px;
