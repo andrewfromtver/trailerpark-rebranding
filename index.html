@@ -22,9 +22,9 @@
             <img src="./img/week.png" width="25" height="25" class="d-inline-block align-top" alt="">
             <a class="header__link2__desc">Топ за неделю</a>
         </div>
-        <div class="header__link"onclick="top_chart()">
+        <div class="header__link"onclick="show('person', 'day')"">
             <img src="./img/upBtn.png" width="25" height="25" class="d-inline-block align-top" alt="">
-            <a class="header__link3__desc">Аналитика</a>
+            <a class="header__link3__desc">Актеры и режисеры</a>
         </div>
     </div>
     <form id="search-form" class="main__section__search">
@@ -40,7 +40,7 @@
         <div class="type">
             <button class="btn_type" onclick="show('movie', 'week')">Фильмы</button>
             <button class="btn_type" onclick="show('tv', 'week')">Сериалы</button>
-            <button class="btn_type" onclick="show('person', 'week')">Актеры</button>
+            <button class="btn_type" onclick="show('person', 'week')">Актеры и режисеры</button>
         </div>
         <div id="title__item"></div>
         <div id="item" class="container"></div>
@@ -54,6 +54,5 @@
         </footer>
     </div>
     <script src="./js/script.js"></script>
-    <script src="./js/canvasjs.min.js"></script>
 </body>
 </html>
