@@ -5,6 +5,7 @@ const img = 'https://image.tmdb.org/t/p/w500';
 document.addEventListener('DOMContentLoaded', show('multi', 'day', 'day'));
 document.querySelector(".up__btn").style.display = "none";
 window.addEventListener("resize", function() {devCheck();});
+topTable();
 /* Device screen width check */
 function devCheck() {
     if (document.documentElement.clientWidth > 900 && document.documentElement.clientWidth < 1500) {
@@ -467,4 +468,76 @@ function showById(id, type){
     getVideo(id, type);
     const el = document.getElementById('item');
     el.scrollIntoView({block: "center", inline: "center", behavior: "smooth"});
+}
+function topTable() {
+    document.querySelector('.rec__list').innerHTML = ``;
+    title__item.innerHTML = `<div class="spin"><div class="spinner"></div></div>`;
+    trailer.innerHTML = '';
+    fetch(`https://api.themoviedb.org/3/trending/all/day?api_key=dcaf7f5ea224596464b7714bac28142f&language=ru`)
+    .then(function(value){
+        if(value.status !== 200){
+            return Promise.reject(new Error('Ошибка'));
+        }
+            return value.json();
+    })
+    .then(function(output){
+        let tabledata = []
+        output.results.forEach(function (item){
+            tabledata.push(
+                {
+                    name: item.name || item.title,
+                    x: item.popularity,
+                    y: item.vote_average
+
+                },
+            )
+        })
+        title__item.innerHTML = `<h4 class="title">Топ 5 новых фильмов и сериалов</h4>`;
+        let inner = `
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Название</th>
+                            <th scope="col">Рейтинг</th>
+                            <th scope="col">Cборы</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>${tabledata[0].name}</td>
+                            <td>${tabledata[0].y} из 10</td>
+                            <td>${tabledata[0].x} млн. $</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>${tabledata[1].name}</td>
+                            <td>${tabledata[1].y} из 10</td>
+                            <td>${tabledata[1].x} млн. $</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>${tabledata[2].name}</td>
+                            <td>${tabledata[2].y} из 10</td>
+                            <td>${tabledata[2].x} млн. $</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">4</th>
+                            <td>${tabledata[3].name}</td>
+                            <td>${tabledata[3].y} из 10</td>
+                            <td>${tabledata[3].x} млн. $</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">5</th>
+                            <td>${tabledata[4].name}</td>
+                            <td>${tabledata[4].y} из 10</td>
+                            <td>${tabledata[4].x} млн. $</td>
+                        </tr>
+                        <tr>
+                    </tbody>
+                </table>
+        `;
+        item.innerHTML = inner;
+    })
 }
