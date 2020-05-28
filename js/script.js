@@ -1,7 +1,7 @@
 const serachForm = document.querySelector('#search-form');
 const movie = document.querySelector('#movies');
 const img = 'https://image.tmdb.org/t/p/w500';
-
+/* Init */
 document.addEventListener('DOMContentLoaded', show('multi', 'day', 'day'));
 document.querySelector(".up__btn").style.display = "none";
 window.addEventListener("resize", function() {devCheck();});
@@ -46,7 +46,7 @@ function devCheck() {
 /* Scroll control */
 function up() {
     const el = document.getElementById('top');
-    el.scrollIntoView({block: "center", inline: "center", behavior: "smooth"});
+    el.scrollIntoView({behavior: "smooth"});
 }
 window.onscroll = function() {
     var scrolled = window.pageYOffset || document.documentElement.scrollTop;
@@ -202,6 +202,8 @@ function showFullInfo(){
             `;
             trailer.innerHTML = '';
             devCheck();
+            const el = document.getElementById('item');
+            el.scrollIntoView({block: "center", inline: "center", behavior: "smooth"});
         }else {
             const poster1 = output.poster_path ? img + output.poster_path : './img/noposter.png';
             title__item.innerHTML = `<h4 class="title" >${output.name || output.title}</h4>`;
@@ -233,17 +235,25 @@ function showFullInfo(){
             `;
             if (type == 'movie') {
                 item.innerHTML += `
-                    <a onclick="showRecomendations(${output.id})">
+                    <a onclick="showRecomendations(${output.id}, 'movie')">
+                        <p class="btn__info__rec"> Рекомендаций </p>
+                    </a>
+                    `;
+            }else {
+                item.innerHTML += `
+                    <a onclick="showRecomendations(${output.id}, 'tv')">
                         <p class="btn__info__rec"> Рекомендаций </p>
                     </a>
                     `;
             }
+            const el = document.getElementById('item');
+            el.scrollIntoView({block: "center", inline: "center", behavior: "smooth"});
             getVideo(id, type);
             devCheck();
         }
     })
     .catch(function(reason){
-        movie.innerHTML = `<h4 class="title">Упс, что-то пошло не так!</h4>`;
+        movie.innerHTML = `<h4 class="title rec__title">Упс, что-то пошло не так!</h4>`;
         console.error('error: ' + reason);
     });
 }
@@ -373,91 +383,9 @@ function apiSearch(event){
         });
 }
 serachForm.addEventListener('submit', apiSearch);
-/* Charts of top movies */
-function top_chart() {
-    document.querySelector('.rec__list').innerHTML = ``;
-    title__item.innerHTML = `
-    <div class="loader__placeholder">
-        <div class="lds-ellipsis loader"><div></div><div></div><div></div><div></div></div>
-    </div>`;
-    trailer.innerHTML = '';
-    fetch(`https://api.themoviedb.org/3/trending/all/day?api_key=dcaf7f5ea224596464b7714bac28142f&language=ru`)
-    .then(function(value){
-        if(value.status !== 200){
-            return Promise.reject(new Error('Ошибка'));
-        }
-            return value.json();
-    })
-    .then(function(output){
-        let chartdata = []
-        let chart2data = []
-        let tabledata = []
-        output.results.forEach(function (item){
-            let title = item.name || item.title
-            chartdata.push(
-                {
-                    y: item.popularity,
-                    name: title.substr(0, 25),
-                    name_long: title
-                },
-            )
-            chart2data.push(
-                {
-                    label: title.substr(0, 25),
-                    label_long: title,
-                    y: item.vote_average
-                },
-            )
-            tabledata.push(
-                {
-                    name: title.substr(0, 25),
-                    x: item.popularity,
-                    y: item.vote_average
-
-                },
-            )
-        })
-        item.innerHTML = '';
-        title__item.innerHTML =' <h4 class="title" >Кассовые сборы самых популярных фильмов и сериалов</h4>';
-        let inner = `
-            <div class="chart">
-                <div id="chartContainer" style="height: 40vh; max-height: 300px; margin: 5px auto;"></div>
-            </div>
-            <h4 class="title" >Рейтинг самых популярных фильмов и сериалов</h4>
-            <div class="chart">
-                <div id="chart2Container" style="height: 40vh; max-height: 300px; margin: 5px auto;"></div>
-            </div>
-        `;
-        trailer.innerHTML = inner;
-        var chart = new CanvasJS.Chart("chartContainer", {
-            theme: "dark2",
-            exportFileName: "Doughnut Chart",
-            animationEnabled: true,
-            data: [{
-                type: "doughnut",
-                innerRadius: 90,
-                toolTipContent: "<b>{name_long}</b>: ${y} (#percent%)",
-                indexLabel: "{name} - #percent%",
-                dataPoints: chartdata
-            }]
-        });
-        chart.render();
-        var chart2 = new CanvasJS.Chart("chart2Container", {
-            animationEnabled: true,
-            theme: "dark2",
-            data: [{
-                type: "bar",
-                yValueFormatString: "Рейтинг - #,##0.00",
-                toolTipContent: "<b>{label_long}</b>",
-                dataPoints: chart2data
-            }]
-        });
-        chart2.render();
-})
-}
 /* Recomendations */
-function showRecomendations(id) {
-    fetch(`https://api.themoviedb.org/3/movie/${id}/similar?api_key=dcaf7f5ea224596464b7714bac28142f&language=ru&page=1`)
+function showRecomendations(id, type) {
+    fetch(`https://api.themoviedb.org/3/${type}/${id}/recommendations?api_key=dcaf7f5ea224596464b7714bac28142f&language=ru&page=1`)
     .then(function(value){
         if(value.status !== 200){
             return Promise.reject(new Error('Ошибка'));
@@ -474,7 +402,7 @@ function showRecomendations(id) {
             poster = posterVar;
             inner += `
                 <div class="item">
-                <img src="${poster}" class="poster" onclick="showById(${item.id})" alt ="${nameItem}">
+                <img src="${poster}" class="poster" onclick="showById(${item.id}, '${type}')" alt ="${nameItem}">
                 <h5>${nameItem.substr(0, 25)}</h5>
                 </div>
             `;
@@ -485,14 +413,14 @@ function showRecomendations(id) {
         }
     })
     .catch(function(reason){
-        document.querySelector('.rec__list').innerHTML = `<h4 class="title">Упс, что-то пошло не так!</h4>`;
+        document.querySelector('.rec__list').innerHTML = `<h4 class="title rec__title">Упс, что-то пошло не так!</h4>`;
         console.error('error: ' + reason);
     });
     const el = document.getElementById('movies__rec');
     el.scrollIntoView({block: "center", inline: "center", behavior: "smooth"});
 }
-function showById(id){
-    let url = `https://api.themoviedb.org/3/movie/${id}?api_key=dcaf7f5ea224596464b7714bac28142f&language=ru`;
+function showById(id, type){
+    let url = `https://api.themoviedb.org/3/${type}/${id}?api_key=dcaf7f5ea224596464b7714bac28142f&language=ru`;
     fetch(url)
     .then(function(value){
         if(value.status !== 200){
@@ -532,10 +460,11 @@ function showById(id){
             devCheck();
     })
     .catch(function(reason){
-        movie.innerHTML = `<h4 class="title">Упс, что-то пошло не так!</h4>`;
+        title__item.innerHTML = `<h4 class="title">Упс, что-то пошло не так!</h4>`;
+        item.innerHTML = '';
         console.error('error: ' + reason);
     });
-    getVideo(id, 'movie');
+    getVideo(id, type);
     const el = document.getElementById('item');
     el.scrollIntoView({block: "center", inline: "center", behavior: "smooth"});
 }
