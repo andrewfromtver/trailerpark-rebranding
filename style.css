@@ -316,7 +316,7 @@ A:hover {
 }
 /* Top table */
 .table {
-    width: 100%;
+    width: -webkit-fill-available;
     text-align: center;
     background-color: #242424;
     color: #aaa;
