@@ -461,6 +461,10 @@ function showRecomendations(id, type) {
 }
 function showById(id, type){
     trending.innerHTML = '';
+    title__item.innerHTML = `
+    <div class="loader__placeholder">
+        <div class="lds-ellipsis loader"><div></div><div></div><div></div><div></div></div>
+    </div>`;
     let url = `https://api.themoviedb.org/3/${type}/${id}?api_key=dcaf7f5ea224596464b7714bac28142f&language=ru`;
     fetch(url)
     .then(function(value){
@@ -512,7 +516,7 @@ function showById(id, type){
                     `;
             }
             item.innerHTML += `
-            <a href="https://www.google.com/search?q=${output.name || output.title} смотреть онлайн" target="blank">
+            <a href="https://www.google.com/search?q=${output.name || output.title} смотреть онлайн&tbm=vid&tbs=dur:l" target="blank">
                 <p class="btn__watch__online"> Смотреть</p>
             </a>
             `;
