@@ -283,7 +283,7 @@ function showFullInfo(){
             }
             item.innerHTML += `
             <a href="https://www.google.com/search?q=${output.name || output.title} смотреть онлайн&tbm=vid&tbs=dur:l" target="blank">
-                <p class="btn__watch__online"> Смотреть</p>
+                <p class="btn__watch__online">Искать</p>
             </a>
             `;
             const el = document.getElementById('item');
@@ -517,7 +517,7 @@ function showById(id, type){
             }
             item.innerHTML += `
             <a href="https://www.google.com/search?q=${output.name || output.title} смотреть онлайн&tbm=vid&tbs=dur:l" target="blank">
-                <p class="btn__watch__online"> Смотреть</p>
+                <p class="btn__watch__online">Искать</p>
             </a>
             `;
             devCheck();
