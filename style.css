@@ -5,13 +5,8 @@ html {
 body {
     overflow-x: hidden;
     overflow-y: scroll;
-    background-image: url("./img/background.png");
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-position: center;
     margin: 0;
-    background-color: #242424;
-    background-size: cover;
+    background-color: #444;
     font-family: sans-serif;
 }
 A {
