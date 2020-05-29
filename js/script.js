@@ -142,6 +142,7 @@ function show(type, time, timestamp) {
     el.scrollIntoView({block: "center", inline: "center", behavior: "smooth"});
 }
 function showFullInfo(){
+    trending.innerHTML = '';
     document.querySelector('.rec__list').innerHTML = ``;
     title__item.innerHTML = `
     <div class="loader__placeholder">
@@ -452,6 +453,7 @@ function showRecomendations(id, type) {
     el.scrollIntoView({block: "center", inline: "center", behavior: "smooth"});
 }
 function showById(id, type){
+    trending.innerHTML = '';
     let url = `https://api.themoviedb.org/3/${type}/${id}?api_key=dcaf7f5ea224596464b7714bac28142f&language=ru`;
     fetch(url)
     .then(function(value){
@@ -501,10 +503,83 @@ function showById(id, type){
     el.scrollIntoView({block: "center", inline: "center", behavior: "smooth"});
 }
 function topTable() {
+    title__item.innerHTML = `
+    <div class="loader__placeholder">
+        <div class="lds-ellipsis loader"><div></div><div></div><div></div><div></div></div>
+    </div>
+    `;
     document.querySelector('.rec__list').innerHTML = ``;
     title__item.innerHTML = `<div class="spin"><div class="spinner"></div></div>`;
     trailer.innerHTML = '';
-    fetch(`https://api.themoviedb.org/3/trending/all/day?api_key=dcaf7f5ea224596464b7714bac28142f&language=ru`)
+    fetch(`https://api.themoviedb.org/3/trending/movie/day?api_key=dcaf7f5ea224596464b7714bac28142f&language=ru`)
+    .then(function(value){
+        if(value.status !== 200){
+            return Promise.reject(new Error('Ошибка'));
+        }
+            return value.json();
+    })
+    .then(function(output){
+        console.log(output.results);
+        let tabledata = []
+        output.results.forEach(function (item){
+            tabledata.push(
+                {
+                    name: item.name || item.title,
+                    x: item.popularity,
+                    y: item.vote_average,
+                    id: item.id
+                },
+            )
+        })
+        let inner = `
+            <h4 class="title">Топ 5 новых фильмов</h4>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Название</th>
+                            <th scope="col">Рейтинг</th>
+                            <th scope="col">Cборы</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr onclick="showById(${tabledata[0].id}, 'movie')">
+                            <th scope="row">1</th>
+                            <td>${tabledata[0].name}</td>
+                            <td>${tabledata[0].y} из 10</td>
+                            <td>${tabledata[0].x} млн. $</td>
+                        </tr>
+                        <tr onclick="showById(${tabledata[1].id}, 'movie')">
+                            <th scope="row">2</th>
+                            <td>${tabledata[1].name}</td>
+                            <td>${tabledata[1].y} из 10</td>
+                            <td>${tabledata[1].x} млн. $</td>
+                        </tr>
+                        <tr onclick="showById(${tabledata[2].id}, 'movie')">
+                            <th scope="row">3</th>
+                            <td>${tabledata[2].name}</td>
+                            <td>${tabledata[2].y} из 10</td>
+                            <td>${tabledata[2].x} млн. $</td>
+                        </tr>
+                        <tr onclick="showById(${tabledata[3].id}, 'movie')">
+                            <th scope="row">4</th>
+                            <td>${tabledata[3].name}</td>
+                            <td>${tabledata[3].y} из 10</td>
+                            <td>${tabledata[3].x} млн. $</td>
+                        </tr>
+                        <tr onclick="showById(${tabledata[4].id}, 'movie')">
+                            <th scope="row">5</th>
+                            <td>${tabledata[4].name}</td>
+                            <td>${tabledata[4].y} из 10</td>
+                            <td>${tabledata[4].x} млн. $</td>
+                        </tr>
+                        <tr>
+                    </tbody>
+                </table>
+        `;
+        trending.innerHTML = inner;
+    })
+    fetch(`https://api.themoviedb.org/3/trending/tv/day?api_key=dcaf7f5ea224596464b7714bac28142f&language=ru`)
     .then(function(value){
         if(value.status !== 200){
             return Promise.reject(new Error('Ошибка'));
@@ -518,13 +593,13 @@ function topTable() {
                 {
                     name: item.name || item.title,
                     x: item.popularity,
-                    y: item.vote_average
-
+                    y: item.vote_average,
+                    id: item.id
                 },
             )
         })
-        title__item.innerHTML = `<h4 class="title">Топ 5 новых фильмов и сериалов</h4>`;
         let inner = `
+            <h4 class="title">Топ 5 новых сериалов</h4>
                 <table class="table">
                     <thead>
                         <tr>
@@ -535,31 +610,31 @@ function topTable() {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                        <tr onclick="showById(${tabledata[0].id}, 'tv')">
                             <th scope="row">1</th>
                             <td>${tabledata[0].name}</td>
                             <td>${tabledata[0].y} из 10</td>
                             <td>${tabledata[0].x} млн. $</td>
                         </tr>
-                        <tr>
+                        <tr onclick="showById(${tabledata[1].id}, 'tv')">
                             <th scope="row">2</th>
                             <td>${tabledata[1].name}</td>
                             <td>${tabledata[1].y} из 10</td>
                             <td>${tabledata[1].x} млн. $</td>
                         </tr>
-                        <tr>
+                        <tr onclick="showById(${tabledata[2].id}, 'tv')">
                             <th scope="row">3</th>
                             <td>${tabledata[2].name}</td>
                             <td>${tabledata[2].y} из 10</td>
                             <td>${tabledata[2].x} млн. $</td>
                         </tr>
-                        <tr>
+                        <tr onclick="showById(${tabledata[3].id}, 'tv')">
                             <th scope="row">4</th>
                             <td>${tabledata[3].name}</td>
                             <td>${tabledata[3].y} из 10</td>
                             <td>${tabledata[3].x} млн. $</td>
                         </tr>
-                        <tr>
+                        <tr onclick="showById(${tabledata[4].id}, 'tv')">
                             <th scope="row">5</th>
                             <td>${tabledata[4].name}</td>
                             <td>${tabledata[4].y} из 10</td>
@@ -569,6 +644,8 @@ function topTable() {
                     </tbody>
                 </table>
         `;
-        item.innerHTML = inner;
+        trending.innerHTML += inner;
     })
+    item.innerHTML = '';
+    title__item.innerHTML = '';
 }
