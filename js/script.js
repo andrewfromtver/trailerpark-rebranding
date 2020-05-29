@@ -168,6 +168,39 @@ function showFullInfo(){
     })
     .then(function (output) {
         if (type == 'person') {
+            
+            fetch(`https://api.themoviedb.org/3/discover/movie?api_key=dcaf7f5ea224596464b7714bac28142f&language=ru&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_people=${id}`)
+            .then(function(value){
+                if(value.status !== 200){
+                    return Promise.reject(new Error('Ошибка'));
+                }
+                    return value.json();
+            })
+            .then(function(output){
+                let inner = '';
+                let i = output.results.length;
+                output.results.forEach(function (item){
+                    let nameItem = item.name || item.title;
+                    let poster = null;
+                    const posterVar = item.poster_path ? img + item.poster_path : './img/noposter.png';
+                    poster = posterVar;
+                    inner += `
+                        <div class="item">
+                        <img src="${poster}" class="poster" onclick="showById(${item.id}, 'movie')" alt ="${nameItem}">
+                        <h5>${nameItem.substr(0, 25)}</h5>
+                        </div>
+                    `;
+                });
+                document.querySelector('.rec__list').innerHTML = inner;
+                if(i === 0){
+                    document.querySelector('.rec__list').innerHTML = `<h4 class="title rec__title">Упс, что-то пошло не так!</h4>`;
+                }
+            })
+            .catch(function(reason){
+                document.querySelector('.rec__list').innerHTML = `<h4 class="title rec__title">Упс, что-то пошло не так!</h4>`;
+                console.error('error: ' + reason);
+            });
+
             const poster1 = output.profile_path ? img + output.profile_path : './img/noposter.png';
             title__item.innerHTML = `<h4 class="title" >${output.name}</h4>`;
             let bio = '';
