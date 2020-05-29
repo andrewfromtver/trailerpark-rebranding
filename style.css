@@ -341,6 +341,14 @@ A:hover {
     padding: 10px;
     color: #8D8173;
 }
+.table > tbody > tr {
+    opacity: 0.75;
+}
+.table > tbody > tr:hover {
+    opacity: 1;
+    cursor: pointer;
+    background-color: rgb(73, 63, 51);
+}
 /* Footer */
 .footer {
     box-shadow: 10px 7px 15px #333;
