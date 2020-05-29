@@ -1,4 +1,4 @@
-/* Main style */
+/* Global style */
 html {
     box-sizing: border-box;
 }
@@ -121,11 +121,7 @@ A:hover {
     display: flex;
     overflow-x: scroll;
     background-color: #242424;
-    opacity: 0.8;
     height: 253px;
-}
-.row:hover {
-    opacity: 0.95;
 }
 .row::-webkit-scrollbar-track {border-radius: 5px;}
 .row::-webkit-scrollbar {height: 7px;}
@@ -140,6 +136,10 @@ A:hover {
     padding: 10px;
     max-height: 215px;
     background-color: #fff;
+    opacity: 0.75;
+}
+.item:hover {
+    opacity: 1;
 }
 .item > img {
     cursor: pointer;
@@ -243,10 +243,6 @@ A:hover {
     box-shadow: 10px 7px 15px #555;
     border-radius: 5px;
     background-color: #242424;
-    opacity: 0.8;
-}
-.rec__list:hover {
-    opacity: 1;
 }
 .rec__list::-webkit-scrollbar-track {border-radius: 5px;}
 .rec__list::-webkit-scrollbar {height: 7px;}
