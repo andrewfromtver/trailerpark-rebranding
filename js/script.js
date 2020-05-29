@@ -234,7 +234,7 @@ function showFullInfo(){
             `;
             trailer.innerHTML = '';
             devCheck();
-            const el = document.getElementById('rec__list');
+            const el = document.getElementById('item');
             el.scrollIntoView({block: "center", inline: "center", behavior: "smooth"});
         }else {
             const poster1 = output.poster_path ? img + output.poster_path : './img/noposter.png';
