@@ -519,7 +519,6 @@ function topTable() {
             return value.json();
     })
     .then(function(output){
-        console.log(output.results);
         let tabledata = []
         output.results.forEach(function (item){
             tabledata.push(
