@@ -6,7 +6,7 @@ body {
     overflow-x: hidden;
     overflow-y: scroll;
     margin: 0;
-    background-color: #bbb;
+    background-image: url(./img/bacground.gif);
     font-family: sans-serif;
 }
 A {
