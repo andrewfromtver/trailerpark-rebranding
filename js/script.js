@@ -168,7 +168,6 @@ function showFullInfo(){
     })
     .then(function (output) {
         if (type == 'person') {
-            
             fetch(`https://api.themoviedb.org/3/discover/movie?api_key=dcaf7f5ea224596464b7714bac28142f&language=ru&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_people=${id}`)
             .then(function(value){
                 if(value.status !== 200){
@@ -200,7 +199,6 @@ function showFullInfo(){
                 document.querySelector('.rec__list').innerHTML = `<h4 class="title rec__title">Упс, что-то пошло не так!</h4>`;
                 console.error('error: ' + reason);
             });
-
             const poster1 = output.profile_path ? img + output.profile_path : './img/noposter.png';
             title__item.innerHTML = `<h4 class="title" >${output.name}</h4>`;
             let bio = '';
@@ -236,7 +234,7 @@ function showFullInfo(){
             `;
             trailer.innerHTML = '';
             devCheck();
-            const el = document.getElementById('item');
+            const el = document.getElementById('rec__list');
             el.scrollIntoView({block: "center", inline: "center", behavior: "smooth"});
         }else {
             const poster1 = output.poster_path ? img + output.poster_path : './img/noposter.png';
