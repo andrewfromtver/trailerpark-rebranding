@@ -4,6 +4,7 @@ html {
 }
 body {
     overflow-x: hidden;
+    overflow-y: scroll;
     background-image: url("./img/background.png");
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -20,6 +21,11 @@ A {
 A:hover {
     color: #fff;
 }
+.btn__info:hover, .btn__watch__online:hover, .btn_type:hover, .btn:hover, .btn__info__rec:hover {
+    color: darkorange;
+    background-color: #fff;
+}
+/* Ui control buttons */
 .up__btn {
     position: fixed;
     right: 6vw;
@@ -28,7 +34,6 @@ A:hover {
     z-index: 9999999;
     cursor: pointer;
 }
-/* Ui control buttons */
 .up__btn > img {
     height: 55px;
     border: 3px solid #ccc;
@@ -84,10 +89,6 @@ A:hover {
     cursor: pointer;
     box-shadow: 10px 7px 15px #333;
 }
-.btn:hover {
-    color: darkorange;
-    background-color: #fff;
-}
 /* Content type section */
 .type, .main__section__search {
     display: flex;
@@ -107,10 +108,6 @@ A:hover {
     padding: 5px;
     cursor: pointer;
     margin: 15px 7px 0 7px;
-}
-.btn_type:hover {
-    color: darkorange;
-    background-color: #fff;
 }
 /* Title */
 .title {
@@ -194,10 +191,6 @@ A:hover {
     cursor: pointer;
     margin: 15px 0 0 0;
 }
-.btn__info:hover {
-    color: darkorange;
-    background-color: #fff;
-}
 .item__info {
     box-shadow: 10px 7px 15px #333;
     margin-left: 5px;
@@ -227,9 +220,21 @@ A:hover {
     margin: 20px 0 0 -165px;
     width: 120px;
 }
-.btn__info__rec:hover {
-    color: darkorange;
-    background-color: #fff;
+.btn__watch__online {
+    position: absolute;
+    text-align: center;
+    box-shadow: 10px 7px 15px #555;
+    background-color: darkgreen;
+    border-width: 2px;
+    border-style: solid;
+    border-color: darkgreen;
+    color: #fff;
+    border-radius: 5px;
+    font-weight: 700;
+    padding: 5px;
+    cursor: pointer;
+    margin: 55px 0 0 -165px;
+    width: 120px;
 }
 .rec__title {
     margin: 0 auto !important;
