@@ -1,2 +1,2 @@
 # trailerpark
-Simple website based on js (glo academy worckshop)
+Simple website based on clear js
