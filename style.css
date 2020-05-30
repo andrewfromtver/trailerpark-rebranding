@@ -4,6 +4,7 @@ html {
 }
 body {
     margin: 0;
+    background-color: #242424;
     background-image: url(./img/bacground.gif);
     font-family: sans-serif;
 }
