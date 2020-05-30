@@ -2,6 +2,7 @@ const serachForm = document.querySelector('#search-form');
 const movie = document.querySelector('#movies');
 const img = 'https://image.tmdb.org/t/p/w500';
 /* Listeners */
+window.addEventListener("resize", function() {devCheck();});
 document.getElementById("movies").addEventListener('wheel', function(event) {
     if (event.deltaMode == event.DOM_DELTA_PIXEL) {
       var modifier = 1;
@@ -87,7 +88,6 @@ window.onscroll = function() {
 /* Authentication */
 function loginNouser() {
     document.querySelector(".up__btn").style.display = "none";
-    window.addEventListener("resize", function() {devCheck();});
     document.querySelector('.user').innerHTML = `Выход`;
     document.querySelector('.login__form').innerHTML = ` <div class="lds-ellipsis loader"><div></div><div></div><div></div><div></div></div>`;
     function init() {
