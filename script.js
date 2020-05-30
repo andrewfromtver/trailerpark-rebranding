@@ -56,7 +56,7 @@ const img = 'https://image.tmdb.org/t/p/w500';
     document.querySelector('.loginForm').addEventListener('submit', function(){loginTrial();})
     document.querySelector('#login').value = localStorage.getItem('lastLogin') || '';
     document.querySelector('.content').style.display = 'none';
-    if (sessionStorage.trialAuthentication) {loginTrial();} 
+    if (sessionStorage.trialAuthentication || localStorage.trialAuthentication) {loginTrial();} 
     function loginTrial() {
         let trialAuthentication = JSON.parse(localStorage.getItem('trialAuthentication')) || [];
         const generateId = () => `${Math.round(Math.random() * 1e8).toString(16)}`
@@ -74,6 +74,9 @@ const img = 'https://image.tmdb.org/t/p/w500';
             localStorage.setItem('lastLogin', lastLogin);
             trialAuthentication = operation;
             sessionStorage.setItem('trialAuthentication', JSON.stringify(trialAuthentication));
+            if (document.querySelector('.chekbox').checked) {
+                localStorage.setItem('trialAuthentication', JSON.stringify(trialAuthentication));
+            }
         }
         document.querySelector('.login__form').innerHTML = '<div class="lds-ellipsis loader"><div></div><div></div><div></div><div></div></div>';
         /* Listeners */
@@ -126,6 +129,7 @@ const img = 'https://image.tmdb.org/t/p/w500';
     }
     function logout() {
         sessionStorage.clear();
+        localStorage.clear();
     }
 /* Main features */
     function show(type, time, timestamp) {
