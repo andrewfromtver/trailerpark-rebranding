@@ -85,11 +85,25 @@ document.getElementById("movies__rec").addEventListener('wheel', function(event)
 });
 /* Autentification */
 document.querySelector('body').style.overflow = 'hidden';
-function login() {
+function loginNouser() {
+    document.querySelector('.user').innerHTML = `Выход`;
     document.querySelector('.login__form').innerHTML = ` <div class="lds-ellipsis loader"><div></div><div></div><div></div><div></div></div>`;
     function init() {
         document.querySelector('.login__form__background').style.display = 'none';
         document.querySelector('body').style.overflow = 'auto';
+    }
+    setTimeout(init, 500);
+} 
+function login() {
+    document.querySelector('.login__form').innerHTML = ` <div class="lds-ellipsis loader"><div></div><div></div><div></div><div></div></div>`;
+    function init() {
+        document.querySelector('.login__form').innerHTML = `<h4 class="title" >Упс, что-то пошло не так! Проверьте учетные данные</h4>`;
+        document.querySelector('.login__form').innerHTML += `
+        <div class="login__message">
+            <a class="btn__guest" onclick="loginNouser()">Гостевой режим</a>
+            <a href="" class="btn_type">Попробовать ещё</a href="">
+        </div>
+        `;
     }
     setTimeout(init, 2000);
 } 
@@ -247,8 +261,6 @@ function showFullInfo(){
                 `;
                 trailer.innerHTML = '';
                 devCheck();
-                const el = document.getElementById('item');
-                el.scrollIntoView({block: "center", inline: "center", behavior: "smooth"});
             }else {
                 const poster1 = output.poster_path ? img + output.poster_path : './img/noposter.png';
                 title__item.innerHTML = `<h4 class="title" >${output.name || output.title}</h4>`;
@@ -297,8 +309,6 @@ function showFullInfo(){
                     <p class="btn__watch__online">Искать</p>
                 </a>
                 `;
-                const el = document.getElementById('item');
-                el.scrollIntoView({block: "center", inline: "center", behavior: "smooth"});
                 getVideo(id, type);
                 devCheck();
             }
@@ -548,6 +558,8 @@ function showById(id, type){
     setTimeout(init, 1000);
 }
 function topTable() {
+    const el = document.getElementById('movies');
+    el.scrollIntoView({block: "center", inline: "center", behavior: "smooth"});
     title__item.innerHTML = `
     <div class="loader__placeholder">
         <div class="lds-ellipsis loader"><div></div><div></div><div></div><div></div></div>
