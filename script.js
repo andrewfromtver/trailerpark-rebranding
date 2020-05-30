@@ -561,7 +561,7 @@ const img = 'https://image.tmdb.org/t/p/w500';
             <div class="lds-ellipsis loader"><div></div><div></div><div></div><div></div></div>
         </div>
         `;
-        fetch(`https://api.themoviedb.org/3/trending/movie/day?api_key=dcaf7f5ea224596464b7714bac28142f&language=ru`)
+        fetch(`https://api.themoviedb.org/3/trending/all/day?api_key=dcaf7f5ea224596464b7714bac28142f&language=ru`)
         .then(function(value){
             if(value.status !== 200){
                 return Promise.reject(new Error('Ошибка'));
@@ -581,7 +581,7 @@ const img = 'https://image.tmdb.org/t/p/w500';
                 )
             })
             let inner = `
-                <h4 class="title">Топ 5 новых фильмов</h4>
+                <h4 class="title">Топ 5 новых фильмов и сериалов</h4>
                     <table class="table">
                         <thead>
                             <tr>
@@ -627,73 +627,6 @@ const img = 'https://image.tmdb.org/t/p/w500';
                     </table>
             `;
             trending.innerHTML = inner;
-        })
-        fetch(`https://api.themoviedb.org/3/trending/tv/day?api_key=dcaf7f5ea224596464b7714bac28142f&language=ru`)
-        .then(function(value){
-            if(value.status !== 200){
-                return Promise.reject(new Error('Ошибка'));
-            }
-                return value.json();
-        })
-        .then(function(output){
-            let secondTabledata = []
-            output.results.forEach(function (item){
-                secondTabledata.push(
-                    {
-                        name: item.name || item.title,
-                        x: item.popularity,
-                        y: item.vote_average,
-                        id: item.id
-                    },
-                )
-            })
-            let secondInner = `
-                <h4 class="title">Топ 5 новых сериалов</h4>
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Название</th>
-                                <th scope="col">Рейтинг</th>
-                                <th scope="col">Cборы</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr onclick="showById(${secondTabledata[0].id}, 'tv')">
-                                <th scope="row">1</th>
-                                <td>${secondTabledata[0].name}</td>
-                                <td>${secondTabledata[0].y} из 10</td>
-                                <td>${secondTabledata[0].x} млн. $</td>
-                            </tr>
-                            <tr onclick="showById(${secondTabledata[1].id}, 'tv')">
-                                <th scope="row">2</th>
-                                <td>${secondTabledata[1].name}</td>
-                                <td>${secondTabledata[1].y} из 10</td>
-                                <td>${secondTabledata[1].x} млн. $</td>
-                            </tr>
-                            <tr onclick="showById(${secondTabledata[2].id}, 'tv')">
-                                <th scope="row">3</th>
-                                <td>${secondTabledata[2].name}</td>
-                                <td>${secondTabledata[2].y} из 10</td>
-                                <td>${secondTabledata[2].x} млн. $</td>
-                            </tr>
-                            <tr onclick="showById(${secondTabledata[3].id}, 'tv')">
-                                <th scope="row">4</th>
-                                <td>${secondTabledata[3].name}</td>
-                                <td>${secondTabledata[3].y} из 10</td>
-                                <td>${secondTabledata[3].x} млн. $</td>
-                            </tr>
-                            <tr onclick="showById(${secondTabledata[4].id}, 'tv')">
-                                <th scope="row">5</th>
-                                <td>${secondTabledata[4].name}</td>
-                                <td>${secondTabledata[4].y} из 10</td>
-                                <td>${secondTabledata[4].x} млн. $</td>
-                            </tr>
-                            <tr>
-                        </tbody>
-                    </table>
-            `;
-            trending.innerHTML += secondInner;
         })
         title__item.innerHTML = `<h4 class="title" >Рейтинг за неделю</h4>`;
         item.innerHTML = '';
