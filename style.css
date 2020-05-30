@@ -116,14 +116,22 @@ table > tbody > tr > td {
 .header__link1__desc, .header__link2__desc, .header__link3__desc {
     vertical-align: super;
 }
-.username {
-    position: absolute;
-    right: 0;
-    margin: 10px;
+.header__logout {
+    margin: 5px 1.5vw 5px 1.5vw;
     cursor: pointer;
 }
-.user {
-    color: tomato;
+.header__logout > a > img {
+    border: 1px solid;
+    border-radius: 5px;
+    opacity: 0.5;
+    box-shadow: 10px 7px 10px #333;
+}
+.header__logout > a > img:hover {
+    opacity: 1;
+}
+.logout {
+    position: absolute;
+    right: 0;
 }
 /* Search form */
 .br {
