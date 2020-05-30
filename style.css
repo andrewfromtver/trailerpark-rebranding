@@ -40,7 +40,7 @@ table > tbody > tr > td {
     padding: 10px;
     color: #8D8173;
 }
-.btn__info:hover, .btn__watch__online:hover, .btn_type:hover, .btn:hover, .btn__info__rec:hover {
+.btn__info:hover, .btn__watch__online:hover, .btn_type:hover, .btn:hover, .btn__info__rec:hover, .btn__guest:hover {
     color: darkorange;
     background-color: #fff;
 }
@@ -58,6 +58,22 @@ table > tbody > tr > td {
 }
 .login__form {
     margin: 0 auto;
+}
+.btn__guest {
+    box-shadow: 10px 7px 15px #333;
+    width: 33%;
+    background-color: darkgreen;
+    border-width: 2px;
+    border-style: solid;
+    border-color: darkgreen;
+    color: #fff;
+    border-radius: 5px;
+    font-weight: 700;
+    padding: 5px;
+    cursor: pointer;
+}
+.login__message {
+    margin: 0 7px;
 }
 /* Ui control buttons */
 .up__btn {
