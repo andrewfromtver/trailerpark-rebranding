@@ -123,7 +123,10 @@ const img = 'https://image.tmdb.org/t/p/w500';
             document.querySelector('body').style.overflow = 'auto';
         }
         setTimeout(init, 2000);
-    } 
+    }
+    function logout() {
+        sessionStorage.clear();
+    }
 /* Main features */
     function show(type, time, timestamp) {
         devCheck();
