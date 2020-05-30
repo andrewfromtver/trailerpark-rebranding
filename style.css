@@ -82,7 +82,7 @@ table > tbody > tr > td {
     right: 6vw;
     bottom: 5vh;
     opacity: 0.75;
-    z-index: 9999999;
+    z-index: 50;
     cursor: pointer;
 }
 .up__btn > img {
