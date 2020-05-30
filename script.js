@@ -83,6 +83,16 @@ document.getElementById("movies__rec").addEventListener('wheel', function(event)
       event.preventDefault();
     }
 });
+/* Autentification */
+document.querySelector('body').style.overflow = 'hidden';
+function login() {
+    document.querySelector('.login__form').innerHTML = ` <div class="lds-ellipsis loader"><div></div><div></div><div></div><div></div></div>`;
+    function init() {
+        document.querySelector('.login__form__background').style.display = 'none';
+        document.querySelector('body').style.overflow = 'auto';
+    }
+    setTimeout(init, 2000);
+} 
 /* Main features */
 function show(type, time, timestamp) {
     devCheck();
@@ -90,212 +100,215 @@ function show(type, time, timestamp) {
     <div class="loader__placeholder">
         <div class="lds-ellipsis loader"><div></div><div></div><div></div><div></div></div>
     </div>`;
-	fetch(`https://api.themoviedb.org/3/trending/${type}/${time}?api_key=dcaf7f5ea224596464b7714bac28142f&language=ru`)
-    .then(function(value){
-        if(value.status !== 200){
-            return Promise.reject(new Error('Ошибка'));
-        }
-            return value.json();
-    })
-    .then(function(output){
-        let inner = '';
-        if(output.results.length === 0){
-            title.innerHTML = '<h4 class="title" >Упс, что-то пошло не так!</h4>';
-        }
-        output.results.forEach(function (item){
-            let nameItem = item.name || item.title;
-            let mediaType = item.media_type;
-            let poster = null;
-            if (type == 'person') {
-                const posterVar = item.profile_path ? img + item.profile_path : './img/noposter.png';
-                poster = posterVar;
+    function init() {
+        fetch(`https://api.themoviedb.org/3/trending/${type}/${time}?api_key=dcaf7f5ea224596464b7714bac28142f&language=ru`)
+        .then(function(value){
+            if(value.status !== 200){
+                return Promise.reject(new Error('Ошибка'));
             }
-            else {
-                const posterVar = item.poster_path ? img + item.poster_path : './img/noposter.png';
-                poster = posterVar;
-            } 
-            let dataInfo = `data-id="${item.id}" data-type="${mediaType}"`;
-            inner += `
-                <div class="item">
-                <img src="${poster}" class="poster" alt="${nameItem}" ${dataInfo}>
-                <h5>${nameItem.substr(0, 25)}</h5>
-                </div>
-            `;
+                return value.json();
+        })
+        .then(function(output){
+            let inner = '';
+            if(output.results.length === 0){
+                title.innerHTML = '<h4 class="title" >Упс, что-то пошло не так!</h4>';
+            }
+            output.results.forEach(function (item){
+                let nameItem = item.name || item.title;
+                let mediaType = item.media_type;
+                let poster = null;
+                if (type == 'person') {
+                    const posterVar = item.profile_path ? img + item.profile_path : './img/noposter.png';
+                    poster = posterVar;
+                }
+                else {
+                    const posterVar = item.poster_path ? img + item.poster_path : './img/noposter.png';
+                    poster = posterVar;
+                } 
+                let dataInfo = `data-id="${item.id}" data-type="${mediaType}"`;
+                inner += `
+                    <div class="item">
+                    <img src="${poster}" class="poster" alt="${nameItem}" ${dataInfo}>
+                    <h5>${nameItem.substr(0, 25)}</h5>
+                    </div>
+                `;
+            });
+            if (type == 'movie') title.innerHTML = '<h4 class="title" >Самые популярные фильмы</h4>';
+            if (type == 'tv') title.innerHTML = '<h4 class="title" >Самые популярные сериалы</h4>';
+            if (type == 'multi') title.innerHTML = '<h4 class="title" >Самые популярные фильмы и сериалы</h4>';
+            if (type == 'person') title.innerHTML = '<h4 class="title" >Самые популярные актёры</h4>';
+            if (timestamp == 'day') title.innerHTML = '<h4 class="title" >Самые популярные фильмы и сериалы сегодня</h4>';
+            if (timestamp == 'week') title.innerHTML = '<h4 class="title" >Самые популярные фильмы и сериалы за неделю</h4>';
+            movie.innerHTML = inner;
+            const media = movie.querySelectorAll('img[data-id]');
+            media.forEach(function(elem){
+                elem.addEventListener('click', showFullInfo);
+            });
+        })
+        .catch(function(reason){
+            title.innerHTML = `<h4 class="title">Упс, что-то пошло не так!</h4>`;
+            console.error('error: ' + reason);
         });
-        if (type == 'movie') title.innerHTML = '<h4 class="title" >Самые популярные фильмы</h4>';
-        if (type == 'tv') title.innerHTML = '<h4 class="title" >Самые популярные сериалы</h4>';
-        if (type == 'multi') title.innerHTML = '<h4 class="title" >Самые популярные фильмы и сериалы</h4>';
-        if (type == 'person') title.innerHTML = '<h4 class="title" >Самые популярные актёры</h4>';
-        if (timestamp == 'day') title.innerHTML = '<h4 class="title" >Самые популярные фильмы и сериалы сегодня</h4>';
-        if (timestamp == 'week') title.innerHTML = '<h4 class="title" >Самые популярные фильмы и сериалы за неделю</h4>';
-        movie.innerHTML = inner;
-        const media = movie.querySelectorAll('img[data-id]');
-        media.forEach(function(elem){
-            elem.addEventListener('click', showFullInfo);
-        });
-    })
-    .catch(function(reason){
-        title.innerHTML = `<h4 class="title">Упс, что-то пошло не так!</h4>`;
-        console.error('error: ' + reason);
-    });
+    }
     const el = document.getElementById('movies');
     el.scrollIntoView({block: "center", inline: "center", behavior: "smooth"});
+    setTimeout(init, 1000);
 }
 function showFullInfo(){
-    trending.innerHTML = '';
-    document.querySelector('.rec__list').innerHTML = ``;
     title__item.innerHTML = `
     <div class="loader__placeholder">
         <div class="lds-ellipsis loader"><div></div><div></div><div></div><div></div></div>
     </div>`;
-    let url = '';
-    if(this.dataset.type === 'movie'){
-        url = 'https://api.themoviedb.org/3/movie/' + this.dataset.id + '?api_key=dcaf7f5ea224596464b7714bac28142f&language=ru';
-    }else if(this.dataset.type === 'tv'){
-        url = 'https://api.themoviedb.org/3/tv/' + this.dataset.id + '?api_key=dcaf7f5ea224596464b7714bac28142f&language=ru';
-    }else if(this.dataset.type === 'person'){
-        url = 'https://api.themoviedb.org/3/person/' + this.dataset.id + '?api_key=dcaf7f5ea224596464b7714bac28142f&language=ru';
-    }else{
-        title__item.innerHTML = '<h4 class="title" >Упс, что-то пошло не так!</h4>';
-    };
-    const id =  this.dataset.id;
-    const type = this.dataset.type;
-    fetch(url)
-    .then(function(value){
-        if(value.status !== 200){
-            return Promise.reject(new Error('Ошибка!'));
-        }
-        return value.json();
-    })
-    .then(function (output) {
-        if (type == 'person') {
-            fetch(`https://api.themoviedb.org/3/discover/movie?api_key=dcaf7f5ea224596464b7714bac28142f&language=ru&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_people=${id}`)
-            .then(function(value){
-                if(value.status !== 200){
-                    return Promise.reject(new Error('Ошибка'));
-                }
-                    return value.json();
-            })
-            .then(function(output){
-                let inner = '';
-                let i = output.results.length;
-                output.results.forEach(function (item){
-                    let nameItem = item.name || item.title;
-                    let poster = null;
-                    const posterVar = item.poster_path ? img + item.poster_path : './img/noposter.png';
-                    poster = posterVar;
-                    inner += `
-                        <div class="item">
-                        <img src="${poster}" class="poster" onclick="showById(${item.id}, 'movie')" alt ="${nameItem}">
-                        <h5>${nameItem.substr(0, 25)}</h5>
-                        </div>
-                    `;
-                });
-                document.querySelector('.rec__list').innerHTML = inner;
-                if(i === 0){
+        let url = '';
+        if(this.dataset.type === 'movie'){
+            url = 'https://api.themoviedb.org/3/movie/' + this.dataset.id + '?api_key=dcaf7f5ea224596464b7714bac28142f&language=ru';
+        }else if(this.dataset.type === 'tv'){
+            url = 'https://api.themoviedb.org/3/tv/' + this.dataset.id + '?api_key=dcaf7f5ea224596464b7714bac28142f&language=ru';
+        }else if(this.dataset.type === 'person'){
+            url = 'https://api.themoviedb.org/3/person/' + this.dataset.id + '?api_key=dcaf7f5ea224596464b7714bac28142f&language=ru';
+        }else{
+            title__item.innerHTML = '<h4 class="title" >Упс, что-то пошло не так!</h4>';
+        };
+        const id =  this.dataset.id;
+        const type = this.dataset.type;
+        fetch(url)
+        .then(function(value){
+            if(value.status !== 200){
+                return Promise.reject(new Error('Ошибка!'));
+            }
+            return value.json();
+        })
+        .then(function (output) {
+            if (type == 'person') {
+                fetch(`https://api.themoviedb.org/3/discover/movie?api_key=dcaf7f5ea224596464b7714bac28142f&language=ru&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_people=${id}`)
+                .then(function(value){
+                    if(value.status !== 200){
+                        return Promise.reject(new Error('Ошибка'));
+                    }
+                        return value.json();
+                })
+                .then(function(output){
+                    let inner = '';
+                    let i = output.results.length;
+                    output.results.forEach(function (item){
+                        let nameItem = item.name || item.title;
+                        let poster = null;
+                        const posterVar = item.poster_path ? img + item.poster_path : './img/noposter.png';
+                        poster = posterVar;
+                        inner += `
+                            <div class="item">
+                            <img src="${poster}" class="poster" onclick="showById(${item.id}, 'movie')" alt ="${nameItem}">
+                            <h5>${nameItem.substr(0, 25)}</h5>
+                            </div>
+                        `;
+                    });
+                    document.querySelector('.rec__list').innerHTML = inner;
+                    if(i === 0){
+                        document.querySelector('.rec__list').innerHTML = `<h4 class="title rec__title">Упс, что-то пошло не так!</h4>`;
+                    }
+                })
+                .catch(function(reason){
                     document.querySelector('.rec__list').innerHTML = `<h4 class="title rec__title">Упс, что-то пошло не так!</h4>`;
+                    console.error('error: ' + reason);
+                });
+                const poster1 = output.profile_path ? img + output.profile_path : './img/noposter.png';
+                title__item.innerHTML = `<h4 class="title" >${output.name}</h4>`;
+                let bio = '';
+                if (output.biography) {
+                    bio = output.biography.substr(0, 600) + '...';
+                }else {
+                    bio = 'К сожалению биография отсутствует.';
                 }
-            })
-            .catch(function(reason){
-                document.querySelector('.rec__list').innerHTML = `<h4 class="title rec__title">Упс, что-то пошло не так!</h4>`;
-                console.error('error: ' + reason);
-            });
-            const poster1 = output.profile_path ? img + output.profile_path : './img/noposter.png';
-            title__item.innerHTML = `<h4 class="title" >${output.name}</h4>`;
-            let bio = '';
-            if (output.biography) {
-                bio = output.biography.substr(0, 600) + '...';
+                let birthday = '';
+                if (output.birthday) {
+                    birthday = output.birthday;
+                }else {
+                    birthday = 'К сожалению дата рождения отсутствует.';
+                }
+                let place_of_birth = '';
+                if (output.place_of_birth) {
+                    place_of_birth = output.place_of_birth;
+                }else {
+                    place_of_birth = 'К сожалению данные отсутствуют.';
+                }
+                item.innerHTML = `
+                <div class="item__poster">
+                    <img src='${poster1}' alt='${output.name}' class='poster__info'>
+                    ${(output.homepage) ? `<a href="${output.homepage}" target="_blank"><p class="btn__info"> Официальная страница </p></a>` : ''}
+                </div>
+                <div class="item__info">
+                    <p>Дата рождения: ${birthday}</p>
+                    <p>Место рождения: ${place_of_birth}</p>
+                    <br>
+                    <p>Биография: ${bio}</p>
+                    <br>
+                    <div class='youtube'></div>
+                </div>
+                `;
+                trailer.innerHTML = '';
+                devCheck();
+                const el = document.getElementById('item');
+                el.scrollIntoView({block: "center", inline: "center", behavior: "smooth"});
             }else {
-                bio = 'К сожалению биография отсутствует.';
-            }
-            let birthday = '';
-            if (output.birthday) {
-                birthday = output.birthday;
-            }else {
-                birthday = 'К сожалению дата рождения отсутствует.';
-            }
-            let place_of_birth = '';
-            if (output.place_of_birth) {
-                place_of_birth = output.place_of_birth;
-            }else {
-                place_of_birth = 'К сожалению данные отсутствуют.';
-            }
-            item.innerHTML = `
-            <div class="item__poster">
-                <img src='${poster1}' alt='${output.name}' class='poster__info'>
-                ${(output.homepage) ? `<a href="${output.homepage}" target="_blank"><p class="btn__info"> Официальная страница </p></a>` : ''}
-            </div>
-            <div class="item__info">
-                <p>Дата рождения: ${birthday}</p>
-                <p>Место рождения: ${place_of_birth}</p>
-                <br>
-                <p>Биография: ${bio}</p>
-                <br>
-                <div class='youtube'></div>
-            </div>
-            `;
-            trailer.innerHTML = '';
-            devCheck();
-            const el = document.getElementById('item');
-            el.scrollIntoView({block: "center", inline: "center", behavior: "smooth"});
-        }else {
-            const poster1 = output.poster_path ? img + output.poster_path : './img/noposter.png';
-            title__item.innerHTML = `<h4 class="title" >${output.name || output.title}</h4>`;
-            let vote = '';
-            if (!output.vote_average == 0) {
-                vote = output.vote_average;
-            }else {
-                vote = 'К сожалению рейтинг отсутствует.';
-            }
-            let first_air_date = '';
-            if (output.first_air_date || output.release_date) {
-                first_air_date = output.first_air_date || output.release_date;
-            }else {
-                first_air_date = 'К сожалению данные отсутствуют.';
-            }
-            item.innerHTML = `
-            <div class="item__poster pic">
-                <img src='${poster1}' alt='${output.name || output.title}' class='poster__info'>
-                ${(output.homepage) ? `<a href="${output.homepage}" target="_blank"><p class="btn__info">Официальная страница</p></a>` : ''}
-                ${(output.imdb_id) ? `<a href="https://imdb.com/title/${output.imdb_id}" target="_blank"><p class="btn__info">Страница на IMDB.COM</p></a>` : ''}
-            </div>
-            <div class="item__info">
-                <p>Рейтинг: ${vote}</p>
-                <p>Премьера: ${first_air_date} </p>
-                <br>
-                <p>Описание: ${output.overview.substr(0, 600) || 'К сожалению описание отсутствует.'}</p>
-                <br>
-                <div class='youtube'></div>
-            </div>
-            `;
-            if (type == 'movie') {
+                const poster1 = output.poster_path ? img + output.poster_path : './img/noposter.png';
+                title__item.innerHTML = `<h4 class="title" >${output.name || output.title}</h4>`;
+                let vote = '';
+                if (!output.vote_average == 0) {
+                    vote = output.vote_average;
+                }else {
+                    vote = 'К сожалению рейтинг отсутствует.';
+                }
+                let first_air_date = '';
+                if (output.first_air_date || output.release_date) {
+                    first_air_date = output.first_air_date || output.release_date;
+                }else {
+                    first_air_date = 'К сожалению данные отсутствуют.';
+                }
+                item.innerHTML = `
+                <div class="item__poster pic">
+                    <img src='${poster1}' alt='${output.name || output.title}' class='poster__info'>
+                    ${(output.homepage) ? `<a href="${output.homepage}" target="_blank"><p class="btn__info">Официальная страница</p></a>` : ''}
+                    ${(output.imdb_id) ? `<a href="https://imdb.com/title/${output.imdb_id}" target="_blank"><p class="btn__info">Страница на IMDB.COM</p></a>` : ''}
+                </div>
+                <div class="item__info">
+                    <p>Рейтинг: ${vote}</p>
+                    <p>Премьера: ${first_air_date} </p>
+                    <br>
+                    <p>Описание: ${output.overview.substr(0, 600) || 'К сожалению описание отсутствует.'}</p>
+                    <br>
+                    <div class='youtube'></div>
+                </div>
+                `;
+                if (type == 'movie') {
+                    item.innerHTML += `
+                        <a onclick="showRecomendations(${output.id}, 'movie')">
+                            <p class="btn__info__rec"> Рекомендаций </p>
+                        </a>
+                        `;
+                }else {
+                    item.innerHTML += `
+                        <a onclick="showRecomendations(${output.id}, 'tv')">
+                            <p class="btn__info__rec"> Рекомендаций </p>
+                        </a>
+                        `;
+                }
                 item.innerHTML += `
-                    <a onclick="showRecomendations(${output.id}, 'movie')">
-                        <p class="btn__info__rec"> Рекомендаций </p>
-                    </a>
-                    `;
-            }else {
-                item.innerHTML += `
-                    <a onclick="showRecomendations(${output.id}, 'tv')">
-                        <p class="btn__info__rec"> Рекомендаций </p>
-                    </a>
-                    `;
+                <a href="https://www.google.com/search?q=${output.name || output.title} смотреть онлайн&tbm=vid&tbs=dur:l" target="blank">
+                    <p class="btn__watch__online">Искать</p>
+                </a>
+                `;
+                const el = document.getElementById('item');
+                el.scrollIntoView({block: "center", inline: "center", behavior: "smooth"});
+                getVideo(id, type);
+                devCheck();
             }
-            item.innerHTML += `
-            <a href="https://www.google.com/search?q=${output.name || output.title} смотреть онлайн&tbm=vid&tbs=dur:l" target="blank">
-                <p class="btn__watch__online">Искать</p>
-            </a>
-            `;
-            const el = document.getElementById('item');
-            el.scrollIntoView({block: "center", inline: "center", behavior: "smooth"});
-            getVideo(id, type);
-            devCheck();
-        }
-    })
-    .catch(function(reason){
-        movie.innerHTML = `<h4 class="title rec__title">Упс, что-то пошло не так!</h4>`;
-        console.error('error: ' + reason);
-    });
+        })
+        .catch(function(reason){
+            movie.innerHTML = `<h4 class="title rec__title">Упс, что-то пошло не так!</h4>`;
+            console.error('error: ' + reason);
+        });
+        trending.innerHTML = '';
+        document.querySelector('.rec__list').innerHTML = ``;
 }
 /* Picture in picture mode */
 function frameHide() {
@@ -460,76 +473,79 @@ function showRecomendations(id, type) {
     el.scrollIntoView({block: "center", inline: "center", behavior: "smooth"});
 }
 function showById(id, type){
-    trending.innerHTML = '';
     title__item.innerHTML = `
     <div class="loader__placeholder">
         <div class="lds-ellipsis loader"><div></div><div></div><div></div><div></div></div>
     </div>`;
-    let url = `https://api.themoviedb.org/3/${type}/${id}?api_key=dcaf7f5ea224596464b7714bac28142f&language=ru`;
-    fetch(url)
-    .then(function(value){
-        if(value.status !== 200){
-            return Promise.reject(new Error('Ошибка!'));
-        }
-        return value.json();
-    })
-    .then(function (output) {
-            const poster1 = output.poster_path ? img + output.poster_path : './img/noposter.png';
-            title__item.innerHTML = `<h4 class="title" >${output.name || output.title}</h4>`;
-            let vote = '';
-            if (!output.vote_average == 0) {
-                vote = output.vote_average;
-            }else {
-                vote = 'К сожалению рейтинг отсутствует.';
+    function init() {
+        let url = `https://api.themoviedb.org/3/${type}/${id}?api_key=dcaf7f5ea224596464b7714bac28142f&language=ru`;
+        fetch(url)
+        .then(function(value){
+            if(value.status !== 200){
+                return Promise.reject(new Error('Ошибка!'));
             }
-            let first_air_date = '';
-            if (output.first_air_date || output.release_date) {
-                first_air_date = output.first_air_date || output.release_date;
-            }else {
-                first_air_date = 'К сожалению данные отсутствуют.';
-            }
-            item.innerHTML = `
-            <div class="item__poster">
-                <img src='${poster1}' alt='${output.name || output.title}' class='poster__info'>
-                ${(output.homepage) ? `<a href="${output.homepage}" target="_blank"><p class="btn__info">Официальная страница</p></a>` : ''}
-                ${(output.imdb_id) ? `<a href="https://imdb.com/title/${output.imdb_id}" target="_blank"><p class="btn__info">Страница на IMDB.COM</p></a>` : ''}
-            </div>
-            <div class="item__info">
-                <p>Рейтинг: ${vote}</p>
-                <p>Премьера: ${first_air_date} </p>
-                <br>
-                <p>Описание: ${output.overview.substr(0, 600) || 'К сожалению описание отсутствует.'}</p>
-                <br>
-            </div>
-            `;
-            if (type == 'movie') {
+            return value.json();
+        })
+        .then(function (output) {
+                const poster1 = output.poster_path ? img + output.poster_path : './img/noposter.png';
+                title__item.innerHTML = `<h4 class="title" >${output.name || output.title}</h4>`;
+                let vote = '';
+                if (!output.vote_average == 0) {
+                    vote = output.vote_average;
+                }else {
+                    vote = 'К сожалению рейтинг отсутствует.';
+                }
+                let first_air_date = '';
+                if (output.first_air_date || output.release_date) {
+                    first_air_date = output.first_air_date || output.release_date;
+                }else {
+                    first_air_date = 'К сожалению данные отсутствуют.';
+                }
+                item.innerHTML = `
+                <div class="item__poster">
+                    <img src='${poster1}' alt='${output.name || output.title}' class='poster__info'>
+                    ${(output.homepage) ? `<a href="${output.homepage}" target="_blank"><p class="btn__info">Официальная страница</p></a>` : ''}
+                    ${(output.imdb_id) ? `<a href="https://imdb.com/title/${output.imdb_id}" target="_blank"><p class="btn__info">Страница на IMDB.COM</p></a>` : ''}
+                </div>
+                <div class="item__info">
+                    <p>Рейтинг: ${vote}</p>
+                    <p>Премьера: ${first_air_date} </p>
+                    <br>
+                    <p>Описание: ${output.overview.substr(0, 600) || 'К сожалению описание отсутствует.'}</p>
+                    <br>
+                </div>
+                `;
+                if (type == 'movie') {
+                    item.innerHTML += `
+                        <a onclick="showRecomendations(${output.id}, 'movie')">
+                            <p class="btn__info__rec"> Рекомендаций </p>
+                        </a>
+                        `;
+                }else {
+                    item.innerHTML += `
+                        <a onclick="showRecomendations(${output.id}, 'tv')">
+                            <p class="btn__info__rec"> Рекомендаций </p>
+                        </a>
+                        `;
+                }
                 item.innerHTML += `
-                    <a onclick="showRecomendations(${output.id}, 'movie')">
-                        <p class="btn__info__rec"> Рекомендаций </p>
-                    </a>
-                    `;
-            }else {
-                item.innerHTML += `
-                    <a onclick="showRecomendations(${output.id}, 'tv')">
-                        <p class="btn__info__rec"> Рекомендаций </p>
-                    </a>
-                    `;
-            }
-            item.innerHTML += `
-            <a href="https://www.google.com/search?q=${output.name || output.title} смотреть онлайн&tbm=vid&tbs=dur:l" target="blank">
-                <p class="btn__watch__online">Искать</p>
-            </a>
-            `;
-            devCheck();
-    })
-    .catch(function(reason){
-        title__item.innerHTML = `<h4 class="title">Упс, что-то пошло не так!</h4>`;
-        item.innerHTML = '';
-        console.error('error: ' + reason);
-    });
-    getVideo(id, type);
+                <a href="https://www.google.com/search?q=${output.name || output.title} смотреть онлайн&tbm=vid&tbs=dur:l" target="blank">
+                    <p class="btn__watch__online">Искать</p>
+                </a>
+                `;
+                devCheck();
+        })
+        .catch(function(reason){
+            title__item.innerHTML = `<h4 class="title">Упс, что-то пошло не так!</h4>`;
+            item.innerHTML = '';
+            console.error('error: ' + reason);
+        });
+        trending.innerHTML = '';
+        getVideo(id, type);
+    }
     const el = document.getElementById('item');
     el.scrollIntoView({block: "center", inline: "center", behavior: "smooth"});
+    setTimeout(init, 1000);
 }
 function topTable() {
     title__item.innerHTML = `
@@ -537,8 +553,6 @@ function topTable() {
         <div class="lds-ellipsis loader"><div></div><div></div><div></div><div></div></div>
     </div>
     `;
-    document.querySelector('.rec__list').innerHTML = ``;
-    trailer.innerHTML = '';
     fetch(`https://api.themoviedb.org/3/trending/movie/day?api_key=dcaf7f5ea224596464b7714bac28142f&language=ru`)
     .then(function(value){
         if(value.status !== 200){
@@ -673,6 +687,8 @@ function topTable() {
         `;
         trending.innerHTML += secondInner;
     })
+    title__item.innerHTML = `<h4 class="title" >Рейтинг за неделю</h4>`;
     item.innerHTML = '';
-    title__item.innerHTML = '';
+    document.querySelector('.rec__list').innerHTML = ``;
+    trailer.innerHTML = '';
 }
