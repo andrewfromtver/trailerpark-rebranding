@@ -74,6 +74,16 @@ table > tbody > tr > td {
     cursor: pointer;
     margin-top: 25px;
 }
+.chekbox {
+    margin: 0 5px;
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+}
+.cheked {
+    position: absolute;
+    margin: 280px 25px;
+}
 .login__message {
     margin: 0 7px;
 }
