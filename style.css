@@ -3,8 +3,6 @@ html {
     box-sizing: border-box;
 }
 body {
-    overflow-x: hidden;
-    overflow-y: scroll;
     margin: 0;
     background-image: url(./img/bacground.gif);
     font-family: sans-serif;
@@ -16,9 +14,50 @@ A {
 A:hover {
     color: #fff;
 }
+table {
+    width: -webkit-fill-available;
+    text-align: center;
+    background-color: #242424;
+    color: #aaa;
+    margin: 0 7px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 10px 7px 10px #333;
+}
+table > thead {
+    color: #fff;
+}
+table > thead > tr > th {
+    font-size: 12px;
+    font-weight: 300;
+    padding: 12px 10px;
+    border-bottom: 2px solid darkorange;
+    color: darkorange;
+}
+table > tbody > tr > td {
+    font-size: 12px;
+    padding: 10px;
+    color: #8D8173;
+}
 .btn__info:hover, .btn__watch__online:hover, .btn_type:hover, .btn:hover, .btn__info__rec:hover {
     color: darkorange;
     background-color: #fff;
+}
+/* Login form */
+.login__form__background {
+    position: fixed;
+    height: -webkit-fill-available;
+    width: -webkit-fill-available;
+    background-color: #242424;
+    background-image: url(./img/bacground.gif);
+    z-index: 999999;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.login__form {
+    margin: 0 auto;
 }
 /* Ui control buttons */
 .up__btn {
@@ -41,6 +80,9 @@ A:hover {
 }
 /* Header */
 .header {
+    z-index: 100;
+    width: -webkit-fill-available;
+    position: fixed;
     background-color: #242424;
     color: #fff;
     display: flex;
@@ -57,7 +99,19 @@ A:hover {
 .header__link1__desc, .header__link2__desc, .header__link3__desc {
     vertical-align: super;
 }
+.username {
+    position: absolute;
+    right: 0;
+    margin: 10px;
+    cursor: pointer;
+}
+.user {
+    color: darkorange;
+}
 /* Search form */
+.br {
+    height: 45px;
+}
 .form-control {
     margin: 15px 7px 0 7px;
     border: 2px solid #ccc;
@@ -311,32 +365,6 @@ A:hover {
     opacity: 1;
 }
 /* Top table */
-.table {
-    width: -webkit-fill-available;
-    text-align: center;
-    background-color: #242424;
-    color: #aaa;
-    margin: 0 7px;
-    border: 2px solid #ccc;
-    border-radius: 10px;
-    padding: 15px;
-    box-shadow: 10px 7px 10px #333;
-}
-.table > thead {
-    color: #fff;
-}
-.table > thead > tr > th {
-    font-size: 12px;
-    font-weight: 300;
-    padding: 12px 10px;
-    border-bottom: 2px solid darkorange;
-    color: darkorange;
-}
-.table > tbody > tr > td {
-    font-size: 12px;
-    padding: 10px;
-    color: #8D8173;
-}
 .table > tbody > tr {
     opacity: 0.75;
 }
