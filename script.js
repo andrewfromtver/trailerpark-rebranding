@@ -75,7 +75,7 @@ const img = 'https://image.tmdb.org/t/p/w500';
             lastLogin = operation.login;
             localStorage.setItem('lastLogin', lastLogin);
             trialAuthentication = operation;
-            localStorage.setItem('trialAuthentication', JSON.stringify(trialAuthentication));
+            sessionStorage.setItem('trialAuthentication', JSON.stringify(trialAuthentication));
         }
         document.querySelector('.login__form').innerHTML = '<div class="lds-ellipsis loader"><div></div><div></div><div></div><div></div></div>';
         /* Listeners */
