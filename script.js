@@ -52,6 +52,7 @@ window.onscroll = function() {
       document.querySelector(".up__btn").style.display = "none";
     }
 }
+/* Authentication */
 document.getElementById("movies").addEventListener('wheel', function(event) {
     if (event.deltaMode == event.DOM_DELTA_PIXEL) {
       var modifier = 1;
@@ -78,7 +79,6 @@ document.getElementById("movies__rec").addEventListener('wheel', function(event)
       event.preventDefault();
     }
 });
-/* Autentification */
 document.querySelector('body').style.overflow = 'hidden';
 function loginNouser() {
     document.querySelector(".up__btn").style.display = "none";
