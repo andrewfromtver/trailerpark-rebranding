@@ -1,7 +1,36 @@
 const serachForm = document.querySelector('#search-form');
 const movie = document.querySelector('#movies');
 const img = 'https://image.tmdb.org/t/p/w500';
+/* Listeners */
+document.getElementById("movies").addEventListener('wheel', function(event) {
+    if (event.deltaMode == event.DOM_DELTA_PIXEL) {
+      var modifier = 1;
+    } else if (event.deltaMode == event.DOM_DELTA_LINE) {
+      var modifier = parseInt(getComputedStyle(this).lineHeight);
+    } else if (event.deltaMode == event.DOM_DELTA_PAGE) {
+      var modifier = this.clientHeight;
+    }
+    if (event.deltaY != 0) {
+      this.scrollLeft += modifier * event.deltaY;
+      event.preventDefault();
+    }
+});
+document.getElementById("movies__rec").addEventListener('wheel', function(event) {
+    if (event.deltaMode == event.DOM_DELTA_PIXEL) {
+      var modifier = 1;
+    } else if (event.deltaMode == event.DOM_DELTA_LINE) {
+      var modifier = parseInt(getComputedStyle(this).lineHeight);
+    } else if (event.deltaMode == event.DOM_DELTA_PAGE) {
+      var modifier = this.clientHeight;
+    }
+    if (event.deltaY != 0) {
+      this.scrollLeft += modifier * event.deltaY;
+      event.preventDefault();
+    }
+});
+serachForm.addEventListener('submit', apiSearch);
 /* Init */
+document.querySelector('body').style.overflow = 'hidden';
 show('multi', 'day', 'day');
 topTable();
 /* Device screen width check */
@@ -56,33 +85,6 @@ window.onscroll = function() {
     }
 }
 /* Authentication */
-document.getElementById("movies").addEventListener('wheel', function(event) {
-    if (event.deltaMode == event.DOM_DELTA_PIXEL) {
-      var modifier = 1;
-    } else if (event.deltaMode == event.DOM_DELTA_LINE) {
-      var modifier = parseInt(getComputedStyle(this).lineHeight);
-    } else if (event.deltaMode == event.DOM_DELTA_PAGE) {
-      var modifier = this.clientHeight;
-    }
-    if (event.deltaY != 0) {
-      this.scrollLeft += modifier * event.deltaY;
-      event.preventDefault();
-    }
-});
-document.getElementById("movies__rec").addEventListener('wheel', function(event) {
-    if (event.deltaMode == event.DOM_DELTA_PIXEL) {
-      var modifier = 1;
-    } else if (event.deltaMode == event.DOM_DELTA_LINE) {
-      var modifier = parseInt(getComputedStyle(this).lineHeight);
-    } else if (event.deltaMode == event.DOM_DELTA_PAGE) {
-      var modifier = this.clientHeight;
-    }
-    if (event.deltaY != 0) {
-      this.scrollLeft += modifier * event.deltaY;
-      event.preventDefault();
-    }
-});
-document.querySelector('body').style.overflow = 'hidden';
 function loginNouser() {
     document.querySelector(".up__btn").style.display = "none";
     window.addEventListener("resize", function() {devCheck();});
@@ -445,7 +447,6 @@ function apiSearch(event){
             console.error('error: ' + reason);
         });
 }
-serachForm.addEventListener('submit', apiSearch);
 /* Recomendations */
 function showRecomendations(id, type) {
     fetch(`https://api.themoviedb.org/3/${type}/${id}/recommendations?api_key=dcaf7f5ea224596464b7714bac28142f&language=ru&page=1`)
