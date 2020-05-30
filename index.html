@@ -10,10 +10,38 @@
     <title>Трейлер-парк</title>
 </head>
 <body>
+    <div class="login__form__background">
+        <div class="login__form">
+            <table class="login">
+                <thead>
+                    <tr>
+                        <th scope="col">Авторизация</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <input class="form-control" type="login">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input class="form-control" type="password">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <button class="btn_type" onclick="login()">Вход</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
     <div class="up__btn">
         <img src="./img/upBtn.png" onclick="up()">
     </div>
-    <div class="header" id="top">
+    <div class="header">
         <div class="header__link" onclick="show('multi', 'day', 'day')">
             <img src="./img/day.png" width="25" height="25" class="d-inline-block align-top" alt="">
             <a class="header__link1__desc">Топ на сегодня</a>
@@ -26,12 +54,17 @@
             <img src="./img/upBtn.png" width="25" height="25" class="d-inline-block align-top" alt="">
             <a class="header__link3__desc">Тренды</a>
         </div>
+        <div class="username">
+            <a class="user" id="user">
+                Username
+            </a>
+        </div>
     </div>
+    <div class="br" id="top"></div>
     <form id="search-form" class="main__section__search">
         <input type="text" class="form-control" id='searchText' placeholder="Введите название фильма или сериала">
         <button type="submit" class="btn">Найти</button>
     </form>
-    </div>
     <div class="main__section__title">
         <div id="title"></div>
     </div>    
