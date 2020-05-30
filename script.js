@@ -53,8 +53,30 @@ const img = 'https://image.tmdb.org/t/p/w500';
         }
     }
 /* Authentication */
+    document.querySelector('.loginForm').addEventListener('submit', function(){loginTrial();})
+
+    document.querySelector('#login').value = localStorage.getItem('lastLogin') || '';
     document.querySelector('.content').style.display = 'none';
     function loginTrial() {
+        let trialAuthentication = JSON.parse(localStorage.getItem('trialAuthentication')) || [];
+
+        const generateId = () => `${Math.round(Math.random() * 1e8).toString(16)}`
+        const generatePassword = (password) => `${Math.round(password * 1e8).toString(16)}`
+    
+        let login = document.querySelector('#login').value;
+        let password = document.querySelector('#password').value;
+        let lastLogin = '';
+        if (login && password) {
+            const operation = {
+                id: generateId(),
+                login: login,
+                password_fingerprint: generatePassword(password),
+            };
+            lastLogin = operation.login;
+            localStorage.setItem('lastLogin', lastLogin);
+            trialAuthentication = operation;
+            localStorage.setItem('trialAuthentication', JSON.stringify(trialAuthentication));
+        }
         document.querySelector('.login__form').innerHTML = '<div class="lds-ellipsis loader"><div></div><div></div><div></div><div></div></div>';
         /* Listeners */
             window.addEventListener("resize", function() {devCheck();});
