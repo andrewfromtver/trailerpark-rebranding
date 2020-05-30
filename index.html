@@ -19,21 +19,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>
-                            <input class="form-control" type="login">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <input class="form-control" type="password">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <button class="btn_type" onclick="login()">Вход</button>
-                        </td>
-                    </tr>
+                    <td>
+                        <form>
+                            <input class="form-control" id="login" type="login" maxlength="28" required="required" pattern="[A-Za-z0-9]{1,20}">
+                            <input class="form-control" id="password" type="password" autocomplete="off" maxlength="28" required="required" pattern="[A-Za-z0-9]{1,20}">
+                        </form>
+                        <button class="btn_type" onclick="login()">Вход</button>
+                        <button class="btn__guest" onclick="loginNouser()">Гостевой режим</button>
+                    </td>
                 </tbody>
             </table>
         </div>
@@ -55,7 +48,7 @@
             <a class="header__link3__desc">Тренды</a>
         </div>
         <div class="username">
-            <a class="user" id="user">
+            <a class="user" id="user" href="">
                 Username
             </a>
         </div>
