@@ -112,7 +112,7 @@ const img = 'https://image.tmdb.org/t/p/w500';
             topTable();
             document.querySelector('.logout').innerHTML = `
             <div class="header__logout">
-                <a href="">
+                <a href="" onclick="logout()">
                 <img src="./img/logout.png" width="25" height="25">
                 </a>
             </div>
