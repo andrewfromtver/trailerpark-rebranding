@@ -2,10 +2,8 @@ const serachForm = document.querySelector('#search-form');
 const movie = document.querySelector('#movies');
 const img = 'https://image.tmdb.org/t/p/w500';
 /* Init */
-document.addEventListener('DOMContentLoaded', show('multi', 'day', 'day'));
 document.querySelector(".up__btn").style.display = "none";
 window.addEventListener("resize", function() {devCheck();});
-topTable();
 /* Device screen width check */
 function devCheck() {
     if (document.documentElement.clientWidth > 900 && document.documentElement.clientWidth < 1500) {
@@ -86,6 +84,8 @@ document.getElementById("movies__rec").addEventListener('wheel', function(event)
 /* Autentification */
 document.querySelector('body').style.overflow = 'hidden';
 function loginNouser() {
+    show('multi', 'day', 'day');
+    topTable();
     document.querySelector('.user').innerHTML = `Выход`;
     document.querySelector('.login__form').innerHTML = ` <div class="lds-ellipsis loader"><div></div><div></div><div></div><div></div></div>`;
     function init() {
