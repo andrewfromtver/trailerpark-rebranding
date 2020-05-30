@@ -62,7 +62,7 @@ table > tbody > tr > td {
 }
 .btn__guest {
     box-shadow: 10px 7px 15px #333;
-    width: 33%;
+    width: 50%;
     background-color: darkgreen;
     border-width: 2px;
     border-style: solid;
@@ -70,8 +70,9 @@ table > tbody > tr > td {
     color: #fff;
     border-radius: 5px;
     font-weight: 700;
-    padding: 5px;
+    padding: 10px;
     cursor: pointer;
+    margin-top: 25px;
 }
 .login__message {
     margin: 0 7px;
