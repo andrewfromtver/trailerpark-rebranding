@@ -24,61 +24,60 @@
                             <input class="form-control" id="login" placeholder="Логин" type="login" maxlength="28" required="required" pattern="[A-Za-z0-9]{1,20}">
                             <input class="form-control" id="password" placeholder="Пароль" type="password" autocomplete="off" maxlength="28" required="required" pattern="[A-Za-z0-9]{1,20}">
                         </form>
-                        <button class="btn_type" onclick="login()">Вход</button>
-                        <button class="btn__guest" onclick="loginNouser()">Триал</button>
+                        <button class="btn_type" onclick="">Вход</button>
+                        <button class="btn__guest" onclick="loginTrial()">Триал</button>
                     </td>
                 </tbody>
             </table>
         </div>
     </div>
-    <div class="up__btn">
-        <img src="./img/upBtn.png" onclick="up()">
-    </div>
-    <div class="header">
-        <div class="header__link" onclick="show('multi', 'day', 'day')">
-            <img src="./img/day.png" width="25" height="25" class="d-inline-block align-top" alt="">
-            <a class="header__link1__desc">Топ на сегодня</a>
+    <div class="content">
+        <div class="up__btn">
+            <img src="./img/upBtn.png" onclick="up()">
         </div>
-        <div class="header__link" onclick="show('multi', 'week', 'week')">
-            <img src="./img/week.png" width="25" height="25" class="d-inline-block align-top" alt="">
-            <a class="header__link2__desc">Топ за неделю</a>
-        </div>
-        <div class="header__link"onclick="topTable()"">
-            <img src="./img/upBtn.png" width="25" height="25" class="d-inline-block align-top" alt="">
-            <a class="header__link3__desc">Тренды</a>
-        </div>
-        <div class="username">
-            <a class="user" id="user" href="">
-                Username
-            </a>
-        </div>
-    </div>
-    <div class="br" id="top"></div>
-    <form id="search-form" class="main__section__search">
-        <input type="text" class="form-control" id='searchText' placeholder="Введите название фильма или сериала">
-        <button type="submit" class="btn">Найти</button>
-    </form>
-    <div class="main__section__title">
-        <div id="title"></div>
-    </div>    
-    <div id="movies" class="row"></div>
-    <div class="main__section">
-        <div class="type">
-            <button class="btn_type" onclick="show('movie', 'week')">Фильмы</button>
-            <button class="btn_type" onclick="show('tv', 'week')">Сериалы</button>
-            <button class="btn_type" onclick="show('person', 'week')">Актеры и режисеры</button>
-        </div>
-        <div id="title__item"></div>
-        <div id="item" class="container"></div>
-        <div class="rec__list" id="movies__rec"></div> 
-        <div id="trailer" class="trailer"></div>
-        <div id="trending" class="trending"></div>
-        <div id="small__frame" class="small__frame"></div>
-        <footer class="footer">
-            <div class="footer__text">
-                Trailerpark
+        <div class="header">
+            <div class="header__link" onclick="show('multi', 'day', 'day')">
+                <img src="./img/day.png" width="25" height="25" class="d-inline-block align-top" alt="">
+                <a class="header__link1__desc">Топ на сегодня</a>
             </div>
-        </footer>
+            <div class="header__link" onclick="show('multi', 'week', 'week')">
+                <img src="./img/week.png" width="25" height="25" class="d-inline-block align-top" alt="">
+                <a class="header__link2__desc">Топ за неделю</a>
+            </div>
+            <div class="header__link"onclick="topTable()"">
+                <img src="./img/upBtn.png" width="25" height="25" class="d-inline-block align-top" alt="">
+                <a class="header__link3__desc">Тренды</a>
+            </div>
+            <div class="logout">
+            </div>
+        </div>
+        <div class="br" id="top"></div>
+        <form id="search-form" class="main__section__search">
+            <input type="text" class="form-control" id='searchText' placeholder="Введите название фильма или сериала">
+            <button type="submit" class="btn">Найти</button>
+        </form>
+        <div class="main__section__title">
+            <div id="title"></div>
+        </div>    
+        <div id="movies" class="row"></div>
+        <div class="main__section">
+            <div class="type">
+                <button class="btn_type" onclick="show('movie', 'week')">Фильмы</button>
+                <button class="btn_type" onclick="show('tv', 'week')">Сериалы</button>
+                <button class="btn_type" onclick="show('person', 'week')">Актеры и режисеры</button>
+            </div>
+            <div id="title__item"></div>
+            <div id="item" class="container"></div>
+            <div class="rec__list" id="movies__rec"></div> 
+            <div id="trailer" class="trailer"></div>
+            <div id="trending" class="trending"></div>
+            <div id="small__frame" class="small__frame"></div>
+            <footer class="footer">
+                <div class="footer__text">
+                    Trailerpark
+                </div>
+            </footer>
+        </div>
     </div>
     <script src="./script.js"></script>
 </body>
