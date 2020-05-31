@@ -526,7 +526,7 @@ const img = 'https://image.tmdb.org/t/p/w500';
             <div class="lds-ellipsis loader"><div></div><div></div><div></div><div></div></div>
         </div>
         `;
-        fetch(`https://api.themoviedb.org/3/trending/all/day?api_key=dcaf7f5ea224596464b7714bac28142f&language=ru`)
+        fetch(`https://api.themoviedb.org/3/trending/tv/day?api_key=dcaf7f5ea224596464b7714bac28142f&language=ru`)
         .then(function(value){
             if(value.status !== 200){
                 return Promise.reject(new Error('Ошибка'));
@@ -546,7 +546,7 @@ const img = 'https://image.tmdb.org/t/p/w500';
                 )
             })
             let inner = `
-                <h4 class="title">Топ 5 новых фильмов и сериалов</h4>
+                <h4 class="title">Топ 10 новых сериалов</h4>
                     <table class="table">
                         <thead>
                             <tr>
@@ -557,35 +557,65 @@ const img = 'https://image.tmdb.org/t/p/w500';
                             </tr>
                         </thead>
                         <tbody>
-                            <tr onclick="showById(${tabledata[0].id}, 'movie')">
+                            <tr onclick="showById(${tabledata[0].id}, 'tv')">
                                 <th scope="row">1</th>
                                 <td>${tabledata[0].name}</td>
                                 <td>${tabledata[0].y} из 10</td>
                                 <td>${tabledata[0].x} млн. $</td>
                             </tr>
-                            <tr onclick="showById(${tabledata[1].id}, 'movie')">
+                            <tr onclick="showById(${tabledata[1].id}, 'tv')">
                                 <th scope="row">2</th>
                                 <td>${tabledata[1].name}</td>
                                 <td>${tabledata[1].y} из 10</td>
                                 <td>${tabledata[1].x} млн. $</td>
                             </tr>
-                            <tr onclick="showById(${tabledata[2].id}, 'movie')">
+                            <tr onclick="showById(${tabledata[2].id}, 'tv')">
                                 <th scope="row">3</th>
                                 <td>${tabledata[2].name}</td>
                                 <td>${tabledata[2].y} из 10</td>
                                 <td>${tabledata[2].x} млн. $</td>
                             </tr>
-                            <tr onclick="showById(${tabledata[3].id}, 'movie')">
+                            <tr onclick="showById(${tabledata[3].id}, 'tv')">
                                 <th scope="row">4</th>
                                 <td>${tabledata[3].name}</td>
                                 <td>${tabledata[3].y} из 10</td>
                                 <td>${tabledata[3].x} млн. $</td>
                             </tr>
-                            <tr onclick="showById(${tabledata[4].id}, 'movie')">
+                            <tr onclick="showById(${tabledata[4].id}, 'tv')">
                                 <th scope="row">5</th>
                                 <td>${tabledata[4].name}</td>
                                 <td>${tabledata[4].y} из 10</td>
                                 <td>${tabledata[4].x} млн. $</td>
+                            </tr>
+                            <tr onclick="showById(${tabledata[5].id}, 'tv')">
+                                <th scope="row">1</th>
+                                <td>${tabledata[5].name}</td>
+                                <td>${tabledata[5].y} из 10</td>
+                                <td>${tabledata[5].x} млн. $</td>
+                            </tr>
+                            <tr onclick="showById(${tabledata[6].id}, 'tv')">
+                                <th scope="row">2</th>
+                                <td>${tabledata[6].name}</td>
+                                <td>${tabledata[6].y} из 10</td>
+                                <td>${tabledata[6].x} млн. $</td>
+                            </tr>
+                            <tr onclick="showById(${tabledata[7].id}, 'tv')">
+                                <th scope="row">3</th>
+                                <td>${tabledata[7].name}</td>
+                                <td>${tabledata[7].y} из 10</td>
+                                <td>${tabledata[7].x} млн. $</td>
+                            </tr>
+                            <tr onclick="showById(${tabledata[8].id}, 'tv')">
+                                <th scope="row">4</th>
+                                <td>${tabledata[8].name}</td>
+                                <td>${tabledata[8].y} из 10</td>
+                                <td>${tabledata[8].x} млн. $</td>
+                            </tr>
+                            <tr onclick="showById(${tabledata[9].id}, 'tv')">
+                                <th scope="row">5</th>
+                                <td>${tabledata[9].name}</td>
+                                <td>${tabledata[9].y} из 10</td>
+                                <td>${tabledata[9].x} млн. $</td>
                             </tr>
                             <tr>
                         </tbody>
