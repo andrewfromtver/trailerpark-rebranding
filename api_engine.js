@@ -157,11 +157,18 @@ const img = 'https://image.tmdb.org/t/p/w500';
                             let poster = null;
                             const posterVar = item.poster_path ? img + item.poster_path : './img/noposter.png';
                             poster = posterVar;
+                            let cheked = '';
+                            if (true) {
+                                if (liked.includes(`${item.id}`)) {
+                                    cheked = `<img src='./img/chek.png' width="25" height="25" class='chek'>`;
+                                }
+                            }
                             inner += `
                                 <div class="item">
                                 <img src="${poster}" class="poster" onclick="showById(${item.id}, 'movie')" alt ="${nameItem}">
                                 <h5>${nameItem.substr(0, 25)}</h5>
                                 </div>
+                                ${cheked}
                             `;
                         });
                         document.querySelector('.rec__list').innerHTML = inner;
@@ -345,7 +352,6 @@ const img = 'https://image.tmdb.org/t/p/w500';
         <div class="loader__placeholder">
             <div class="lds-ellipsis loader"><div></div><div></div><div></div><div></div></div>
         </div>`;
-        let searchType = '';
         fetch(`https://api.themoviedb.org/3/search/multi?api_key=dcaf7f5ea224596464b7714bac28142f&language=ru&query=${searchText}`)
             .then(function(value){
                 if(value.status !== 200){
@@ -366,11 +372,18 @@ const img = 'https://image.tmdb.org/t/p/w500';
                     const poster = item.poster_path ? img + item.poster_path : item.profile_path ? img + item.profile_path : './img/noposter.png';
                     let dataInfo = '';
                     dataInfo = `data-id="${item.id}" data-type="${item.media_type}"`;
+                    let cheked = '';
+                    if (true) {
+                        if (liked.includes(`${item.id}`)) {
+                            cheked = `<img src='./img/chek.png' width="25" height="25" class='chek'>`;
+                        }
+                    }    
                     inner += `
                     <div class="item">
                         <img src="${poster}" class="poster" alt="${nameItem}" ${dataInfo}>
                         <h5>${nameItem.substr(0, 25)}</h5>
                     </div>
+                    ${cheked}
                     `;
                 });
                 movie.innerHTML = inner;
