@@ -262,6 +262,21 @@ table > tbody > tr > td {
     box-shadow: 10px 7px 15px #555;
     max-width: 150px;
 }
+.star {
+    position: absolute;
+    opacity: 0.5;
+    cursor: pointer;
+    margin:-5px 5px;
+}
+.star:hover {
+    opacity: 1;
+}
+.chek {
+    margin-left: -29px;
+    z-index: 1;
+    border: 2px solid #fff;
+    border-radius: 5px;
+}
 .btn__info {
     box-shadow: 10px 7px 15px #555;
     background-color: rgb(241, 155, 48);
