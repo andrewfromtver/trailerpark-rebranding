@@ -588,31 +588,31 @@ const img = 'https://image.tmdb.org/t/p/w500';
                                 <td>${tabledata[4].x} млн. $</td>
                             </tr>
                             <tr onclick="showById(${tabledata[5].id}, 'tv')">
-                                <th scope="row">1</th>
+                                <th scope="row">6</th>
                                 <td>${tabledata[5].name}</td>
                                 <td>${tabledata[5].y} из 10</td>
                                 <td>${tabledata[5].x} млн. $</td>
                             </tr>
                             <tr onclick="showById(${tabledata[6].id}, 'tv')">
-                                <th scope="row">2</th>
+                                <th scope="row">7</th>
                                 <td>${tabledata[6].name}</td>
                                 <td>${tabledata[6].y} из 10</td>
                                 <td>${tabledata[6].x} млн. $</td>
                             </tr>
                             <tr onclick="showById(${tabledata[7].id}, 'tv')">
-                                <th scope="row">3</th>
+                                <th scope="row">8</th>
                                 <td>${tabledata[7].name}</td>
                                 <td>${tabledata[7].y} из 10</td>
                                 <td>${tabledata[7].x} млн. $</td>
                             </tr>
                             <tr onclick="showById(${tabledata[8].id}, 'tv')">
-                                <th scope="row">4</th>
+                                <th scope="row">9</th>
                                 <td>${tabledata[8].name}</td>
                                 <td>${tabledata[8].y} из 10</td>
                                 <td>${tabledata[8].x} млн. $</td>
                             </tr>
                             <tr onclick="showById(${tabledata[9].id}, 'tv')">
-                                <th scope="row">5</th>
+                                <th scope="row">10</th>
                                 <td>${tabledata[9].name}</td>
                                 <td>${tabledata[9].y} из 10</td>
                                 <td>${tabledata[9].x} млн. $</td>
