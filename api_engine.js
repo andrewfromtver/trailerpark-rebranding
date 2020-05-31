@@ -623,7 +623,7 @@ const img = 'https://image.tmdb.org/t/p/w500';
             `;
             trending.innerHTML = inner;
         })
-        title__item.innerHTML = `<h4 class="title" >Рейтинг за неделю</h4>`;
+        title__item.innerHTML = `<h4 class="title" >Рейтинг</h4>`;
         item.innerHTML = '';
         document.querySelector('.rec__list').innerHTML = ``;
         trailer.innerHTML = '';
