@@ -351,7 +351,7 @@ const img = 'https://image.tmdb.org/t/p/w500';
                     }
                     item.innerHTML += `
                     <a href="https://www.google.com/search?q=${output.name || output.title} смотреть онлайн&tbm=vid&tbs=dur:l" target="blank">
-                        <p class="btn__watch__online">Искать</p>
+                        <p class="btn__watch__online">Смотреть</p>
                     </a>
                     `;
                     getVideo(id, type);
@@ -609,7 +609,7 @@ const img = 'https://image.tmdb.org/t/p/w500';
                     }
                     item.innerHTML += `
                     <a href="https://www.google.com/search?q=${output.name || output.title} смотреть онлайн&tbm=vid&tbs=dur:l" target="blank">
-                        <p class="btn__watch__online">Искать</p>
+                        <p class="btn__watch__online">Смотреть</p>
                     </a>
                     `;
                     devCheck();
