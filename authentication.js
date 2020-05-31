@@ -21,6 +21,7 @@
                 login: login,
                 password_fingerprint: generatePassword(password),
             };
+            sessionStorage.setItem('session', operation.login + ' | ' + operation.password_fingerprint);
             if (localStorage.auth_history) {
                 if (!localStorage.auth_history.includes(operation.login + ' | ' + operation.password_fingerprint)) {
                     auth_history.push(operation.login + ' | ' + operation.password_fingerprint);
@@ -30,7 +31,7 @@
                         document.querySelector('.login__form').innerHTML = `
                         <h4 class="title" >Учетная запись ${operation.login} успешно зарегистрированна</h4>
                         <a href="">
-                            <button class="btn">Вход</button>
+                            <button class="btn">Назад</button>
                         </a>
                         `;
                     }
@@ -49,6 +50,7 @@
                         document.querySelector('.content').style.display = '';
                         document.querySelector('.login__form__background').style.display = 'none';
                         document.querySelector('body').style.overflow = 'auto';
+                        liked = JSON.parse(localStorage.getItem(sessionStorage.session)) || [];
                     }
                     setTimeout(init, 2000);
                 }
@@ -62,6 +64,7 @@
             login: usr,
             password_fingerprint: pwd,
         };
+        sessionStorage.setItem('session', operation.login + ' | ' + operation.password_fingerprint);
         let authentication = JSON.parse(localStorage.getItem('authentication')) || [];
         let lastLogin = ''
         lastLogin = operation.login;
@@ -77,8 +80,10 @@
             document.querySelector('.content').style.display = '';
             document.querySelector('.login__form__background').style.display = 'none';
             document.querySelector('body').style.overflow = 'auto';
+            liked = JSON.parse(localStorage.getItem(sessionStorage.session)) || [];
         }
         setTimeout(init, 2000);
+
     }
     function logout() {
         sessionStorage.clear();
