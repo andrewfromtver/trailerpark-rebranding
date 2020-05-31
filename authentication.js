@@ -26,8 +26,14 @@
                     localStorage.setItem('auth_history', JSON.stringify(auth_history));
                     document.querySelector('.login__form').innerHTML = '<div class="lds-ellipsis loader"><div></div><div></div><div></div><div></div></div>';
                     function reg() {
-                        
+                        document.querySelector('.login__form').innerHTML = `
+                        <h4 class="title" >Учетная запись ${operation.login} успешно зарегистрированна</h4>
+                        <a href="">
+                            <button class="btn">Вход</button>
+                        </a>
+                        `;
                     }
+                    setTimeout(reg, 2000);
                 } else {
                     lastLogin = operation.login;
                     localStorage.setItem('lastLogin', lastLogin);
