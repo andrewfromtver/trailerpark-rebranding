@@ -339,13 +339,13 @@ const img = 'https://image.tmdb.org/t/p/w500';
                     if (type == 'movie') {
                         item.innerHTML += `
                             <a onclick="showRecomendations(${output.id}, 'movie')">
-                                <p class="btn__info__rec"> Рекомендаций </p>
+                                <p class="btn__info__rec">Рекомендации</p>
                             </a>
                             `;
                     }else {
                         item.innerHTML += `
                             <a onclick="showRecomendations(${output.id}, 'tv')">
-                                <p class="btn__info__rec"> Рекомендаций </p>
+                                <p class="btn__info__rec">Рекомендации</p>
                             </a>
                             `;
                     }
@@ -603,7 +603,7 @@ const img = 'https://image.tmdb.org/t/p/w500';
                     }else {
                         item.innerHTML += `
                             <a onclick="showRecomendations(${output.id}, 'tv')">
-                                <p class="btn__info__rec"> Рекомендаций </p>
+                                <p class="btn__info__rec">Рекомендации</p>
                             </a>
                             `;
                     }
