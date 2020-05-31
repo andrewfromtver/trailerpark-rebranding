@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'"/>
+    <meta name="description" content="Поиск трейлеров к фильмам и сериалам">
+    <link rel="shortcut icon" href="./img/favicon.png">
+    <link rel="stylesheet" href="./style.css" type="text/css">
+    <title>Трейлер-парк</title>
+</head>
+<body>
+    <div class="login__form__background">
+        <div class="login__form">
+            <table class="login">
+                <thead>
+                    <tr>
+                        <th scope="col">Авторизация</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <td>
+                        <form class="loginForm">
+                            <input class="form-control" id="login" placeholder="e-mail" type="email" maxlength="28" required>
+                            <input class="form-control" id="password" placeholder="PIN-код" type="number" type="number" autocomplete="off" required>
+                            <button class="btn__guest">Вход</button>
+                        </form>
+                    </td>
+                    <a class="cheked">
+                        Запомнить
+                        <input class="chekbox" type="checkbox" name="option1" value="a1">
+                    </a>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="content">
+        <div class="up__btn">
+            <img src="./img/upBtn.png" onclick="up()">
+        </div>
+        <div class="header">
+            <div class="header__link" onclick="show('multi', 'day', 'day')">
+                <img src="./img/day.png" width="25" height="25" class="d-inline-block align-top" alt="">
+                <a class="header__link1__desc">Топ на сегодня</a>
+            </div>
+            <div class="header__link" onclick="show('multi', 'week', 'week')">
+                <img src="./img/week.png" width="25" height="25" class="d-inline-block align-top" alt="">
+                <a class="header__link2__desc">Топ за неделю</a>
+            </div>
+            <div class="header__link"onclick="topTable()">
+                <img src="./img/upBtn.png" width="25" height="25" class="d-inline-block align-top" alt="">
+                <a class="header__link3__desc">Тренды</a>
+            </div>
+            <div class="logout">
+            </div>
+        </div>
+        <div class="br" id="top"></div>
+        <form id="search-form" class="main__section__search">
+            <input type="text" class="form-control" id='searchText' placeholder="Введите название фильма или сериала">
+            <button type="submit" class="btn">Найти</button>
+        </form>
+        <div class="main__section__title">
+            <div id="title"></div>
+        </div>    
+        <div id="movies" class="row"></div>
+        <div class="main__section">
+            <div class="type">
+                <button class="btn_type" onclick="show('movie', 'week')">Фильмы</button>
+                <button class="btn_type" onclick="show('tv', 'week')">Сериалы</button>
+                <button class="btn_type" onclick="show('person', 'week')">Актеры и режисеры</button>
+            </div>
+            <div id="title__item"></div>
+            <div id="item" class="container"></div>
+            <div class="rec__list" id="movies__rec"></div> 
+            <div id="trailer" class="trailer"></div>
+            <div id="trending" class="trending"></div>
+            <div id="small__frame" class="small__frame"></div>
+            <footer class="footer">
+                <div class="footer__text">
+                    Trailerpark
+                </div>
+            </footer>
+        </div>
+    </div>
+    <script src="./ui_control.js"></script>
+    <script src="./api_engine.js"></script>
+    <script src="./authentication.js"></script>
+</body>
+</html>
