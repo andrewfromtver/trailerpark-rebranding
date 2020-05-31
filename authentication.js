@@ -2,7 +2,8 @@
     document.querySelector('.loginForm').addEventListener('submit', function(){login();})
     document.querySelector('#login').value = localStorage.getItem('lastLogin') || '';
     document.querySelector('.content').style.display = 'none';
-    if (sessionStorage.authentication || localStorage.authentication) {login();} 
+    if (sessionStorage.authentication) {relogin(JSON.parse(sessionStorage.authentication).login ,JSON.parse(sessionStorage.authentication).password_fingerprint);}
+    if (localStorage.authentication) {relogin(JSON.parse(localStorage.authentication).login ,JSON.parse(localStorage.authentication).password_fingerprint);} 
     function login() {
         let authentication = JSON.parse(localStorage.getItem('authentication')) || [];
         const generateId = () => `${Math.round(Math.random() * 1e8).toString(16)}`
@@ -53,6 +54,31 @@
                 }
             }
         }
+    }
+    function relogin(usr, pwd) {
+        const generateId = () => `${Math.round(Math.random() * 1e8).toString(16)}`
+        const operation = {
+            id: generateId(),
+            login: usr,
+            password_fingerprint: pwd,
+        };
+        let authentication = JSON.parse(localStorage.getItem('authentication')) || [];
+        let lastLogin = ''
+        lastLogin = operation.login;
+        localStorage.setItem('lastLogin', lastLogin);
+        authentication = operation;
+        sessionStorage.setItem('authentication', JSON.stringify(authentication));
+        if (document.querySelector('.chekbox').checked) {
+            localStorage.setItem('authentication', JSON.stringify(authentication));
+        }
+        document.querySelector('.login__form').innerHTML = '<div class="lds-ellipsis loader"><div></div><div></div><div></div><div></div></div>';
+        startPage();
+        function init() {
+            document.querySelector('.content').style.display = '';
+            document.querySelector('.login__form__background').style.display = 'none';
+            document.querySelector('body').style.overflow = 'auto';
+        }
+        setTimeout(init, 2000);
     }
     function logout() {
         sessionStorage.clear();
