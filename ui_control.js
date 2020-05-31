@@ -52,7 +52,6 @@
     }
 /* Liked */
     liked = JSON.parse(localStorage.getItem(sessionStorage.session)) || [];
-    console.log(liked);
     function like() {
         document.querySelector('.item__cheked').innerHTML = `<img src='./img/chek.png' width="13" height="13" class='cheked__by__user'>`;
         liked.push(document.querySelector('.item__info').id);
