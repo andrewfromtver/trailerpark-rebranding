@@ -51,11 +51,12 @@
         }
     }
 /* Liked */
-    let liked = JSON.parse(localStorage.getItem('liked')) || [];
+    liked = JSON.parse(localStorage.getItem(sessionStorage.session)) || [];
+    console.log(liked);
     function like() {
         document.querySelector('.item__cheked').innerHTML = `<img src='./img/chek.png' width="13" height="13" class='cheked__by__user'>`;
         liked.push(document.querySelector('.item__info').id);
-        localStorage.setItem('liked', JSON.stringify(liked));
+        localStorage.setItem(sessionStorage.session, JSON.stringify(liked));
     }
 /* Picture in picture mode */
     function frameHide() {
