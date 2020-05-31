@@ -129,7 +129,7 @@ const img = 'https://image.tmdb.org/t/p/w500';
     }
     function logout() {
         sessionStorage.clear();
-        localStorage.clear();
+        localStorage.removeItem('trialAuthentication');
     }
 /* Main features */
     function show(type, time, timestamp) {
@@ -151,10 +151,13 @@ const img = 'https://image.tmdb.org/t/p/w500';
                 if(output.results.length === 0){
                     title.innerHTML = '<h4 class="title" >Упс, что-то пошло не так!</h4>';
                 }
+                let ids = [];
                 output.results.forEach(function (item){
+                    ids.push(item.id);
                     let nameItem = item.name || item.title;
                     let mediaType = item.media_type;
                     let poster = null;
+                    let cheked = '';
                     if (type == 'person') {
                         const posterVar = item.profile_path ? img + item.profile_path : './img/noposter.png';
                         poster = posterVar;
@@ -162,13 +165,19 @@ const img = 'https://image.tmdb.org/t/p/w500';
                     else {
                         const posterVar = item.poster_path ? img + item.poster_path : './img/noposter.png';
                         poster = posterVar;
-                    } 
+                        if (true) {
+                            if (liked.includes(`${item.id}`)) {
+                                cheked = `<img src='./img/chek.png' width="25" height="25" class='chek'>`;
+                            }
+                        }
+                    }
                     let dataInfo = `data-id="${item.id}" data-type="${mediaType}"`;
                     inner += `
                         <div class="item">
                         <img src="${poster}" class="poster" alt="${nameItem}" ${dataInfo}>
                         <h5>${nameItem.substr(0, 25)}</h5>
                         </div>
+                        ${cheked}
                     `;
                 });
                 if (type == 'movie') title.innerHTML = '<h4 class="title" >Самые популярные фильмы</h4>';
@@ -217,6 +226,7 @@ const img = 'https://image.tmdb.org/t/p/w500';
                 return value.json();
             })
             .then(function (output) {
+                let cheked = '';
                 if (type == 'person') {
                     fetch(`https://api.themoviedb.org/3/discover/movie?api_key=dcaf7f5ea224596464b7714bac28142f&language=ru&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_people=${id}`)
                     .then(function(value){
@@ -273,6 +283,7 @@ const img = 'https://image.tmdb.org/t/p/w500';
                     <div class="item__poster">
                         <img src='${poster1}' alt='${output.name}' class='poster__info'>
                         ${(output.homepage) ? `<a href="${output.homepage}" target="_blank"><p class="btn__info"> Официальная страница </p></a>` : ''}
+                        ${cheked}
                     </div>
                     <div class="item__info">
                         <p>Дата рождения: ${birthday}</p>
@@ -286,6 +297,11 @@ const img = 'https://image.tmdb.org/t/p/w500';
                     trailer.innerHTML = '';
                     devCheck();
                 }else {
+                    if (true) {
+                        if (liked.includes(`${output.id}`)) {
+                            cheked = `<img src='./img/chek.png' width="25" height="25" class='chek'>`;
+                        }
+                    }
                     const poster1 = output.poster_path ? img + output.poster_path : './img/noposter.png';
                     title__item.innerHTML = `<h4 class="title" >${output.name || output.title}</h4>`;
                     let vote = '';
@@ -306,10 +322,15 @@ const img = 'https://image.tmdb.org/t/p/w500';
                         ${(output.homepage) ? `<a href="${output.homepage}" target="_blank"><p class="btn__info">Официальная страница</p></a>` : ''}
                         ${(output.imdb_id) ? `<a href="https://imdb.com/title/${output.imdb_id}" target="_blank"><p class="btn__info">Страница на IMDB.COM</p></a>` : ''}
                     </div>
-                    <div class="item__info">
+                    ${cheked}
+                    <div class="item__info" id="${output.id}">
                         <p>Рейтинг: ${vote}</p>
                         <p>Премьера: ${first_air_date} </p>
                         <br>
+                        <div class='item__cheked'>
+                            Избранное:
+                            <img src='./img/star.png' width="25" height="25" class='star' id='${output.id}' onclick='like()'>
+                        </div>
                         <p>Описание: ${output.overview.substr(0, 600) || 'К сожалению описание отсутствует.'}</p>
                         <br>
                         <div class='youtube'></div>
@@ -343,6 +364,13 @@ const img = 'https://image.tmdb.org/t/p/w500';
             });
             trending.innerHTML = '';
             document.querySelector('.rec__list').innerHTML = ``;
+    }
+/* Liked */
+    let liked = JSON.parse(localStorage.getItem('liked')) || [];
+    function like() {
+        document.querySelector('.item__cheked').innerHTML = `<img src='./img/chek.png' width="13" height="13" class='cheked__by__user'>`;
+        liked.push(document.querySelector('.item__info').id);
+        localStorage.setItem('liked', JSON.stringify(liked));
     }
 /* Picture in picture mode */
     function frameHide() {
@@ -486,11 +514,18 @@ const img = 'https://image.tmdb.org/t/p/w500';
                 let poster = null;
                 const posterVar = item.poster_path ? img + item.poster_path : './img/noposter.png';
                 poster = posterVar;
+                let cheked = '';
+                if (true) {
+                    if (liked.includes(`${item.id}`)) {
+                        cheked = `<img src='./img/chek.png' width="25" height="25" class='chek'>`;
+                    }
+                }
                 inner += `
                     <div class="item">
                     <img src="${poster}" class="poster" onclick="showById(${item.id}, '${type}')" alt ="${nameItem}">
                     <h5>${nameItem.substr(0, 25)}</h5>
                     </div>
+                    ${cheked}
                 `;
             });
             document.querySelector('.rec__list').innerHTML = inner;
@@ -520,6 +555,12 @@ const img = 'https://image.tmdb.org/t/p/w500';
                 return value.json();
             })
             .then(function (output) {
+                    let cheked = '';
+                    if (true) {
+                        if (liked.includes(`${output.id}`)) {
+                            cheked = `<img src='./img/chek.png' width="25" height="25" class='chek'>`;
+                        }
+                    }
                     const poster1 = output.poster_path ? img + output.poster_path : './img/noposter.png';
                     title__item.innerHTML = `<h4 class="title" >${output.name || output.title}</h4>`;
                     let vote = '';
@@ -540,10 +581,15 @@ const img = 'https://image.tmdb.org/t/p/w500';
                         ${(output.homepage) ? `<a href="${output.homepage}" target="_blank"><p class="btn__info">Официальная страница</p></a>` : ''}
                         ${(output.imdb_id) ? `<a href="https://imdb.com/title/${output.imdb_id}" target="_blank"><p class="btn__info">Страница на IMDB.COM</p></a>` : ''}
                     </div>
-                    <div class="item__info">
+                    ${cheked}
+                    <div class="item__info" id="${output.id}">
                         <p>Рейтинг: ${vote}</p>
                         <p>Премьера: ${first_air_date} </p>
                         <br>
+                        <div class='item__cheked'>
+                            Избранное:
+                            <img src='./img/star.png' width="25" height="25" class='star' onclick='like()'>
+                        </div>
                         <p>Описание: ${output.overview.substr(0, 600) || 'К сожалению описание отсутствует.'}</p>
                         <br>
                     </div>
