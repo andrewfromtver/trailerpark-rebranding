@@ -1,5 +1,4 @@
 /* Authentication */
-    let initVar = 0;
     document.querySelector('.loginForm').addEventListener('submit', function(){login();})
     document.querySelector('#login').value = localStorage.getItem('lastLogin') || '';
     document.querySelector('.content').style.display = 'none';
@@ -54,10 +53,6 @@
                         liked = JSON.parse(localStorage.getItem(sessionStorage.session)) || [];
                     }
                     setTimeout(init, 2000);
-                    if (initVar < 1) {
-                            location.href=location.href;
-                            initVar +=1;
-                    }
                 }
             }
         }
@@ -87,11 +82,7 @@
             document.querySelector('body').style.overflow = 'auto';
             liked = JSON.parse(localStorage.getItem(sessionStorage.session)) || [];
         }
-        setTimeout(init, 2000);
-        if (initVar < 1) {
-           location.href=location.href;
-           initVar +=1;
-        }        
+        setTimeout(init, 2000);     
     }
     function logout() {
         sessionStorage.clear();
