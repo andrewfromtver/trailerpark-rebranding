@@ -76,9 +76,6 @@
         localStorage.setItem('lastLogin', lastLogin);
         authentication = operation;
         sessionStorage.setItem('authentication', JSON.stringify(authentication));
-        if (document.querySelector('.chekbox').checked) {
-            localStorage.setItem('authentication', JSON.stringify(authentication));
-        }
         document.querySelector('.login__form').innerHTML = '<div class="lds-ellipsis loader"><div></div><div></div><div></div><div></div></div>';
         startPage();
         function init() {
