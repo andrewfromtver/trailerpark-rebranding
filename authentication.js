@@ -52,12 +52,12 @@
                         document.querySelector('.login__form__background').style.display = 'none';
                         document.querySelector('body').style.overflow = 'auto';
                         liked = JSON.parse(localStorage.getItem(sessionStorage.session)) || [];
-                        if (initVar < 1) {
-                            location.href=location.href;
-                            initVar +=1;
-                        }
                     }
                     setTimeout(init, 2000);
+                    if (initVar < 1) {
+                            location.href=location.href;
+                            initVar +=1;
+                    }
                 }
             }
         }
@@ -86,12 +86,12 @@
             document.querySelector('.login__form__background').style.display = 'none';
             document.querySelector('body').style.overflow = 'auto';
             liked = JSON.parse(localStorage.getItem(sessionStorage.session)) || [];
-            if (initVar < 1) {
-                location.href=location.href;
-                initVar +=1;
-            }
         }
         setTimeout(init, 2000);
+        if (initVar < 1) {
+           location.href=location.href;
+           initVar +=1;
+        }        
     }
     function logout() {
         sessionStorage.clear();
