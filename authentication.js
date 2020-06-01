@@ -53,6 +53,7 @@
                         liked = JSON.parse(localStorage.getItem(sessionStorage.session)) || [];
                     }
                     setTimeout(init, 2000);
+                    location.href=location.href;
                 }
             }
         }
@@ -83,6 +84,7 @@
             liked = JSON.parse(localStorage.getItem(sessionStorage.session)) || [];
         }
         setTimeout(init, 2000);
+        location.href=location.href;
 
     }
     function logout() {
