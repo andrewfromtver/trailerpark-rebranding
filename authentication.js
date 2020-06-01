@@ -3,7 +3,7 @@
     document.querySelector('#login').value = localStorage.getItem('lastLogin') || '';
     document.querySelector('.content').style.display = 'none';
     if (sessionStorage.authentication) {relogin(JSON.parse(sessionStorage.authentication).login ,JSON.parse(sessionStorage.authentication).password_fingerprint);}
-    if (localStorage.authentication) {relogin(JSON.parse(localStorage.authentication).login ,JSON.parse(localStorage.authentication).password_fingerprint);} 
+    if (localStorage.authentication) {relogin(JSON.parse(localStorage.authentication).login ,JSON.parse(localStorage.authentication).password_fingerprint);}
     function login() {
         let authentication = JSON.parse(localStorage.getItem('authentication')) || [];
         const generateId = () => `${Math.round(Math.random() * 1e8).toString(16)}`
@@ -14,29 +14,15 @@
         if (!localStorage.auth_history) {
             localStorage.setItem('auth_history', '[]');
         }
-        auth_history = JSON.parse(localStorage.getItem('auth_history'));
-        if (login && password) {
+        let auth_history = JSON.parse(localStorage.getItem('auth_history'));
+            if (login && password) {
             const operation = {
                 id: generateId(),
                 login: login,
                 password_fingerprint: generatePassword(password),
             };
-            sessionStorage.setItem('session', operation.login + ' | ' + operation.password_fingerprint);
-            if (localStorage.auth_history) {
-                if (!localStorage.auth_history.includes(operation.login + ' | ' + operation.password_fingerprint)) {
-                    auth_history.push(operation.login + ' | ' + operation.password_fingerprint);
-                    localStorage.setItem('auth_history', JSON.stringify(auth_history));
-                    document.querySelector('.login__form').innerHTML = '<div class="lds-ellipsis loader"><div></div><div></div><div></div><div></div></div>';
-                    function reg() {
-                        document.querySelector('.login__form').innerHTML = `
-                        <h4 class="title" >Учетная запись ${operation.login} успешно зарегистрированна</h4>
-                        <a href="">
-                            <button class="btn">Назад</button>
-                        </a>
-                        `;
-                    }
-                    setTimeout(reg, 2000);
-                } else {
+            if (auth_history.includes(operation.login + ' | ' + operation.password_fingerprint)) {
+                sessionStorage.setItem('session', operation.login + ' | ' + operation.password_fingerprint);
                     lastLogin = operation.login;
                     localStorage.setItem('lastLogin', lastLogin);
                     authentication = operation;
@@ -60,8 +46,13 @@
                     }               
                 }
             }
+            document.querySelector('.login__form').innerHTML = `
+            <h4 class="title" style="padding: 10px 20px;">Введен неверный логин или PIN-код</h4>
+            <a href="">
+                <button class="btn">Назад</button>
+            </a>
+            `;
         }
-    }
     function relogin(usr, pwd) {
         const generateId = () => `${Math.round(Math.random() * 1e8).toString(16)}`
         const operation = {
@@ -93,4 +84,19 @@
     function logout() {
         sessionStorage.clear();
         localStorage.removeItem('authentication');
+    }
+    function regUser() {
+        console.log('123');
+        const generatePassword = (password) => `${Math.round(password * 1e8).toString(16)}`
+        let login = document.querySelector('#login').value;
+        let password = document.querySelector('#password').value;
+        let password_fingerprint = generatePassword(password);
+        localStorage.setItem('auth_history', JSON.stringify([login + ' | ' + password_fingerprint]));
+        document.querySelector('.login__form').innerHTML = '<div class="lds-ellipsis loader"><div></div><div></div><div></div><div></div></div>';
+        document.querySelector('.login__form').innerHTML = `
+        <h4 class="title" style="padding: 10px 20px;">Учетная запись ${login} успешно зарегистрированна</h4>
+        <a href="">
+            <button class="btn">Назад</button>
+        </a>
+        `;
     }
