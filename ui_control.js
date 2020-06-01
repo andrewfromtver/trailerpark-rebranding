@@ -57,6 +57,12 @@
         liked.push(document.querySelector('.item__info').id);
         localStorage.setItem(sessionStorage.session, JSON.stringify(liked));
     }
+    function alredyLiked() {
+        let chekedId = document.querySelector('.item__info').id;
+        if (liked.includes(`${chekedId}`)) {
+            document.querySelector('.item__cheked').style.display = 'none';
+        }
+    }
 /* Picture in picture mode */
     function frameHide() {
         small__frame.innerHTML = '';
