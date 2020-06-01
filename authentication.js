@@ -51,9 +51,9 @@
                         document.querySelector('.login__form__background').style.display = 'none';
                         document.querySelector('body').style.overflow = 'auto';
                         liked = JSON.parse(localStorage.getItem(sessionStorage.session)) || [];
+                        location.href=location.href;
                     }
                     setTimeout(init, 2000);
-                    location.href=location.href;
                 }
             }
         }
@@ -82,10 +82,9 @@
             document.querySelector('.login__form__background').style.display = 'none';
             document.querySelector('body').style.overflow = 'auto';
             liked = JSON.parse(localStorage.getItem(sessionStorage.session)) || [];
+            location.href=location.href;
         }
         setTimeout(init, 2000);
-        location.href=location.href;
-
     }
     function logout() {
         sessionStorage.clear();
