@@ -54,8 +54,8 @@
                         
                     }
                     setTimeout(init, 2000);
-                    if (!getCookie('reload')) {
-                        setCookie('reload', 1);
+                    if (!sessionStorage.reloaded) {
+                        sessionStorage.setItem('reloaded', true);
                         window.location.reload();
                     }               
                 }
@@ -87,7 +87,11 @@
             document.querySelector('body').style.overflow = 'auto';
             liked = JSON.parse(localStorage.getItem(sessionStorage.session)) || [];
         }
-        setTimeout(init, 2000);     
+        setTimeout(init, 2000);
+        if (!sessionStorage.reloaded) {
+            sessionStorage.setItem('reloaded', true);
+            window.location.reload();
+        }
     }
     function logout() {
         sessionStorage.clear();
