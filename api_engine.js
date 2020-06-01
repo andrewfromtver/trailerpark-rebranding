@@ -250,7 +250,7 @@ const img = 'https://image.tmdb.org/t/p/w500';
                         <br>
                         <div class='item__cheked'>
                             Избранное:
-                            <img src='./img/star.png' width="25" height="25" class='star' id='${output.id}' onclick='like()'>
+                            <img src='./img/star.png' width="25" height="25" class='star' id='${output.id}' onclick='like()' onload='alredyLiked()'>
                         </div>
                         <p>Описание: ${output.overview.substr(0, 600) || 'К сожалению описание отсутствует.'}</p>
                         <br>
@@ -493,7 +493,7 @@ const img = 'https://image.tmdb.org/t/p/w500';
                         <br>
                         <div class='item__cheked'>
                             Избранное:
-                            <img src='./img/star.png' width="25" height="25" class='star' onclick='like()'>
+                            <img src='./img/star.png' width="25" height="25" class='star' onclick='like()' onload='alredyLiked()'>
                         </div>
                         <p>Описание: ${output.overview.substr(0, 600) || 'К сожалению описание отсутствует.'}</p>
                         <br>
