@@ -1,4 +1,5 @@
 /* Authentication */
+    let initVar = 0;
     document.querySelector('.loginForm').addEventListener('submit', function(){login();})
     document.querySelector('#login').value = localStorage.getItem('lastLogin') || '';
     document.querySelector('.content').style.display = 'none';
@@ -51,8 +52,10 @@
                         document.querySelector('.login__form__background').style.display = 'none';
                         document.querySelector('body').style.overflow = 'auto';
                         liked = JSON.parse(localStorage.getItem(sessionStorage.session)) || [];
-                        location.href=location.href;
-                    }
+                        if (if initVar < 1) {
+                            location.href=location.href;
+                            initVar +=1;
+                        }
                     setTimeout(init, 2000);
                 }
             }
@@ -82,7 +85,10 @@
             document.querySelector('.login__form__background').style.display = 'none';
             document.querySelector('body').style.overflow = 'auto';
             liked = JSON.parse(localStorage.getItem(sessionStorage.session)) || [];
-            location.href=location.href;
+            if (if initVar < 1) {
+                location.href=location.href;
+                initVar +=1;
+            }
         }
         setTimeout(init, 2000);
     }
