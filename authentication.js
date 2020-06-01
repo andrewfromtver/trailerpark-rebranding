@@ -56,6 +56,7 @@
                             location.href=location.href;
                             initVar +=1;
                         }
+                    }
                     setTimeout(init, 2000);
                 }
             }
