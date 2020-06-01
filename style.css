@@ -41,7 +41,7 @@ table > tbody > tr > td {
     padding: 10px;
     color: #8D8173;
 }
-.btn__info:hover, .btn__watch__online:hover, .btn_type:hover, .btn:hover, .btn__info__rec:hover, .btn__guest:hover {
+.btn__info:hover, .btn__watch__online:hover, .btn_type:hover, .btn:hover, .btn__info__rec:hover, .btn__guest:hover, .btn__reg:hover {
     color: darkorange;
     background-color: #fff;
 }
@@ -74,6 +74,20 @@ table > tbody > tr > td {
     cursor: pointer;
     margin-top: 25px;
 }
+.btn__reg {
+    position: absolute;
+    box-shadow: 10px 7px 15px #333;
+    background-color: tomato;
+    border-width: 2px;
+    border-style: solid;
+    border-color: tomato;
+    color: #fff;
+    border-radius: 5px;
+    font-weight: 700;
+    padding: 10px;
+    cursor: pointer;
+    margin: 330px 10px;
+}
 .chekbox {
     margin: 0 5px;
     width: 15px;
@@ -81,8 +95,16 @@ table > tbody > tr > td {
     cursor: pointer;
 }
 .cheked {
+    padding: 10px;
+    box-shadow: 10px 7px 15px #333;
     position: absolute;
-    margin: 280px 25px;
+    margin: 280px 10px;
+    background-color: tomato;
+    border-width: 2px;
+    border-style: solid;
+    border-color: tomato;
+    color: #fff;
+    border-radius: 5px;
 }
 .login__message {
     margin: 0 7px;
