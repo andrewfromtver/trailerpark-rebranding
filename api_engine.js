@@ -715,7 +715,7 @@ const img = 'https://image.tmdb.org/t/p/w500';
             </table>
             `;
         trending.innerHTML = inner;
-        title__item.innerHTML = `<h4 class="title" >Пользовательская статистика</h4>`;
+        title__item.innerHTML = `<h4 class="title" >Пользовательская статистика [тестовый режим, раздел в разработке]</h4>`;
         item.innerHTML = '';
         document.querySelector('.rec__list').innerHTML = ``;
         trailer.innerHTML = '';
