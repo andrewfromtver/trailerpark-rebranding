@@ -81,7 +81,7 @@
         /* Liked movies */
         let inner = `
             <h4 class="title">Избранные фильмы</h4>
-            <table class="table">
+            <table class="table" id="liked">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
@@ -139,10 +139,13 @@
             </table>
             `;
         trending.innerHTML = inner;
-        title__item.innerHTML = `<h4 class="title" >Пользовательская статистика</h4>`;
+        title__item.innerHTML = `<h4 class="title">Пользовательская статистика</h4>`;
         item.innerHTML = '';
         document.querySelector('.rec__list').innerHTML = ``;
         trailer.innerHTML = '';
+        const el = document.getElementById('liked');
+        el.scrollIntoView({block: "center", inline: "center", behavior: "smooth"});
+        setTimeout(init, 1000);
     }
     function deleteRow(id, type, name) {
         let listPreset = name + '|' + id + ',' + `'${type}'`;        
