@@ -95,9 +95,9 @@
         let contentMovie = '';
         resultMovies.forEach(element => {
             contentMovie += `
-            <tr onclick="showById(${element.split('|')[1]})">
+            <tr>
                 <th scope="row">${movieCount}</th>
-                <td>${element.split('|')[0]}</td>
+                <td onclick="showById(${element.split('|')[1]})">${element.split('|')[0]}</td>
                 <td class="deleteRow"><img src="./img/delete.png" width="15" height="15"></td>
             </tr>
             `;
@@ -125,9 +125,9 @@
         let contentTv = '';
         resultTvs.forEach(element => {
             contentTv += `
-            <tr onclick="showById(${element.split('|')[1]})">
+            <tr>
                 <th scope="row">${tvCount}</th>
-                <td>${element.split('|')[0]}</td>
+                <td onclick="showById(${element.split('|')[1]})">${element.split('|')[0]}</td>
                 <td class="deleteRow"><img src="./img/delete.png" width="15" height="15"></td>
             </tr>
             `;
