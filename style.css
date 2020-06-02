@@ -86,7 +86,7 @@ table > tbody > tr > td {
     font-weight: 700;
     padding: 10px;
     cursor: pointer;
-    margin: 330px 10px;
+    margin: 330px 10px 0 10px;
 }
 .chekbox {
     margin: 0 5px;
