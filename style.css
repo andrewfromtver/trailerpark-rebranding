@@ -41,6 +41,9 @@ table > tbody > tr > td {
     padding: 10px;
     color: #8D8173;
 }
+table > thead > tr > th:nth-child(1) {
+    width: 15px;
+}
 .btn__info:hover, .btn__watch__online:hover, .btn_type:hover, .btn:hover, .btn__info__rec:hover, .btn__guest:hover, .btn__reg:hover {
     color: darkorange;
     background-color: #fff;
