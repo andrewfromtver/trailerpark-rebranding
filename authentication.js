@@ -9,7 +9,11 @@
         const generateId = () => `${Math.round(Math.random() * 1e8).toString(16)}`
         const generatePassword = (password) => `${Math.round(password * 1e8).toString(16)}`
         let login = document.querySelector('#login').value;
-        let password = document.querySelector('#password').value;
+        let password = document.querySelector('#password').value.split('');
+        let passwordHash = 0;
+        password.forEach(element => {
+            passwordHash += element.charCodeAt(0);
+        });
         let lastLogin = '';
         if (!localStorage.auth_history) {
             localStorage.setItem('auth_history', '[]');
@@ -20,7 +24,7 @@
                 const operation = {
                 id: generateId(),
                 login: login,
-                password_fingerprint: generatePassword(password),
+                password_fingerprint: generatePassword(passwordHash),
                 };
                 if (auth_history.includes(operation.login + ' | ' + operation.password_fingerprint)) {
                     sessionStorage.setItem('session', operation.login + ' | ' + operation.password_fingerprint);
