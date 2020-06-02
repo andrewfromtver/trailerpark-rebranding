@@ -635,13 +635,59 @@ const img = 'https://image.tmdb.org/t/p/w500';
                                 <td>${tabledata[9].y} из 10</td>
                                 <td>${tabledata[9].x} млн. $</td>
                             </tr>
-                            <tr>
                         </tbody>
                     </table>
             `;
             trending.innerHTML = inner;
         })
         title__item.innerHTML = `<h4 class="title" >Рейтинг</h4>`;
+        item.innerHTML = '';
+        document.querySelector('.rec__list').innerHTML = ``;
+        trailer.innerHTML = '';
+    }
+/* Liked list */
+    function likedByUser() {
+        title__item.innerHTML = `
+        <div class="loader__placeholder">
+            <div class="lds-ellipsis loader"><div></div><div></div><div></div><div></div></div>
+        </div>
+        `;
+        let inner = `
+            <h4 class="title">Избранные фильмы</h4>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Тип</th>
+                        <th scope="col">ID</th>
+                    </tr>
+                </thead>
+                <tbody>
+            `;
+        inner += ``;
+        inner += `
+                </tbody>
+            </table>
+            `;
+        inner += `
+            <h4 class="title">Избранные сериалы</h4>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Тип</th>
+                        <th scope="col">ID</th>
+                    </tr>
+                </thead>
+                <tbody>
+            `;
+        inner += ``;
+        inner += `
+                </tbody>
+            </table>
+            `;
+        trending.innerHTML = inner;
+        title__item.innerHTML = `<h4 class="title" >Пользовательская статистика</h4>`;
         item.innerHTML = '';
         document.querySelector('.rec__list').innerHTML = ``;
         trailer.innerHTML = '';
