@@ -52,10 +52,13 @@
     }
 /* Liked */
     liked = JSON.parse(localStorage.getItem(sessionStorage.session)) || [];
+    likedList = JSON.parse(localStorage.getItem(sessionStorage.session + '_list')) || [];
     function like() {
         document.querySelector('.item__cheked').innerHTML = `<img src='./img/chek.png' width="13" height="13" class='cheked__by__user'>`;
         liked.push(document.querySelector('.item__info').id);
         localStorage.setItem(sessionStorage.session, JSON.stringify(liked));
+        likedList.push(document.querySelector('.item__info').id + '|' + document.querySelector('.item__poster').id);
+        localStorage.setItem(sessionStorage.session + '_list', JSON.stringify(likedList));
     }
     function alredyLiked() {
         let chekedId = document.querySelector('.item__info').id;
