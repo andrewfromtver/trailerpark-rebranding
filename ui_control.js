@@ -62,7 +62,7 @@
         document.querySelector('.item__cheked').innerHTML = `<img src='./img/chek.png' width="13" height="13" class='cheked__by__user'>`;
         liked.push(document.querySelector('.item__info').id);
         localStorage.setItem(sessionStorage.session, JSON.stringify(liked));
-        likedList.push(document.querySelector('.item__info').id + ', ' + `'${document.querySelector('.item__poster').id}'`);
+        likedList.push(document.querySelector('.titleContent').innerText + '|' + document.querySelector('.item__info').id + ',' + `'${document.querySelector('.item__poster').id}'`);
         localStorage.setItem(sessionStorage.session + '_list', JSON.stringify(likedList));
     }
     function alredyLiked() {
@@ -85,8 +85,7 @@
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Тип</th>
-                        <th scope="col">ID</th>
+                        <th scope="col">Название</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -96,10 +95,9 @@
         let contentMovie = '';
         resultMovies.forEach(element => {
             contentMovie += `
-            <tr onclick="showById(${element})">
+            <tr onclick="showById(${element.split('|')[1]})">
                 <th scope="row">${movieCount}</th>
-                <td>${element}</td>
-                <td>${element}</td>
+                <td>${element.split('|')[0]}</td>
             </tr>
             `;
             movieCount += 1;
@@ -116,8 +114,7 @@
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Тип</th>
-                        <th scope="col">ID</th>
+                        <th scope="col">Название</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -127,10 +124,9 @@
         let contentTv = '';
         resultTvs.forEach(element => {
             contentTv += `
-            <tr onclick="showById(${element})">
+            <tr onclick="showById(${element.split('|')[1]})">
                 <th scope="row">${tvCount}</th>
-                <td>${element}</td>
-                <td>${element}</td>
+                <td>${element.split('|')[0]}</td>
             </tr>
             `;
             tvCount += 1;
