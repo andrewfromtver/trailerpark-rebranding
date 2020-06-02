@@ -237,8 +237,13 @@ const img = 'https://image.tmdb.org/t/p/w500';
                     }else {
                         first_air_date = 'К сожалению данные отсутствуют.';
                     }
+                    if (output.type == undefined) {
+                        itemType = 'movie';
+                    } else {
+                        itemType = 'tv';
+                    }
                     item.innerHTML = `
-                    <div class="item__poster pic">
+                    <div class="item__poster" id="${itemType}">
                         <img src='${poster1}' alt='${output.name || output.title}' class='poster__info'>
                         ${(output.homepage) ? `<a href="${output.homepage}" target="_blank"><p class="btn__info">Официальная страница</p></a>` : ''}
                         ${(output.imdb_id) ? `<a href="https://imdb.com/title/${output.imdb_id}" target="_blank"><p class="btn__info">Страница на IMDB.COM</p></a>` : ''}
@@ -481,13 +486,13 @@ const img = 'https://image.tmdb.org/t/p/w500';
                         first_air_date = 'К сожалению данные отсутствуют.';
                     }
                     item.innerHTML = `
-                    <div class="item__poster">
+                    <div class="item__poster" id="${type}">
                         <img src='${poster1}' alt='${output.name || output.title}' class='poster__info'>
                         ${(output.homepage) ? `<a href="${output.homepage}" target="_blank"><p class="btn__info">Официальная страница</p></a>` : ''}
                         ${(output.imdb_id) ? `<a href="https://imdb.com/title/${output.imdb_id}" target="_blank"><p class="btn__info">Страница на IMDB.COM</p></a>` : ''}
                     </div>
                     ${cheked}
-                    <div class="item__info" id="${output.id}">
+                    <div class="item__info" id="${id}">
                         <p>Рейтинг: ${vote}</p>
                         <p>Премьера: ${first_air_date} </p>
                         <br>
