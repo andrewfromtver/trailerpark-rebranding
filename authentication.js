@@ -6,8 +6,8 @@
     if (localStorage.authentication) {relogin(JSON.parse(localStorage.authentication).login ,JSON.parse(localStorage.authentication).password_fingerprint);}
     function login() {
         let authentication = JSON.parse(localStorage.getItem('authentication')) || [];
-        const generateId = () => `${Math.round(Math.random() * 1e8).toString(16)}`
-        const generatePassword = (password) => `${Math.round(password * 1e8).toString(16)}`
+        const generateId = () => `${Math.round(Math.random() * 1e8).toString(16)}`;
+        const generatePassword = (password) => `${Math.round(password * 1e8).toString(16)}`;
         let login = document.querySelector('#login').value;
         let password = document.querySelector('#password').value.split('');
         let passwordHash = 0;
@@ -96,8 +96,12 @@
     function regUser() {
         const generatePassword = (password) => `${Math.round(password * 1e8).toString(16)}`
         let login = document.querySelector('#login').value;
-        let password = document.querySelector('#password').value;
-        let password_fingerprint = generatePassword(password);
+        let password = document.querySelector('#password').value.split('');
+        let passwordHash = 0;
+        password.forEach(element => {
+            passwordHash += element.charCodeAt(0);
+        });
+        let password_fingerprint = generatePassword(passwordHash);
         let auth_history = JSON.parse(localStorage.getItem('auth_history')) || [];
         if (login && password) {
             if (!auth_history.includes(login + ' | ' + password_fingerprint)) {
