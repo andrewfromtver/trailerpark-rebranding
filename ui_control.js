@@ -98,7 +98,7 @@
             <tr>
                 <th scope="row">${movieCount}</th>
                 <td onclick="showById(${element.split('|')[1]})">${element.split('|')[0]}</td>
-                <td class="deleteRow"><img src="./img/delete.png" width="15" height="15"></td>
+                <td class="deleteRow" onclick="deleteRow(${element.split('|')[1]})"><img src="./img/delete.png" width="15" height="15"></td>
             </tr>
             `;
             movieCount += 1;
@@ -128,7 +128,7 @@
             <tr>
                 <th scope="row">${tvCount}</th>
                 <td onclick="showById(${element.split('|')[1]})">${element.split('|')[0]}</td>
-                <td class="deleteRow"><img src="./img/delete.png" width="15" height="15"></td>
+                <td class="deleteRow" onclick="deleteRow(${element.split('|')[1]})"><img src="./img/delete.png" width="15" height="15"></td>
             </tr>
             `;
             tvCount += 1;
@@ -143,6 +143,13 @@
         item.innerHTML = '';
         document.querySelector('.rec__list').innerHTML = ``;
         trailer.innerHTML = '';
+    }
+    function deleteRow(id, type) {
+        console.log(id);
+        console.log(type);
+        console.log(likedList);
+        likedList.splice('id' + ',' + type);
+        console.log(likedList);
     }
 /* Picture in picture mode */
     function frameHide() {
