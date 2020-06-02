@@ -50,6 +50,11 @@
         document.querySelector(".up__btn").style.display = "none";
         }
     }
+/* Input control */
+    function maxLengthCheck(object) {
+        if (object.value.length > object.maxLength)
+        object.value = object.value.slice(0, object.maxLength)
+    }
 /* Liked */
     liked = JSON.parse(localStorage.getItem(sessionStorage.session)) || [];
     likedList = JSON.parse(localStorage.getItem(sessionStorage.session + '_list')) || [];
@@ -66,6 +71,81 @@
             document.querySelector('.item__cheked').style.display = 'none';
         }
     }
+/* Liked list */
+    function likedByUser() {
+        title__item.innerHTML = `
+        <div class="loader__placeholder">
+            <div class="lds-ellipsis loader"><div></div><div></div><div></div><div></div></div>
+        </div>
+        `;
+        /* Liked movies */
+        let inner = `
+            <h4 class="title">Избранные фильмы</h4>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Тип</th>
+                        <th scope="col">ID</th>
+                    </tr>
+                </thead>
+                <tbody>
+            `;
+        resultMovies = likedList.filter(word => word.substr(word.length - 7) == "'movie'");
+        let movieCount = 1;
+        let contentMovie = '';
+        resultMovies.forEach(element => {
+            contentMovie += `
+            <tr onclick="showById(${element})">
+                <th scope="row">${movieCount}</th>
+                <td>${element}</td>
+                <td>${element}</td>
+            </tr>
+            `;
+            movieCount += 1;
+        });
+        inner += contentMovie;
+        inner += `
+                </tbody>
+            </table>
+            `;
+        /* Liked tv series */
+        inner += `
+            <h4 class="title">Избранные сериалы</h4>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Тип</th>
+                        <th scope="col">ID</th>
+                    </tr>
+                </thead>
+                <tbody>
+            `;
+        resultTvs = likedList.filter(word => word.substr(word.length - 4) == "'tv'");
+        let tvCount = 1;
+        let contentTv = '';
+        resultTvs.forEach(element => {
+            contentTv += `
+            <tr onclick="showById(${element})">
+                <th scope="row">${tvCount}</th>
+                <td>${element}</td>
+                <td>${element}</td>
+            </tr>
+            `;
+            tvCount += 1;
+        });
+        inner += contentTv;
+        inner += `
+                </tbody>
+            </table>
+            `;
+        trending.innerHTML = inner;
+        title__item.innerHTML = `<h4 class="title" >Пользовательская статистика [тестовый режим, раздел в разработке]</h4>`;
+        item.innerHTML = '';
+        document.querySelector('.rec__list').innerHTML = ``;
+        trailer.innerHTML = '';
+    }
 /* Picture in picture mode */
     function frameHide() {
         small__frame.innerHTML = '';
@@ -80,9 +160,4 @@
     }
     function closeSmallFrame() {
         small__frame.innerHTML = '';
-    }
-/* Input control */
-    function maxLengthCheck(object) {
-        if (object.value.length > object.maxLength)
-        object.value = object.value.slice(0, object.maxLength)
     }
