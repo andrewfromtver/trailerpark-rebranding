@@ -98,6 +98,7 @@
             <tr onclick="showById(${element.split('|')[1]})">
                 <th scope="row">${movieCount}</th>
                 <td>${element.split('|')[0]}</td>
+                <td class="deleteRow"><img src="./img/delete.png" width="15" height="15"></td>
             </tr>
             `;
             movieCount += 1;
@@ -127,6 +128,7 @@
             <tr onclick="showById(${element.split('|')[1]})">
                 <th scope="row">${tvCount}</th>
                 <td>${element.split('|')[0]}</td>
+                <td class="deleteRow"><img src="./img/delete.png" width="15" height="15"></td>
             </tr>
             `;
             tvCount += 1;
