@@ -98,7 +98,7 @@
             <tr>
                 <th scope="row">${movieCount}</th>
                 <td onclick="showById(${element.split('|')[1]})">${element.split('|')[0]}</td>
-                <td class="deleteRow" onclick="deleteRow(${element.split('|')[1]})"><img src="./img/delete.png" width="15" height="15"></td>
+                <td class="deleteRow" onclick="deleteRow(${element.split('|')[1]},'${element.split('|')[0]}')"><img src="./img/delete.png" width="15" height="15"></td>
             </tr>
             `;
             movieCount += 1;
@@ -128,7 +128,7 @@
             <tr>
                 <th scope="row">${tvCount}</th>
                 <td onclick="showById(${element.split('|')[1]})">${element.split('|')[0]}</td>
-                <td class="deleteRow" onclick="deleteRow(${element.split('|')[1]})"><img src="./img/delete.png" width="15" height="15"></td>
+                <td class="deleteRow" onclick="deleteRow(${element.split('|')[1]},'${element.split('|')[0]}')"><img src="./img/delete.png" width="15" height="15"></td>
             </tr>
             `;
             tvCount += 1;
@@ -144,12 +144,20 @@
         document.querySelector('.rec__list').innerHTML = ``;
         trailer.innerHTML = '';
     }
-    function deleteRow(id, type) {
-        console.log(id);
-        console.log(type);
-        console.log(likedList);
-        likedList.splice('id' + ',' + type);
-        console.log(likedList);
+    function deleteRow(id, type, name) {
+        let listPreset = name + '|' + id + ',' + `'${type}'`;        
+        result = likedList.filter(function(item) { 
+            return item !== listPreset;
+        })
+        let preset = id;
+        resultId = liked.filter(function(item) { 
+            return item !== `${preset}`;
+        })
+        localStorage.setItem(sessionStorage.session, JSON.stringify(resultId));
+        localStorage.setItem(sessionStorage.session + '_list', JSON.stringify(result));
+        liked = resultId;
+        likedList = result;
+        likedByUser();
     }
 /* Picture in picture mode */
     function frameHide() {
