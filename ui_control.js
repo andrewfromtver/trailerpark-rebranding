@@ -157,7 +157,6 @@
         localStorage.setItem(sessionStorage.session + '_list', JSON.stringify(result));
         liked = resultId;
         likedList = result;
-        show('multi', 'day', 'day');
         likedByUser();
     }
 /* Picture in picture mode */
