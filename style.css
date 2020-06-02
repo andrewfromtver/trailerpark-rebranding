@@ -148,6 +148,17 @@ table > tbody > tr > td {
 .header__link1__desc, .header__link2__desc, .header__link3__desc {
     vertical-align: super;
 }
+.header__liked {
+    cursor: pointer;
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin: 5px 1.5vw 5px 1.5vw;
+    opacity: 0.5;
+}
+.header__liked:hover {
+    opacity: 1;
+}
 .header__logout {
     margin: 5px 1.5vw 5px 1.5vw;
     cursor: pointer;
