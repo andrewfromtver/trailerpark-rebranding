@@ -181,7 +181,7 @@ const img = 'https://image.tmdb.org/t/p/w500';
                         console.error('error: ' + reason);
                     });
                     const poster1 = output.profile_path ? img + output.profile_path : './img/noposter.png';
-                    title__item.innerHTML = `<h4 class="title" >${output.name}</h4>`;
+                    title__item.innerHTML = `<h4 class="title" id="${output.name}">${output.name}</h4>`;
                     let bio = '';
                     if (output.biography) {
                         bio = output.biography.substr(0, 600) + '...';
@@ -224,7 +224,7 @@ const img = 'https://image.tmdb.org/t/p/w500';
                         }
                     }
                     const poster1 = output.poster_path ? img + output.poster_path : './img/noposter.png';
-                    title__item.innerHTML = `<h4 class="title" >${output.name || output.title}</h4>`;
+                    title__item.innerHTML = `<h4 class="title" id="${output.name || output.title}">${output.name || output.title}</h4>`;
                     let vote = '';
                     if (!output.vote_average == 0) {
                         vote = output.vote_average;
@@ -472,7 +472,7 @@ const img = 'https://image.tmdb.org/t/p/w500';
                         }
                     }
                     const poster1 = output.poster_path ? img + output.poster_path : './img/noposter.png';
-                    title__item.innerHTML = `<h4 class="title" >${output.name || output.title}</h4>`;
+                    title__item.innerHTML = `<h4 class="title" id="${output.name || output.title}">${output.name || output.title}</h4>`;
                     let vote = '';
                     if (!output.vote_average == 0) {
                         vote = output.vote_average;
