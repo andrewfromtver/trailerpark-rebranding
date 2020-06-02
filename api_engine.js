@@ -652,6 +652,7 @@ const img = 'https://image.tmdb.org/t/p/w500';
             <div class="lds-ellipsis loader"><div></div><div></div><div></div><div></div></div>
         </div>
         `;
+        /* Liked movies */
         let inner = `
             <h4 class="title">Избранные фильмы</h4>
             <table class="table">
@@ -664,11 +665,23 @@ const img = 'https://image.tmdb.org/t/p/w500';
                 </thead>
                 <tbody>
             `;
-        inner += ``;
+        resultMovies = likedList.filter(word => word.substr(word.length - 7) == "'movie'");
+        let contentMovie = '';
+        resultMovies.forEach(element => {
+            contentMovie += `
+            <tr onclick="showById(${element})">
+                <th scope="row">1</th>
+                <td>${element}</td>
+                <td>${element}</td>
+            </tr>
+        `;
+        });
+        inner += contentMovie;
         inner += `
                 </tbody>
             </table>
             `;
+        /* Liked tv series */
         inner += `
             <h4 class="title">Избранные сериалы</h4>
             <table class="table">
@@ -681,7 +694,18 @@ const img = 'https://image.tmdb.org/t/p/w500';
                 </thead>
                 <tbody>
             `;
-        inner += ``;
+        resultTvs = likedList.filter(word => word.substr(word.length - 4) == "'tv'");
+        let contentTv = '';
+        resultTvs.forEach(element => {
+            contentTv += `
+            <tr onclick="showById(${element})">
+                <th scope="row">1</th>
+                <td>${element}</td>
+                <td>${element}</td>
+            </tr>
+        `;
+        });
+        inner += contentTv;
         inner += `
                 </tbody>
             </table>
