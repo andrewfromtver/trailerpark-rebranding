@@ -1,165 +1,134 @@
-/* Device screen width check */
-    function devCheck() {
-        if (document.documentElement.clientWidth > 900 && document.documentElement.clientWidth < 1500) {
-            document.querySelector(".main__section").style = "margin: 0 15vw 0 15vw;";
-            document.querySelector(".main__section__title").style = "margin: 0 15vw 0 15vw;";
-            document.querySelector(".main__section__search").style = "margin: 0 15vw 0 15vw;";
-            document.querySelector(".header__link1__desc").style.display = "";
-            document.querySelector(".header__link2__desc").style.display = "";
-            document.querySelector(".header__link3__desc").style.display = "";
+/* Authentication */
+    document.querySelector('.loginForm').addEventListener('submit', function(){login();})
+    document.querySelector('#login').value = localStorage.getItem('lastLogin') || '';
+    document.querySelector('.content').style.display = 'none';
+    if (sessionStorage.authentication) {relogin(JSON.parse(sessionStorage.authentication).login ,JSON.parse(sessionStorage.authentication).password_fingerprint);}
+    if (localStorage.authentication) {relogin(JSON.parse(localStorage.authentication).login ,JSON.parse(localStorage.authentication).password_fingerprint);}
+    function login() {
+        let authentication = JSON.parse(localStorage.getItem('authentication')) || [];
+        const generateId = () => `${Math.round(Math.random() * 1e8).toString(16)}`;
+        const generatePassword = (password) => `${Math.round(password * 1e8).toString(16)}`;
+        let login = document.querySelector('#login').value;
+        let password = document.querySelector('#password').value.split('');
+        let passwordHash = 0;
+        password.forEach(element => {
+            passwordHash += element.charCodeAt(0);
+        });
+        let lastLogin = '';
+        if (!localStorage.auth_history) {
+            localStorage.setItem('auth_history', '[]');
         }
-        else if (document.documentElement.clientWidth > 1500) {
-            document.querySelector(".main__section").style = "margin: 0 25vw 0 25vw;";
-            document.querySelector(".main__section__title").style = "margin: 0 25vw 0 25vw;";
-            document.querySelector(".main__section__search").style = "margin: 0 25vw 0 25vw;";
-            document.querySelector(".header__link1__desc").style.display = "";
-            document.querySelector(".header__link2__desc").style.display = "";
-            document.querySelector(".header__link3__desc").style.display = "";
-        }
-        else {
-            document.querySelector(".main__section").style = "";
-            document.querySelector(".main__section__title").style = "";
-            document.querySelector(".main__section__search").style = "";
-            document.querySelector(".header__link1__desc").style.display = "none";
-            document.querySelector(".header__link2__desc").style.display = "none";
-            document.querySelector(".header__link3__desc").style.display = "none";
-            small__frame.innerHTML = '';
+        let userLoginFiled = true;
+        let auth_history = JSON.parse(localStorage.getItem('auth_history'));
+            if (login && password) {
+                const operation = {
+                id: generateId(),
+                login: login,
+                password_fingerprint: generatePassword(passwordHash),
+                };
+                if (auth_history.includes(operation.login + ' | ' + operation.password_fingerprint)) {
+                    sessionStorage.setItem('session', operation.login + ' | ' + operation.password_fingerprint);
+                    lastLogin = operation.login;
+                    localStorage.setItem('lastLogin', lastLogin);
+                    authentication = operation;
+                    sessionStorage.setItem('authentication', JSON.stringify(authentication));
+                    if (document.querySelector('.chekbox').checked) {
+                        localStorage.setItem('authentication', JSON.stringify(authentication));
+                    }
+                    document.querySelector('.login__form').innerHTML = '<div class="lds-ellipsis loader"><div></div><div></div><div></div><div></div></div>';
+                    startPage();
+                    function init() {
+                        document.querySelector('.content').style.display = '';
+                        document.querySelector('.login__form__background').style.display = 'none';
+                        document.querySelector('body').style.overflow = 'auto';
+                        liked = JSON.parse(localStorage.getItem(sessionStorage.session)) || [];
+                        
+                    }
+                    setTimeout(init, 2000);
+                    if (!sessionStorage.reloaded) {
+                        sessionStorage.setItem('reloaded', true);
+                        window.location.reload();
+                    }
+                    userLoginFiled = false;           
+                }
+            } if (userLoginFiled) {
+                document.querySelector('.login__form').innerHTML = `
+                <h4 class="title" style="padding: 10px 20px;">Введен неверный логин или PIN-код</h4>
+                <a href="">
+                    <button class="btn">Назад</button>
+                </a>
+                `;
+            }
+
+    }
+    function relogin(usr, pwd) {
+        const generateId = () => `${Math.round(Math.random() * 1e8).toString(16)}`
+        const operation = {
+            id: generateId(),
+            login: usr,
+            password_fingerprint: pwd,
         };
-        if (document.documentElement.clientWidth < 460) {
-            if (document.querySelector(".item__poster")) {
-                document.querySelector(".item__poster").style.display = "none";
-            }
+        sessionStorage.setItem('session', operation.login + ' | ' + operation.password_fingerprint);
+        let authentication = JSON.parse(localStorage.getItem('authentication')) || [];
+        let lastLogin = ''
+        lastLogin = operation.login;
+        localStorage.setItem('lastLogin', lastLogin);
+        authentication = operation;
+        sessionStorage.setItem('authentication', JSON.stringify(authentication));
+        document.querySelector('.login__form').innerHTML = '<div class="lds-ellipsis loader"><div></div><div></div><div></div><div></div></div>';
+        startPage();
+        function init() {
+            document.querySelector('.content').style.display = '';
+            document.querySelector('.login__form__background').style.display = 'none';
+            document.querySelector('body').style.overflow = 'auto';
+            liked = JSON.parse(localStorage.getItem(sessionStorage.session)) || [];
         }
-        else {
-            if (document.querySelector(".item__poster")) {
-                document.querySelector(".item__poster").style.display = "";
-            }
+        setTimeout(init, 2000);
+        if (!sessionStorage.reloaded) {
+            sessionStorage.setItem('reloaded', true);
+            window.location.reload();
         }
     }
-    window.addEventListener("resize", function() {devCheck();});
-/* Scroll control */
-    function up() {
-        const el = document.getElementById('top');
-        el.scrollIntoView({behavior: "smooth"});
+    function logout() {
+        sessionStorage.clear();
+        localStorage.removeItem('authentication');
     }
-    window.onscroll = function() {
-        var scrolled = window.pageYOffset || document.documentElement.scrollTop;
-        if (scrolled > 100) {
-        document.querySelector(".up__btn").style.display = "";
+    function regUser() {
+        const generatePassword = (password) => `${Math.round(password * 1e8).toString(16)}`
+        let login = document.querySelector('#login').value;
+        let password = document.querySelector('#password').value.split('');
+        let passwordHash = 0;
+        password.forEach(element => {
+            passwordHash += element.charCodeAt(0);
+        });
+        let password_fingerprint = generatePassword(passwordHash);
+        let auth_history = JSON.parse(localStorage.getItem('auth_history')) || [];
+        if (login && password) {
+            if (!auth_history.includes(login + ' | ' + password_fingerprint)) {
+                let users = JSON.parse(localStorage.getItem('auth_history')) || [];
+                users.push(login + ' | ' + password_fingerprint);
+                localStorage.setItem('auth_history', JSON.stringify(users));
+                document.querySelector('.login__form').innerHTML = '<div class="lds-ellipsis loader"><div></div><div></div><div></div><div></div></div>';
+                document.querySelector('.login__form').innerHTML = `
+                <h4 class="title" style="padding: 10px 20px;">Учетная запись ${login} успешно зарегистрированна</h4>
+                <a href="">
+                    <button class="btn">Назад</button>
+                </a>
+                `;
+            } else {
+                document.querySelector('.login__form').innerHTML = `
+                <h4 class="title" style="padding: 10px 20px;">Учетная запись ${login} уже зарегистрированна</h4>
+                <a href="">
+                    <button class="btn">Назад</button>
+                </a>
+                `;
+            }
         } else {
-        document.querySelector(".up__btn").style.display = "none";
-        }
-    }
-/* Input control */
-    function maxLengthCheck(object) {
-        if (object.value.length > object.maxLength)
-        object.value = object.value.slice(0, object.maxLength)
-    }
-/* Liked */
-    liked = JSON.parse(localStorage.getItem(sessionStorage.session)) || [];
-    likedList = JSON.parse(localStorage.getItem(sessionStorage.session + '_list')) || [];
-    function like() {
-        document.querySelector('.item__cheked').innerHTML = `<img src='./img/chek.png' width="13" height="13" class='cheked__by__user'>`;
-        liked.push(document.querySelector('.item__info').id);
-        localStorage.setItem(sessionStorage.session, JSON.stringify(liked));
-        likedList.push(document.querySelector('.titleContent').innerText + '|' + document.querySelector('.item__info').id + ',' + `'${document.querySelector('.item__poster').id}'`);
-        localStorage.setItem(sessionStorage.session + '_list', JSON.stringify(likedList));
-    }
-    function alredyLiked() {
-        let chekedId = document.querySelector('.item__info').id;
-        if (liked.includes(`${chekedId}`)) {
-            document.querySelector('.item__cheked').style.display = 'none';
-        }
-    }
-/* Liked list */
-    function likedByUser() {
-        title__item.innerHTML = `
-        <div class="loader__placeholder">
-            <div class="lds-ellipsis loader"><div></div><div></div><div></div><div></div></div>
-        </div>
-        `;
-        /* Liked movies */
-        let inner = `
-            <h4 class="title">Избранные фильмы</h4>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Название</th>
-                    </tr>
-                </thead>
-                <tbody>
+            document.querySelector('.login__form').innerHTML = `
+            <h4 class="title" style="padding: 10px 20px;">Пожалуйста укажите корректный логин и PIN-код</h4>
+            <a href="">
+                <button class="btn">Назад</button>
+            </a>
             `;
-        resultMovies = likedList.filter(word => word.substr(word.length - 7) == "'movie'");
-        let movieCount = 1;
-        let contentMovie = '';
-        resultMovies.forEach(element => {
-            contentMovie += `
-            <tr>
-                <th scope="row">${movieCount}</th>
-                <td onclick="showById(${element.split('|')[1]})">${element.split('|')[0]}</td>
-                <td class="deleteRow" onclick="deleteRow(${element.split('|')[1]})"><img src="./img/delete.png" width="15" height="15"></td>
-            </tr>
-            `;
-            movieCount += 1;
-        });
-        inner += contentMovie;
-        inner += `
-                </tbody>
-            </table>
-            `;
-        /* Liked tv series */
-        inner += `
-            <h4 class="title">Избранные сериалы</h4>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Название</th>
-                    </tr>
-                </thead>
-                <tbody>
-            `;
-        resultTvs = likedList.filter(word => word.substr(word.length - 4) == "'tv'");
-        let tvCount = 1;
-        let contentTv = '';
-        resultTvs.forEach(element => {
-            contentTv += `
-            <tr>
-                <th scope="row">${tvCount}</th>
-                <td onclick="showById(${element.split('|')[1]})">${element.split('|')[0]}</td>
-                <td class="deleteRow" onclick="deleteRow(${element.split('|')[1]})"><img src="./img/delete.png" width="15" height="15"></td>
-            </tr>
-            `;
-            tvCount += 1;
-        });
-        inner += contentTv;
-        inner += `
-                </tbody>
-            </table>
-            `;
-        trending.innerHTML = inner;
-        title__item.innerHTML = `<h4 class="title" >Пользовательская статистика [тестовый режим, раздел в разработке]</h4>`;
-        item.innerHTML = '';
-        document.querySelector('.rec__list').innerHTML = ``;
-        trailer.innerHTML = '';
-    }
-    function deleteRow(id, type) {
-        console.log(id);
-        console.log(type);
-    }
-/* Picture in picture mode */
-    function frameHide() {
-        small__frame.innerHTML = '';
-        let id = event.target.getAttribute('id');
-        small__frame.append(document.querySelector(`.${id}`));
-        var elemCount  = document.querySelector('.trailer').childElementCount;
-        small__frame.innerHTML += '<img src="./img/close.png" class="close" onclick="closeSmallFrame()">';
-        if (elemCount == 1) {
-            document.querySelector(".trailer").innerHTML = '';
-        }
-        document.querySelector(".small__frame").style.display = "";
-    }
-    function closeSmallFrame() {
-        small__frame.innerHTML = '';
+        }        
     }
