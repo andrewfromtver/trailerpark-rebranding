@@ -666,15 +666,17 @@ const img = 'https://image.tmdb.org/t/p/w500';
                 <tbody>
             `;
         resultMovies = likedList.filter(word => word.substr(word.length - 7) == "'movie'");
+        let movieCount = 1;
         let contentMovie = '';
         resultMovies.forEach(element => {
             contentMovie += `
             <tr onclick="showById(${element})">
-                <th scope="row">1</th>
+                <th scope="row">${movieCount}</th>
                 <td>${element}</td>
                 <td>${element}</td>
             </tr>
-        `;
+            `;
+            movieCount += 1;
         });
         inner += contentMovie;
         inner += `
@@ -695,15 +697,17 @@ const img = 'https://image.tmdb.org/t/p/w500';
                 <tbody>
             `;
         resultTvs = likedList.filter(word => word.substr(word.length - 4) == "'tv'");
+        let tvCount = 1;
         let contentTv = '';
         resultTvs.forEach(element => {
             contentTv += `
             <tr onclick="showById(${element})">
-                <th scope="row">1</th>
+                <th scope="row">${tvCount}</th>
                 <td>${element}</td>
                 <td>${element}</td>
             </tr>
-        `;
+            `;
+            tvCount += 1;
         });
         inner += contentTv;
         inner += `
