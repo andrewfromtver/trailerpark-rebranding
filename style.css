@@ -226,7 +226,7 @@ table > tbody > tr > td {
     margin: 15px 7px 0 7px;
 }
 /* Title */
-.title {
+.title, .titleContent {
     box-shadow: 10px 7px 15px #333;
     text-align: center;
     font-size: 19px;
