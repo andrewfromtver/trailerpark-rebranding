@@ -114,7 +114,6 @@ table > tbody > tr > td {
     position: fixed;
     right: 6vw;
     bottom: 5vh;
-    opacity: 0.75;
     z-index: 50;
     cursor: pointer;
 }
@@ -125,8 +124,8 @@ table > tbody > tr > td {
     box-shadow: 10px 7px 10px #333;
     background-color: #fff;
 }
-.up__btn:hover {
-    opacity: 1;
+.up__btn > img:hover {
+    background-color: #444;
 }
 /* Header */
 .header {
