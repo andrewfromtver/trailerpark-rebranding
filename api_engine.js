@@ -192,13 +192,13 @@ const img = 'https://image.tmdb.org/t/p/w500';
                     if (output.birthday) {
                         birthday = output.birthday;
                     }else {
-                        birthday = 'К сожалению дата рождения отсутствует.';
+                        birthday = 'К сожалению дата рождения отсутствует';
                     }
                     let place_of_birth = '';
                     if (output.place_of_birth) {
                         place_of_birth = output.place_of_birth;
                     }else {
-                        place_of_birth = 'К сожалению данные отсутствуют.';
+                        place_of_birth = 'К сожалению данные отсутствуют';
                     }
                     item.innerHTML = `
                     <div class="item__poster">
@@ -229,7 +229,7 @@ const img = 'https://image.tmdb.org/t/p/w500';
                     if (!output.vote_average == 0) {
                         vote = output.vote_average;
                     }else {
-                        vote = 'Отсутствует.';
+                        vote = 'Отсутствует';
                     }
                     let first_air_date = '';
                     if (output.first_air_date || output.release_date) {
@@ -483,7 +483,7 @@ const img = 'https://image.tmdb.org/t/p/w500';
                     if (output.first_air_date || output.release_date) {
                         first_air_date = output.first_air_date || output.release_date;
                     }else {
-                        first_air_date = 'К сожалению данные отсутствуют.';
+                        first_air_date = 'К сожалению данные отсутствуют';
                     }
                     item.innerHTML = `
                     <div class="item__poster" id="${type}">
@@ -500,14 +500,14 @@ const img = 'https://image.tmdb.org/t/p/w500';
                             В избранное:
                             <img src='./img/star.png' width="25" height="25" class='star' onclick='like()' onload='alredyLiked()'>
                         </div>
-                        <p>Описание: ${output.overview.substr(0, 600) || 'К сожалению описание отсутствует.'}</p>
+                        <p>Описание: ${output.overview.substr(0, 600) || 'К сожалению описание отсутствует'}</p>
                         <br>
                     </div>
                     `;
                     if (type == 'movie') {
                         item.innerHTML += `
                             <a onclick="showRecomendations(${output.id}, 'movie')">
-                                <p class="btn__info__rec"> Рекомендаций </p>
+                                <p class="btn__info__rec">Рекомендаций</p>
                             </a>
                             `;
                     }else {
