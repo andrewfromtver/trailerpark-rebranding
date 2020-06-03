@@ -159,7 +159,79 @@
         localStorage.setItem(sessionStorage.session + '_list', JSON.stringify(result));
         liked = resultId;
         likedList = result;
-        likedByUser();
+        likedByUserNoScroll();
+    }
+function likedByUserNoScroll() {
+        title__item.innerHTML = `
+        <div class="loader__placeholder">
+            <div class="lds-ellipsis loader"><div></div><div></div><div></div><div></div></div>
+        </div>
+        `;
+        /* Liked movies */
+        let inner = `
+            <h4 class="title">Избранные фильмы</h4>
+            <table class="table" id="liked">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Название</th>
+                    </tr>
+                </thead>
+                <tbody>
+            `;
+        resultMovies = likedList.filter(word => word.substr(word.length - 7) == "'movie'");
+        let movieCount = 1;
+        let contentMovie = '';
+        resultMovies.forEach(element => {
+            contentMovie += `
+            <tr>
+                <th scope="row">${movieCount}</th>
+                <td onclick="showById(${element.split('|')[1]})">${element.split('|')[0]}</td>
+                <td class="deleteRow" onclick="deleteRow(${element.split('|')[1]},'${element.split('|')[0]}')"><img src="./img/delete.png" width="15" height="15"></td>
+            </tr>
+            `;
+            movieCount += 1;
+        });
+        inner += contentMovie;
+        inner += `
+                </tbody>
+            </table>
+            `;
+        /* Liked tv series */
+        inner += `
+            <h4 class="title">Избранные сериалы</h4>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Название</th>
+                    </tr>
+                </thead>
+                <tbody>
+            `;
+        resultTvs = likedList.filter(word => word.substr(word.length - 4) == "'tv'");
+        let tvCount = 1;
+        let contentTv = '';
+        resultTvs.forEach(element => {
+            contentTv += `
+            <tr>
+                <th scope="row">${tvCount}</th>
+                <td onclick="showById(${element.split('|')[1]})">${element.split('|')[0]}</td>
+                <td class="deleteRow" onclick="deleteRow(${element.split('|')[1]},'${element.split('|')[0]}')"><img src="./img/delete.png" width="15" height="15"></td>
+            </tr>
+            `;
+            tvCount += 1;
+        });
+        inner += contentTv;
+        inner += `
+                </tbody>
+            </table>
+            `;
+        trending.innerHTML = inner;
+        title__item.innerHTML = `<h4 class="title">Пользовательская статистика</h4>`;
+        item.innerHTML = '';
+        document.querySelector('.rec__list').innerHTML = ``;
+        trailer.innerHTML = '';
     }
 /* Picture in picture mode */
     function frameHide() {
