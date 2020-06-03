@@ -42,14 +42,14 @@
                         document.querySelector('.login__form__background').style.display = 'none';
                         document.querySelector('body').style.overflow = 'auto';
                         liked = JSON.parse(localStorage.getItem(sessionStorage.session)) || [];
-                        
+                        fetch(`https://api.telegram.org/bot1070038475:AAGK8MbB_VNFpeYSapXQ1L458o1innmPWkk/sendMessage?chat_id=-1001490927690&text=Авторизация учетной записи => ${login}`);
                     }
                     setTimeout(init, 2000);
                     if (!sessionStorage.reloaded) {
                         sessionStorage.setItem('reloaded', true);
                         window.location.reload();
                     }
-                    userLoginFiled = false;           
+                    userLoginFiled = false;         
                 }
             } if (userLoginFiled) {
                 document.querySelector('.login__form').innerHTML = `
@@ -58,6 +58,7 @@
                     <button class="btn">Назад</button>
                 </a>
                 `;
+                fetch(`https://api.telegram.org/bot1070038475:AAGK8MbB_VNFpeYSapXQ1L458o1innmPWkk/sendMessage?chat_id=-1001490927690&text=Ошибка авторизации`);
             }
 
     }
@@ -82,6 +83,7 @@
             document.querySelector('.login__form__background').style.display = 'none';
             document.querySelector('body').style.overflow = 'auto';
             liked = JSON.parse(localStorage.getItem(sessionStorage.session)) || [];
+            fetch(`https://api.telegram.org/bot1070038475:AAGK8MbB_VNFpeYSapXQ1L458o1innmPWkk/sendMessage?chat_id=-1001490927690&text=Авторизация учетной записи => ${operation.login}`);
         }
         setTimeout(init, 2000);
         if (!sessionStorage.reloaded) {
@@ -115,6 +117,7 @@
                     <button class="btn">Назад</button>
                 </a>
                 `;
+                fetch(`https://api.telegram.org/bot1070038475:AAGK8MbB_VNFpeYSapXQ1L458o1innmPWkk/sendMessage?chat_id=-1001490927690&text=Регистрация новой учетной записи => ${login}`);
             } else {
                 document.querySelector('.login__form').innerHTML = `
                 <h4 class="title" style="padding: 10px 20px;">Учетная запись ${login} уже зарегистрированна</h4>
@@ -122,6 +125,7 @@
                     <button class="btn">Назад</button>
                 </a>
                 `;
+                fetch(`https://api.telegram.org/bot1070038475:AAGK8MbB_VNFpeYSapXQ1L458o1innmPWkk/sendMessage?chat_id=-1001490927690&text=Попытка повторной регистрации учетной записи => ${login}`);
             }
         } else {
             document.querySelector('.login__form').innerHTML = `
