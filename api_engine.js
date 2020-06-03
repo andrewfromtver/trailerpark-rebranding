@@ -186,7 +186,7 @@ const img = 'https://image.tmdb.org/t/p/w500';
                     if (output.biography) {
                         bio = output.biography.substr(0, 600) + '...';
                     }else {
-                        bio = 'К сожалению биография отсутствует.';
+                        bio = 'К сожалению биография отсутствует';
                     }
                     let birthday = '';
                     if (output.birthday) {
@@ -477,7 +477,7 @@ const img = 'https://image.tmdb.org/t/p/w500';
                     if (!output.vote_average == 0) {
                         vote = output.vote_average;
                     }else {
-                        vote = 'Отсутствует.';
+                        vote = 'Отсутствует';
                     }
                     let first_air_date = '';
                     if (output.first_air_date || output.release_date) {
