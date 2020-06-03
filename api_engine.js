@@ -229,7 +229,7 @@ const img = 'https://image.tmdb.org/t/p/w500';
                     if (!output.vote_average == 0) {
                         vote = output.vote_average;
                     }else {
-                        vote = 'К сожалению рейтинг отсутствует.';
+                        vote = 'Отсутствует.';
                     }
                     let first_air_date = '';
                     if (output.first_air_date || output.release_date) {
@@ -477,7 +477,7 @@ const img = 'https://image.tmdb.org/t/p/w500';
                     if (!output.vote_average == 0) {
                         vote = output.vote_average;
                     }else {
-                        vote = 'К сожалению рейтинг отсутствует.';
+                        vote = 'Отсутствует.';
                     }
                     let first_air_date = '';
                     if (output.first_air_date || output.release_date) {
