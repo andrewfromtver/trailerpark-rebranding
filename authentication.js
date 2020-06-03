@@ -20,7 +20,7 @@
         }
         let userLoginFiled = true;
         let auth_history = JSON.parse(localStorage.getItem('auth_history'));
-            if (login && password != '[]') {
+            if (login && password.length === 4) {
                 const operation = {
                 id: generateId(),
                 login: login,
@@ -105,7 +105,7 @@
         });
         let password_fingerprint = generatePassword(passwordHash);
         let auth_history = JSON.parse(localStorage.getItem('auth_history')) || [];
-        if (login && password != '[]') {
+        if (login && password.length === 4) {
             if (!auth_history.includes(login + ' | ' + password_fingerprint)) {
                 let users = JSON.parse(localStorage.getItem('auth_history')) || [];
                 users.push(login + ' | ' + password_fingerprint);
