@@ -145,7 +145,6 @@
         trailer.innerHTML = '';
         const el = document.getElementById('liked');
         el.scrollIntoView({block: "center", inline: "center", behavior: "smooth"});
-        setTimeout(init, 1000);
     }
     function deleteRow(id, type, name) {
         let listPreset = name + '|' + id + ',' + `'${type}'`;        
