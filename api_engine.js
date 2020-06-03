@@ -235,7 +235,7 @@ const img = 'https://image.tmdb.org/t/p/w500';
                     if (output.first_air_date || output.release_date) {
                         first_air_date = output.first_air_date || output.release_date;
                     }else {
-                        first_air_date = 'К сожалению данные отсутствуют.';
+                        first_air_date = 'К сожалению данные отсутствуют';
                     }
                     if (output.type == undefined) {
                         itemType = 'movie';
@@ -257,7 +257,7 @@ const img = 'https://image.tmdb.org/t/p/w500';
                             В избранное:
                             <img src='./img/star.png' width="25" height="25" class='star' id='${output.id}' onclick='like()' onload='alredyLiked()'>
                         </div>
-                        <p>Описание: ${output.overview.substr(0, 600) || 'К сожалению описание отсутствует.'}</p>
+                        <p>Описание: ${output.overview.substr(0, 600) || 'К сожалению описание отсутствует'}</p>
                         <br>
                         <div class='youtube'></div>
                     </div>
