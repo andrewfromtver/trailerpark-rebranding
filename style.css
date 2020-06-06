@@ -57,6 +57,13 @@ table > thead > tr > th:nth-child(1) {
     color: darkorange;
     background-color: #fff;
 }
+.not__found {
+    width: -webkit-fill-available;
+    height: 300px;
+    margin: 0 7px;
+    border-radius: 5px;
+    background-color: #fff;
+}
 /* Login form */
 .login__form__background {
     position: fixed;
@@ -385,7 +392,7 @@ table > thead > tr > th:nth-child(1) {
 .rec__list {
     display: flex;
     flex-direction: row;
-    margin: 20px 7px 20px 7px;
+    margin: 10px 7px 0 7px;
     max-height: 335px;
     overflow-y: auto;
     box-shadow: 10px 7px 15px #555;
@@ -457,6 +464,20 @@ table > thead > tr > th:nth-child(1) {
 }
 .close:hover {
     opacity: 1;
+}
+.fullScreen {
+    box-shadow: 10px 7px 15px #333;
+    opacity: 0.75;
+    margin-right: -25px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    border: #242424 solid 1px;
+    background-color: #fff;
+    border-radius: 10px;
+    height: 25px;
+    margin-top: 14px;
+    cursor: pointer;
 }
 /* Top table */
 .table > tbody > tr {
