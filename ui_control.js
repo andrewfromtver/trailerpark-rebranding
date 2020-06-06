@@ -72,12 +72,11 @@
         }
     }
 /* Liked list */
-    function likedByUser() {
+    function likedByUser(scroll) {
         title__item.innerHTML = `
         <div class="loader__placeholder">
             <div class="lds-ellipsis loader"><div></div><div></div><div></div><div></div></div>
-        </div>
-        `;
+        </div>`;
         /* Liked movies */
         let inner = `
             <h4 class="title">Избранные фильмы</h4>
@@ -139,12 +138,14 @@
             </table>
             `;
         trending.innerHTML = inner;
-        title__item.innerHTML = `<h4 class="title">Пользовательская статистика</h4>`;
+        title__item.innerHTML = '<h4 class="title">Пользовательская статистика</h4>';
         item.innerHTML = '';
         document.querySelector('.rec__list').innerHTML = ``;
         trailer.innerHTML = '';
-        const el = document.getElementById('liked');
-        el.scrollIntoView({block: "center", inline: "center", behavior: "smooth"});
+        if (scroll) {
+            const el = document.getElementById('liked');
+            el.scrollIntoView({block: "center", inline: "center", behavior: "smooth"});
+        }
     }
     function deleteRow(id, type, name) {
         let listPreset = name + '|' + id + ',' + `'${type}'`;        
@@ -159,79 +160,7 @@
         localStorage.setItem(sessionStorage.session + '_list', JSON.stringify(result));
         liked = resultId;
         likedList = result;
-        likedByUserNoScroll();
-    }
-function likedByUserNoScroll() {
-        title__item.innerHTML = `
-        <div class="loader__placeholder">
-            <div class="lds-ellipsis loader"><div></div><div></div><div></div><div></div></div>
-        </div>
-        `;
-        /* Liked movies */
-        let inner = `
-            <h4 class="title">Избранные фильмы</h4>
-            <table class="table" id="liked">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Название</th>
-                    </tr>
-                </thead>
-                <tbody>
-            `;
-        resultMovies = likedList.filter(word => word.substr(word.length - 7) == "'movie'");
-        let movieCount = 1;
-        let contentMovie = '';
-        resultMovies.forEach(element => {
-            contentMovie += `
-            <tr>
-                <th scope="row">${movieCount}</th>
-                <td onclick="showById(${element.split('|')[1]})">${element.split('|')[0]}</td>
-                <td class="deleteRow" onclick="deleteRow(${element.split('|')[1]},'${element.split('|')[0]}')"><img src="./img/delete.png" width="15" height="15"></td>
-            </tr>
-            `;
-            movieCount += 1;
-        });
-        inner += contentMovie;
-        inner += `
-                </tbody>
-            </table>
-            `;
-        /* Liked tv series */
-        inner += `
-            <h4 class="title">Избранные сериалы</h4>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Название</th>
-                    </tr>
-                </thead>
-                <tbody>
-            `;
-        resultTvs = likedList.filter(word => word.substr(word.length - 4) == "'tv'");
-        let tvCount = 1;
-        let contentTv = '';
-        resultTvs.forEach(element => {
-            contentTv += `
-            <tr>
-                <th scope="row">${tvCount}</th>
-                <td onclick="showById(${element.split('|')[1]})">${element.split('|')[0]}</td>
-                <td class="deleteRow" onclick="deleteRow(${element.split('|')[1]},'${element.split('|')[0]}')"><img src="./img/delete.png" width="15" height="15"></td>
-            </tr>
-            `;
-            tvCount += 1;
-        });
-        inner += contentTv;
-        inner += `
-                </tbody>
-            </table>
-            `;
-        trending.innerHTML = inner;
-        title__item.innerHTML = `<h4 class="title">Пользовательская статистика</h4>`;
-        item.innerHTML = '';
-        document.querySelector('.rec__list').innerHTML = ``;
-        trailer.innerHTML = '';
+        likedByUser(false);
     }
 /* Picture in picture mode */
     function frameHide() {
@@ -239,7 +168,9 @@ function likedByUserNoScroll() {
         let id = event.target.getAttribute('id');
         small__frame.append(document.querySelector(`.${id}`));
         var elemCount  = document.querySelector('.trailer').childElementCount;
-        small__frame.innerHTML += '<img src="./img/close.png" class="close" onclick="closeSmallFrame()">';
+        small__frame.innerHTML += `
+            <img src="./img/close.png" class="close" onclick="closeSmallFrame()">
+        `;
         if (elemCount == 1) {
             document.querySelector(".trailer").innerHTML = '';
         }
