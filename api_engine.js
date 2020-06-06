@@ -36,7 +36,6 @@ const img = 'https://image.tmdb.org/t/p/w500';
             document.querySelector(".up__btn").style.display = "none";
             document.querySelector('body').style.overflow = 'hidden';
             show('multi', 'day', 'day');
-            topTable();
             document.querySelector('.logout').innerHTML = `
             <div class="header__logout">
                 <a href="" onclick="logout()">
@@ -257,7 +256,7 @@ const img = 'https://image.tmdb.org/t/p/w500';
                             В избранное:
                             <img src='./img/star.png' width="25" height="25" class='star' id='${output.id}' onclick='like()' onload='alredyLiked()'>
                         </div>
-                        <p>Описание: ${output.overview.substr(0, 600) || 'К сожалению описание отсутствует'}</p>
+                        <p>Описание: ${output.overview || 'К сожалению описание отсутствует'}</p>
                         <br>
                         <div class='youtube'></div>
                     </div>
@@ -285,7 +284,9 @@ const img = 'https://image.tmdb.org/t/p/w500';
                 }
             })
             .catch(function(reason){
-                movie.innerHTML = `<h4 class="title rec__title">Упс, что-то пошло не так!</h4>`;
+                title__item.innerHTML = `<h4 class="title">Упс, что-то пошло не так!</h4>`;
+                item.innerHTML = '';
+                trailer.innerHTML = '';
                 console.error('error: ' + reason);
             });
             trending.innerHTML = '';
@@ -407,6 +408,21 @@ const img = 'https://image.tmdb.org/t/p/w500';
                 console.error('error: ' + reason);
             });
     }
+    function filter() {
+        title__item.innerHTML = `
+        <div class="loader__placeholder">
+            <div class="lds-ellipsis loader"><div></div><div></div><div></div><div></div></div>
+        </div>`;
+        function init() {
+            item.innerHTML = `<img src="./img/404.gif" class="not__found">`;
+            title__item.innerHTML = `<h4 class="title">Раздел находится в разработке!</h4>`;
+        }
+        setTimeout(init, 1000)
+        document.querySelector('.rec__list').innerHTML = '';
+        item.innerHTML = '';
+        trending.innerHTML = '';
+        trailer.innerHTML = '';
+    }
 /* Recomendations */
     function showRecomendations(id, type) {
         fetch(`https://api.themoviedb.org/3/${type}/${id}/recommendations?api_key=dcaf7f5ea224596464b7714bac28142f&language=ru&page=1`)
@@ -527,6 +543,7 @@ const img = 'https://image.tmdb.org/t/p/w500';
             .catch(function(reason){
                 title__item.innerHTML = `<h4 class="title">Упс, что-то пошло не так!</h4>`;
                 item.innerHTML = '';
+                trailer.innerHTML = '';
                 console.error('error: ' + reason);
             });
             trending.innerHTML = '';
@@ -535,113 +552,4 @@ const img = 'https://image.tmdb.org/t/p/w500';
         const el = document.getElementById('item');
         el.scrollIntoView({block: "center", inline: "center", behavior: "smooth"});
         setTimeout(init, 1000);
-    }
-    function topTable() {
-        const el = document.getElementById('movies');
-        el.scrollIntoView({block: "center", inline: "center", behavior: "smooth"});
-        title__item.innerHTML = `
-        <div class="loader__placeholder">
-            <div class="lds-ellipsis loader"><div></div><div></div><div></div><div></div></div>
-        </div>
-        `;
-        fetch(`https://api.themoviedb.org/3/trending/tv/day?api_key=dcaf7f5ea224596464b7714bac28142f&language=ru`)
-        .then(function(value){
-            if(value.status !== 200){
-                return Promise.reject(new Error('Ошибка'));
-            }
-                return value.json();
-        })
-        .then(function(output){
-            let tabledata = []
-            output.results.forEach(function (item){
-                tabledata.push(
-                    {
-                        name: item.name || item.title,
-                        x: item.popularity,
-                        y: item.vote_average,
-                        id: item.id
-                    },
-                )
-            })
-            let inner = `
-                <h4 class="title">Топ 10 новых сериалов</h4>
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Название</th>
-                                <th scope="col">Рейтинг</th>
-                                <th scope="col">Cборы</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr onclick="showById(${tabledata[0].id}, 'tv')">
-                                <th scope="row">1</th>
-                                <td>${tabledata[0].name}</td>
-                                <td>${tabledata[0].y} из 10</td>
-                                <td>${tabledata[0].x} млн. $</td>
-                            </tr>
-                            <tr onclick="showById(${tabledata[1].id}, 'tv')">
-                                <th scope="row">2</th>
-                                <td>${tabledata[1].name}</td>
-                                <td>${tabledata[1].y} из 10</td>
-                                <td>${tabledata[1].x} млн. $</td>
-                            </tr>
-                            <tr onclick="showById(${tabledata[2].id}, 'tv')">
-                                <th scope="row">3</th>
-                                <td>${tabledata[2].name}</td>
-                                <td>${tabledata[2].y} из 10</td>
-                                <td>${tabledata[2].x} млн. $</td>
-                            </tr>
-                            <tr onclick="showById(${tabledata[3].id}, 'tv')">
-                                <th scope="row">4</th>
-                                <td>${tabledata[3].name}</td>
-                                <td>${tabledata[3].y} из 10</td>
-                                <td>${tabledata[3].x} млн. $</td>
-                            </tr>
-                            <tr onclick="showById(${tabledata[4].id}, 'tv')">
-                                <th scope="row">5</th>
-                                <td>${tabledata[4].name}</td>
-                                <td>${tabledata[4].y} из 10</td>
-                                <td>${tabledata[4].x} млн. $</td>
-                            </tr>
-                            <tr onclick="showById(${tabledata[5].id}, 'tv')">
-                                <th scope="row">6</th>
-                                <td>${tabledata[5].name}</td>
-                                <td>${tabledata[5].y} из 10</td>
-                                <td>${tabledata[5].x} млн. $</td>
-                            </tr>
-                            <tr onclick="showById(${tabledata[6].id}, 'tv')">
-                                <th scope="row">7</th>
-                                <td>${tabledata[6].name}</td>
-                                <td>${tabledata[6].y} из 10</td>
-                                <td>${tabledata[6].x} млн. $</td>
-                            </tr>
-                            <tr onclick="showById(${tabledata[7].id}, 'tv')">
-                                <th scope="row">8</th>
-                                <td>${tabledata[7].name}</td>
-                                <td>${tabledata[7].y} из 10</td>
-                                <td>${tabledata[7].x} млн. $</td>
-                            </tr>
-                            <tr onclick="showById(${tabledata[8].id}, 'tv')">
-                                <th scope="row">9</th>
-                                <td>${tabledata[8].name}</td>
-                                <td>${tabledata[8].y} из 10</td>
-                                <td>${tabledata[8].x} млн. $</td>
-                            </tr>
-                            <tr onclick="showById(${tabledata[9].id}, 'tv')">
-                                <th scope="row">10</th>
-                                <td>${tabledata[9].name}</td>
-                                <td>${tabledata[9].y} из 10</td>
-                                <td>${tabledata[9].x} млн. $</td>
-                            </tr>
-                        </tbody>
-                    </table>
-            `;
-            trending.innerHTML = inner;
-        })
-        title__item.innerHTML = `<h4 class="title" >Рейтинг</h4>`;
-        item.innerHTML = '';
-        document.querySelector('.rec__list').innerHTML = ``;
-        trailer.innerHTML = '';
     }
