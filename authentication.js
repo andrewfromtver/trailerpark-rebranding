@@ -42,7 +42,6 @@
                         document.querySelector('.login__form__background').style.display = 'none';
                         document.querySelector('body').style.overflow = 'auto';
                         liked = JSON.parse(localStorage.getItem(sessionStorage.session)) || [];
-                        fetch(`https://api.telegram.org/bot1070038475:AAGK8MbB_VNFpeYSapXQ1L458o1innmPWkk/sendMessage?chat_id=-1001490927690&text=Авторизация учетной записи => ${login}`);
                     }
                     setTimeout(init, 2000);
                     if (!sessionStorage.reloaded) {
