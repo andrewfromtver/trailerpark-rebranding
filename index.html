@@ -41,19 +41,19 @@
         </div>
         <div class="header">
             <div class="header__link" onclick="show('multi', 'day', 'day')">
-                <img src="./img/day.png" width="25" height="25" class="d-inline-block align-top" alt="">
-                <a class="header__link1__desc">Топ на сегодня</a>
+                <img src="./img/day.png" width="25" height="25">
+                <a class="header__link1__desc">Популярное сегодня</a>
             </div>
-            <div class="header__link" onclick="show('multi', 'week', 'week')">
-                <img src="./img/week.png" width="25" height="25" class="d-inline-block align-top" alt="">
-                <a class="header__link2__desc">Топ за неделю</a>
+            <div class="header__link" onclick="filter()">
+                <img src="./img/search.png" width="25" height="25">
+                <a class="header__link2__desc">Расширенный поиск</a>
             </div>
-            <div class="header__link"onclick="topTable()">
-                <img src="./img/upBtn.png" width="25" height="25" class="d-inline-block align-top" alt="">
-                <a class="header__link3__desc">Тренды</a>
+            <div class="header__link"onclick="filter()">
+                <img src="./img/contacts.png" width="25" height="25">
+                <a class="header__link3__desc">Обратная связь</a>
             </div>
-            <div class="header__liked"onclick="likedByUser()">
-                <img src="./img/liked.png" width="25" height="25" class="d-inline-block align-top" alt="">
+            <div class="header__liked"onclick="likedByUser(true)">
+                <img src="./img/liked.png" width="25" height="25">
             </div>
             <div class="logout">
             </div>
