@@ -1,5 +1,4 @@
 /* Authentication */
-    document.querySelector('.loginForm').addEventListener('submit', function(){login();})
     document.querySelector('#login').value = localStorage.getItem('lastLogin') || '';
     document.querySelector('.content').style.display = 'none';
     if (sessionStorage.authentication) {relogin(JSON.parse(sessionStorage.authentication).login ,JSON.parse(sessionStorage.authentication).password_fingerprint);}
@@ -40,7 +39,7 @@
                     function init() {
                         document.querySelector('.content').style.display = '';
                         document.querySelector('.login__form__background').style.display = 'none';
-                        document.querySelector('body').style.overflow = 'auto';
+                        document.querySelector('body').style = 'overflow-y: scroll;';
                         liked = JSON.parse(localStorage.getItem(sessionStorage.session)) || [];
                     }
                     setTimeout(init, 2000);
@@ -80,7 +79,7 @@
         function init() {
             document.querySelector('.content').style.display = '';
             document.querySelector('.login__form__background').style.display = 'none';
-            document.querySelector('body').style.overflow = 'auto';
+            document.querySelector('body').style = 'overflow-y: scroll;';
             liked = JSON.parse(localStorage.getItem(sessionStorage.session)) || [];
         }
         setTimeout(init, 2000);
