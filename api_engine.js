@@ -446,6 +446,8 @@ const img = 'https://image.tmdb.org/t/p/w500';
         for (let index = 1960; index < 2021; index++) {
             document.querySelector('.year').innerHTML += `<option>${index}</option>`;
         }
+        const el = document.getElementById('search');
+        el.scrollIntoView({block: "center", inline: "center", behavior: "smooth"});
     }
     function filter() {
         let type = document.querySelector('.searchType')[document.querySelector('.searchType').selectedIndex].id;
@@ -495,7 +497,7 @@ const img = 'https://image.tmdb.org/t/p/w500';
             document.querySelector('.rec__list').innerHTML = `<h4 class="title rec__title">Упс, что-то пошло не так!</h4>`;
             console.error('error: ' + reason);
         });
-        const el = document.getElementById('search');
+        const el = document.getElementById('movies');
         el.scrollIntoView({block: "center", inline: "center", behavior: "smooth"});
     }
 /* Recomendations */
