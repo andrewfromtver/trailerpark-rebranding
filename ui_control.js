@@ -179,3 +179,19 @@
     function closeSmallFrame() {
         small__frame.innerHTML = '';
     }
+/* Contacts */
+    function contacts() {
+        title__item.innerHTML = `
+        <div class="loader__placeholder">
+            <div class="lds-ellipsis loader"><div></div><div></div><div></div><div></div></div>
+        </div>`;
+        function init() {
+            item.innerHTML = `<img src="./img/404.gif" class="not__found">`;
+            title__item.innerHTML = `<h4 class="title">andrewsarkisyan@gmail.com</h4>`;
+        }
+        setTimeout(init, 1000)
+        document.querySelector('.rec__list').innerHTML = '';
+        item.innerHTML = '';
+        trending.innerHTML = '';
+        trailer.innerHTML = '';
+    }
