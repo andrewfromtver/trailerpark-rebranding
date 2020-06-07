@@ -43,6 +43,7 @@ const img = 'https://image.tmdb.org/t/p/w500';
                 </a>
             </div>
             `;
+            contacts();
     }
 /* Main features */
     function show(type, time, timestamp) {
@@ -408,20 +409,93 @@ const img = 'https://image.tmdb.org/t/p/w500';
                 console.error('error: ' + reason);
             });
     }
-    function filter() {
-        title__item.innerHTML = `
-        <div class="loader__placeholder">
-            <div class="lds-ellipsis loader"><div></div><div></div><div></div><div></div></div>
-        </div>`;
-        function init() {
-            item.innerHTML = `<img src="./img/404.gif" class="not__found">`;
-            title__item.innerHTML = `<h4 class="title">Раздел находится в разработке!</h4>`;
+    function yearCheck() {
+        if (document.querySelector('.searchType')[document.querySelector('.searchType').selectedIndex].id === 'tv') {
+            document.querySelector('.year').style = 'display: none;';
         }
-        setTimeout(init, 1000)
+        if (document.querySelector('.searchType')[document.querySelector('.searchType').selectedIndex].id === 'movie') {
+            document.querySelector('.year').style = '';
+        }
+    }
+    function genChek() {
+        title__item.innerHTML = `<h4 class="title">Расширенный поиск</h4>`;
+        item.innerHTML = `
+            <select class="searchType" onchange="yearCheck()">
+                <option id="movie">Фильмы</option>
+                <option id="tv">Сериалы</option>
+            </select>
+            <select class="gen"></select>
+            <select class="year"></select>
+            <button onclick="filter()" class="btn">Найти</button>
+            <div class="br"></div>
+        `;
         document.querySelector('.rec__list').innerHTML = '';
-        item.innerHTML = '';
         trending.innerHTML = '';
         trailer.innerHTML = '';
+        fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=dcaf7f5ea224596464b7714bac28142f&language=ru`)
+        .then(function(value){
+            if(value.status !== 200){
+                return Promise.reject(new Error('Ошибка'));
+            }
+                return value.json();
+        })
+        .then(function(output){
+            output.genres.forEach(function (item){
+                document.querySelector('.gen').innerHTML += `<option id="${item.id}">${item.name}</option>`;
+            });
+        })
+        for (let index = 1960; index < 2021; index++) {
+            document.querySelector('.year').innerHTML += `<option>${index}</option>`;
+        }
+    }
+    function filter() {
+        let type = document.querySelector('.searchType')[document.querySelector('.searchType').selectedIndex].id;
+        let year = document.querySelector('.year').value;
+        let gen = document.querySelector('.gen')[document.querySelector('.gen').selectedIndex].id;
+        fetch(`https://api.themoviedb.org/3/discover/${type}?api_key=dcaf7f5ea224596464b7714bac28142f&language=ru&sort_by=popularity.desc&include_adult=true&include_video=false&page=1&year=${year}&with_genres=${gen}`)
+        .then(function(value){
+            if(value.status !== 200){
+                return Promise.reject(new Error('Ошибка'));
+            }
+                return value.json();
+        })
+        .then(function(output){
+            console.log();
+            let inner = '';
+            let i = output.results.length;
+            output.results.forEach(function (item){
+                let nameItem = item.name || item.title;
+                let poster = null;
+                const posterVar = item.poster_path ? img + item.poster_path : './img/noposter.png';
+                poster = posterVar;
+                let cheked = '';
+                if (true) {
+                    if (liked.includes(`${item.id}`)) {
+                        cheked = `<img src='./img/chek.png' width="25" height="25" class='chek'>`;
+                    }
+                }
+                inner += `
+                    <div class="item">
+                    <img src="${poster}" class="poster" onclick="showById(${item.id}, '${type}')" alt ="${nameItem}">
+                    <h5>${nameItem.substr(0, 25)}</h5>
+                    </div>
+                    ${cheked}
+                `;
+            });
+            yearPrint =`, снятые в ${year} году`;
+            if (type === 'tv') {
+                yearPrint = '';
+            }
+            document.querySelector('.title').innerHTML = `${document.querySelector('.searchType').value} в жанре - ${document.querySelector('.gen').value}${yearPrint}`;
+            movie.innerHTML = inner;
+            if(i === 0){
+                document.querySelector('.title').innerHTML = `Упс, что-то пошло не так!`;
+            }
+        })
+        .catch(function(reason){
+            document.querySelector('.rec__list').innerHTML = `<h4 class="title rec__title">Упс, что-то пошло не так!</h4>`;
+            console.error('error: ' + reason);
+        });
     }
 /* Recomendations */
     function showRecomendations(id, type) {
