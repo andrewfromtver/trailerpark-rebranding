@@ -426,8 +426,7 @@ const img = 'https://image.tmdb.org/t/p/w500';
             </select>
             <select class="gen"></select>
             <select class="year"></select>
-            <button onclick="filter()" class="btn">Найти</button>
-            <div class="br"></div>
+            <button onclick="filter()" class="btn" id="search">Найти</button>
         `;
         document.querySelector('.rec__list').innerHTML = '';
         trending.innerHTML = '';
@@ -496,6 +495,8 @@ const img = 'https://image.tmdb.org/t/p/w500';
             document.querySelector('.rec__list').innerHTML = `<h4 class="title rec__title">Упс, что-то пошло не так!</h4>`;
             console.error('error: ' + reason);
         });
+        const el = document.getElementById('search');
+        el.scrollIntoView({block: "center", inline: "center", behavior: "smooth"});
     }
 /* Recomendations */
     function showRecomendations(id, type) {
