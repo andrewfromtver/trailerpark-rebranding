@@ -131,7 +131,7 @@ table > thead > tr > th:nth-child(1) {
 /* Ui control buttons */
 .up__btn {
     position: fixed;
-    right: 3vw;
+    right: 6vw;
     bottom: 1vh;
     z-index: 150;
     cursor: pointer;
