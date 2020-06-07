@@ -39,7 +39,7 @@
                     function init() {
                         document.querySelector('.content').style.display = '';
                         document.querySelector('.login__form__background').style.display = 'none';
-                        document.querySelector('body').style = 'overflow-y: scroll;';
+                        document.querySelector('body').style = 'overflow: auto;';
                         liked = JSON.parse(localStorage.getItem(sessionStorage.session)) || [];
                     }
                     setTimeout(init, 2000);
@@ -79,7 +79,7 @@
         function init() {
             document.querySelector('.content').style.display = '';
             document.querySelector('.login__form__background').style.display = 'none';
-            document.querySelector('body').style = 'overflow-y: scroll;';
+            document.querySelector('body').style = 'overflow: auto;';
             liked = JSON.parse(localStorage.getItem(sessionStorage.session)) || [];
         }
         setTimeout(init, 2000);
