@@ -132,12 +132,12 @@ table > thead > tr > th:nth-child(1) {
 .up__btn {
     position: fixed;
     right: 6vw;
-    bottom: 5vh;
+    bottom: 3vh;
     z-index: 150;
     cursor: pointer;
 }
 .up__btn > img {
-    height: 55px;
+    height: 35px;
     border: 3px solid #ccc;
     border-radius: 50px;
     box-shadow: 10px 7px 10px #333;
@@ -222,6 +222,14 @@ table > thead > tr > th:nth-child(1) {
     font-weight: 700;
     padding: 10px;
     cursor: pointer;
+    box-shadow: 10px 7px 15px #333;
+}
+.gen, .year, .searchType {
+    width: 50%;
+    margin: 15px 7px 0 7px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    padding:  10px 5px;
     box-shadow: 10px 7px 15px #333;
 }
 /* Content type section */
