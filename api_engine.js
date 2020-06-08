@@ -252,8 +252,12 @@ const img = 'https://image.tmdb.org/t/p/w500';
                     item.innerHTML = `
                     <div class="item__poster" id="${itemType}">
                         <img src='${poster1}' alt='${output.name || output.title}' class='poster__info'>
-                        ${(output.homepage) ? `<a href="${output.homepage}" target="_blank"><p class="btn__info">Официальная страница</p></a>` : ''}
-                        ${(output.imdb_id) ? `<a href="https://imdb.com/title/${output.imdb_id}" target="_blank"><p class="btn__info">Страница на IMDB.COM</p></a>` : ''}
+                        ${(output.homepage) ? `<a href="${output.homepage}" target="_blank">
+                            <p class="btn__info">Официальная страница</p>
+                        </a>` : ''}
+                        ${(output.imdb_id) ? `<a href="https://imdb.com/title/${output.imdb_id}" target="_blank">
+                            <p class="btn__info">Страница на IMDB.COM</p>
+                        </a>` : ''}
                     </div>
                     ${cheked}
                     <div class="item__info" id="${output.id}">
@@ -495,7 +499,9 @@ const img = 'https://image.tmdb.org/t/p/w500';
             if (type === 'tv') {
                 yearPrint = '';
             }
-            document.querySelector('.title').innerHTML = `${document.querySelector('.searchType').value} в жанре - ${document.querySelector('.gen').value}${yearPrint}`;
+            document.querySelector('.title').innerHTML = `
+                ${document.querySelector('.searchType').value} в жанре - ${document.querySelector('.gen').value}${yearPrint}
+            `;
             movie.innerHTML = inner;
             if(i === 0){
                 document.querySelector('.title').innerHTML = `Упс, что-то пошло не так!`;
@@ -589,8 +595,12 @@ const img = 'https://image.tmdb.org/t/p/w500';
                     item.innerHTML = `
                     <div class="item__poster" id="${type}">
                         <img src='${poster1}' alt='${output.name || output.title}' class='poster__info'>
-                        ${(output.homepage) ? `<a href="${output.homepage}" target="_blank"><p class="btn__info">Официальная страница</p></a>` : ''}
-                        ${(output.imdb_id) ? `<a href="https://imdb.com/title/${output.imdb_id}" target="_blank"><p class="btn__info">Страница на IMDB.COM</p></a>` : ''}
+                        ${(output.homepage) ? `<a href="${output.homepage}" target="_blank">
+                            <p class="btn__info">Официальная страница</p>
+                        </a>` : ''}
+                        ${(output.imdb_id) ? `<a href="https://imdb.com/title/${output.imdb_id}" target="_blank">
+                            <p class="btn__info">Страница на IMDB.COM</p>
+                        </a>` : ''}
                     </div>
                     ${cheked}
                     <div class="item__info" id="${id}">
