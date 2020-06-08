@@ -122,11 +122,17 @@ const img = 'https://image.tmdb.org/t/p/w500';
         </div>`;
             let url = '';
             if(this.dataset.type === 'movie'){
-                url = 'https://api.themoviedb.org/3/movie/' + this.dataset.id + '?api_key=dcaf7f5ea224596464b7714bac28142f&language=ru';
+                url = 'https://api.themoviedb.org/3/movie/' + 
+                this.dataset.id + 
+                '?api_key=dcaf7f5ea224596464b7714bac28142f&language=ru';
             }else if(this.dataset.type === 'tv'){
-                url = 'https://api.themoviedb.org/3/tv/' + this.dataset.id + '?api_key=dcaf7f5ea224596464b7714bac28142f&language=ru';
+                url = 'https://api.themoviedb.org/3/tv/' + 
+                this.dataset.id + 
+                '?api_key=dcaf7f5ea224596464b7714bac28142f&language=ru';
             }else if(this.dataset.type === 'person'){
-                url = 'https://api.themoviedb.org/3/person/' + this.dataset.id + '?api_key=dcaf7f5ea224596464b7714bac28142f&language=ru';
+                url = 'https://api.themoviedb.org/3/person/' + 
+                this.dataset.id + 
+                '?api_key=dcaf7f5ea224596464b7714bac28142f&language=ru';
             }else{
                 title__item.innerHTML = '<h4 class="title" >Упс, что-то пошло не так!</h4>';
             };
@@ -142,7 +148,8 @@ const img = 'https://image.tmdb.org/t/p/w500';
             .then(function (output) {
                 let cheked = '';
                 if (type == 'person') {
-                    fetch(`https://api.themoviedb.org/3/discover/movie?api_key=dcaf7f5ea224596464b7714bac28142f&language=ru&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_people=${id}`)
+                    fetch(`https://api.themoviedb.org/3/discover/movie?api_key=dcaf7f5ea224596464b7714bac28142f&` + 
+                        `language=ru&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_people=${id}`)
                     .then(function(value){
                         if(value.status !== 200){
                             return Promise.reject(new Error('Ошибка'));
@@ -453,7 +460,8 @@ const img = 'https://image.tmdb.org/t/p/w500';
         let type = document.querySelector('.searchType')[document.querySelector('.searchType').selectedIndex].id;
         let year = document.querySelector('.year').value;
         let gen = document.querySelector('.gen')[document.querySelector('.gen').selectedIndex].id;
-        fetch(`https://api.themoviedb.org/3/discover/${type}?api_key=dcaf7f5ea224596464b7714bac28142f&language=ru&sort_by=popularity.desc&include_adult=true&include_video=false&page=1&year=${year}&with_genres=${gen}`)
+        fetch(`https://api.themoviedb.org/3/discover/${type}?api_key=dcaf7f5ea224596464b7714bac28142f&language=ru&` + 
+        `sort_by=popularity.desc&include_adult=true&include_video=false&page=1&year=${year}&with_genres=${gen}`)
         .then(function(value){
             if(value.status !== 200){
                 return Promise.reject(new Error('Ошибка'));
