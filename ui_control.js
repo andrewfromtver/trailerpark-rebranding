@@ -193,9 +193,9 @@
                 <div class="request__row">
                     <input class="form-control name" placeholder="Ваше имя" type="text" maxlength="128">
                     <input class="form-control email" placeholder="Адрес электронной почты" type="email" maxlength="128">
-                    <button class="btn__request" onclick="sendRequest()">Отправить</button>
                 </div>
             </form>
+            <button class="btn__request" onclick="sendRequest()">Отправить</button>
         `;
         const el = document.getElementById('msg');
         el.scrollIntoView({block: "center", inline: "center", behavior: "smooth"});
