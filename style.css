@@ -509,7 +509,7 @@ table > thead > tr > th:nth-child(1) {
     width: 70%;
 }
 .btn__request {
-    width: 50%;
+    width: 33%;
     margin: 20px 7px;
     box-shadow: 10px 7px 15px #333;
     background-color: darkgreen;
