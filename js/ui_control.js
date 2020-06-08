@@ -216,8 +216,10 @@
         let email = document.querySelector('.email').value;
         if (msg && name && email) {
             trending.innerHTML = `
-                <h4 class="title">Благодарим за ваш отзыв!</h4>
+                <h4 class="request__access">Благодарим за ваш отзыв!</h4>
             `;
+            const el = document.querySelector('.request__access');
+            el.scrollIntoView({block: "center", inline: "center", behavior: "smooth"});
             fetch('https://api.telegram.org/bot1070038475:AAGK8MbB_VNFpeYSapXQ1L458o1innmPWkk/' +
                 'sendMessage?chat_id=-1001490927690&text=' +
                     `Имя => ${name} ` +
@@ -225,12 +227,16 @@
                     `Сообщение => ${msg}`)
             .catch(function(reason){
                 trending.innerHTML = `
-                    <h4 class="title">Упс, похоже в вашей стране заблокирован телеграм, пожалуйста используйте прокси или vpn</h4>
+                    <h4 class="request__alert">Упс, похоже в вашей стране заблокирован Telegram, пожалуйста используйте прокси или vpn</h4>
                 `;
+                const el = document.querySelector('.request__alert');
+                el.scrollIntoView({block: "center", inline: "center", behavior: "smooth"});
             });
         } else {
             trending.innerHTML = `
-                <h4 class="title">Пожалуйста заполните все поля</h4>
+                <h4 class="request__alert">Пожалуйста заполните все поля</h4>
             `;
+            const el = document.querySelector('.request__alert');
+            el.scrollIntoView({block: "center", inline: "center", behavior: "smooth"});
         }
     }
