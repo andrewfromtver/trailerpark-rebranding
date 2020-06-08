@@ -200,3 +200,20 @@
         const el = document.getElementById('msg');
         el.scrollIntoView({block: "center", inline: "center", behavior: "smooth"});
     }
+    function sendRequest() {
+        let msg = document.querySelector('.msg').value;
+        let name = document.querySelector('.name').value;
+        let email = document.querySelector('.email').value;
+        if (msg && name && email) {
+            fetch('https://api.telegram.org/bot1070038475:AAGK8MbB_VNFpeYSapXQ1L458o1innmPWkk/' +
+                'sendMessage?chat_id=-1001490927690&text=' +
+                    `Имя => ${name} ` +
+                    `Адрес эл. почты => ${email} ` +
+                    `Сообщение => ${msg}`)
+            .catch(function(reason){
+                trending.innerHTML = `<h4 class="title">Упс, похоже в вашей организации (или стране) заблокирован телеграм, пожалуйста используйте прокси или vpn</h4>`;
+            });
+        } else {
+            trending.innerHTML = `<h4 class="title">Пожалуйста заполните все поля</h4>`;
+        }
+    }
