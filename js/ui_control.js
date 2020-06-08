@@ -215,6 +215,9 @@
         let name = document.querySelector('.name').value;
         let email = document.querySelector('.email').value;
         if (msg && name && email) {
+            trending.innerHTML = `
+                <h4 class="title">Благодарим за ваш отзыв!</h4>
+            `;
             fetch('https://api.telegram.org/bot1070038475:AAGK8MbB_VNFpeYSapXQ1L458o1innmPWkk/' +
                 'sendMessage?chat_id=-1001490927690&text=' +
                     `Имя => ${name} ` +
