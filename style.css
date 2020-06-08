@@ -53,7 +53,8 @@ table > thead > tr > th:nth-child(1) {
     background-color: #333;
     opacity: 1;
 }
-.btn__info:hover, .btn__watch__online:hover, .btn_type:hover, .btn:hover, .btn__info__rec:hover, .btn__guest:hover, .btn__reg:hover, .btn__request:hover, .btn__filter:hover {
+.btn__info:hover, .btn__watch__online:hover, .btn_type:hover, .btn:hover, .btn__info__rec:hover,
+.btn__guest:hover, .btn__reg:hover, .btn__request:hover, .btn__filter:hover {
     color: darkorange;
     background-color: #fff;
 }
