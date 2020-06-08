@@ -198,7 +198,7 @@
         trailer.innerHTML = `
             <form>
                 <div>
-                    <textarea class="form-control msg" id="msg" placeholder="Ваше сообщение"></textarea>
+                    <textarea class="form-control msg" id="msg" placeholder="Ваше сообщение" maxlength="512"></textarea>
                 </div>
                 <div class="request__row">
                     <input class="form-control name" placeholder="Ваше имя" type="text" maxlength="128">
