@@ -496,8 +496,16 @@ table > thead > tr > th:nth-child(1) {
 /* Request form */
 .msg {
     width: -webkit-fill-available;
-    height: 100px;
+    height: 175px;
     resize: none;
+    background-image: url(./img/text.gif);
+    background-position: center;
+    padding: 25px;
+    
+}
+.msg:hover {
+    opacity: 1;
+    background-image: none;
 }
 .request__row {
     display: flex;
@@ -521,6 +529,19 @@ table > thead > tr > th:nth-child(1) {
     font-weight: 700;
     padding: 10px;
     cursor: pointer;
+}
+.request__alert, .request__access {
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 0 7px;
+}
+.request__alert {
+    background-color: tomato;
+}
+.request__access {
+    background-color: darkgreen;
 }
 /* Top table */
 .table > tbody > tr {
