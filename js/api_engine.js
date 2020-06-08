@@ -437,7 +437,7 @@ const img = 'https://image.tmdb.org/t/p/w500';
             </select>
             <select class="gen"></select>
             <select class="year"></select>
-            <button onclick="filter()" class="btn" id="search">Найти</button>
+            <button onclick="filter()" class="btn__request" id="search">Найти</button>
         `;
         document.querySelector('.rec__list').innerHTML = '';
         trending.innerHTML = '';
