@@ -214,6 +214,6 @@
                 trending.innerHTML = `<h4 class="title">Упс, похоже в вашей организации (или стране) заблокирован телеграм, пожалуйста используйте прокси или vpn</h4>`;
             });
         } else {
-            trending.innerHTML = `<h4 class="title">Пожалуйста заполните все поля</h4>`;
+            trailer.innerHTML += `<h4 class="title">Пожалуйста заполните все поля</h4>`;
         }
     }
