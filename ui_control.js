@@ -59,10 +59,14 @@
     liked = JSON.parse(localStorage.getItem(sessionStorage.session)) || [];
     likedList = JSON.parse(localStorage.getItem(sessionStorage.session + '_list')) || [];
     function like() {
-        document.querySelector('.item__cheked').innerHTML = `<img src='./img/chek.png' width="13" height="13" class='cheked__by__user'>`;
+        document.querySelector('.item__cheked').innerHTML = `
+            <img src='./img/chek.png' width="13" height="13" class='cheked__by__user'>
+        `;
         liked.push(document.querySelector('.item__info').id);
         localStorage.setItem(sessionStorage.session, JSON.stringify(liked));
-        likedList.push(document.querySelector('.titleContent').innerText + '|' + document.querySelector('.item__info').id + ',' + `'${document.querySelector('.item__poster').id}'`);
+        likedList.push(document.querySelector('.titleContent').innerText + '|' + 
+            document.querySelector('.item__info').id + ',' + 
+            `'${document.querySelector('.item__poster').id}'`);
         localStorage.setItem(sessionStorage.session + '_list', JSON.stringify(likedList));
     }
     function alredyLiked() {
@@ -97,7 +101,9 @@
             <tr>
                 <th scope="row">${movieCount}</th>
                 <td onclick="showById(${element.split('|')[1]})">${element.split('|')[0]}</td>
-                <td class="deleteRow" onclick="deleteRow(${element.split('|')[1]},'${element.split('|')[0]}')"><img src="./img/delete.png" width="15" height="15"></td>
+                <td class="deleteRow" onclick="deleteRow(${element.split('|')[1]},'${element.split('|')[0]}')">
+                    <img src="./img/delete.png" width="15" height="15">
+                </td>
             </tr>
             `;
             movieCount += 1;
@@ -127,7 +133,9 @@
             <tr>
                 <th scope="row">${tvCount}</th>
                 <td onclick="showById(${element.split('|')[1]})">${element.split('|')[0]}</td>
-                <td class="deleteRow" onclick="deleteRow(${element.split('|')[1]},'${element.split('|')[0]}')"><img src="./img/delete.png" width="15" height="15"></td>
+                <td class="deleteRow" onclick="deleteRow(${element.split('|')[1]},'${element.split('|')[0]}')">
+                    <img src="./img/delete.png" width="15" height="15">
+                </td>
             </tr>
             `;
             tvCount += 1;
@@ -138,7 +146,9 @@
             </table>
             `;
         trending.innerHTML = inner;
-        title__item.innerHTML = '<h4 class="title">Пользовательская статистика</h4>';
+        title__item.innerHTML = `
+            <h4 class="title">Пользовательская статистика</h4>
+        `;
         item.innerHTML = '';
         document.querySelector('.rec__list').innerHTML = ``;
         trailer.innerHTML = '';
@@ -192,7 +202,7 @@
                 </div>
                 <div class="request__row">
                     <input class="form-control name" placeholder="Ваше имя" type="text" maxlength="128">
-                    <input class="form-control email" placeholder="Адрес электронной почты" type="email" maxlength="128">
+                    <input class="form-control email" placeholder="Адрес электронной почты" type="text" maxlength="128">
                 </div>
             </form>
             <button class="btn__request" onclick="sendRequest()">Отправить</button>
@@ -211,9 +221,13 @@
                     `Адрес эл. почты => ${email} ` +
                     `Сообщение => ${msg}`)
             .catch(function(reason){
-                trending.innerHTML = `<h4 class="title">Упс, похоже в вашей организации (или стране) заблокирован телеграм, пожалуйста используйте прокси или vpn</h4>`;
+                trending.innerHTML = `
+                    <h4 class="title">Упс, похоже в вашей стране заблокирован телеграм, пожалуйста используйте прокси или vpn</h4>
+                `;
             });
         } else {
-            trending.innerHTML += `<h4 class="title">Пожалуйста заполните все поля</h4>`;
+            trending.innerHTML = `
+                <h4 class="title">Пожалуйста заполните все поля</h4>
+            `;
         }
     }
