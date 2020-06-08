@@ -188,7 +188,7 @@
         trailer.innerHTML = `
             <form>
                 <div>
-                    <textarea class="form-control msg" placeholder="Ваше сообщение" required></textarea>
+                    <textarea class="form-control msg" id="msg" placeholder="Ваше сообщение" required></textarea>
                 </div>
                 <div class="request__row">
                     <input class="form-control name" placeholder="Ваше имя" type="text" maxlength="128" required>
@@ -196,5 +196,7 @@
                     <button class="btn__request" onclick="sendRequest()">Отправить</button>
                 </div>
             </form>
-            `;
+        `;
+        const el = document.getElementById('msg');
+        el.scrollIntoView({block: "center", inline: "center", behavior: "smooth"});
     }
