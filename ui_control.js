@@ -188,11 +188,11 @@
         trailer.innerHTML = `
             <form>
                 <div>
-                    <textarea class="form-control msg" id="msg" placeholder="Ваше сообщение" required></textarea>
+                    <textarea class="form-control msg" id="msg" placeholder="Ваше сообщение"></textarea>
                 </div>
                 <div class="request__row">
-                    <input class="form-control name" placeholder="Ваше имя" type="text" maxlength="128" required>
-                    <input class="form-control email" placeholder="Адрес электронной почты" type="email" maxlength="128" required>
+                    <input class="form-control name" placeholder="Ваше имя" type="text" maxlength="128">
+                    <input class="form-control email" placeholder="Адрес электронной почты" type="email" maxlength="128">
                     <button class="btn__request" onclick="sendRequest()">Отправить</button>
                 </div>
             </form>
