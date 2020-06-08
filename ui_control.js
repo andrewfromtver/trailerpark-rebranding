@@ -181,17 +181,20 @@
     }
 /* Contacts */
     function contacts() {
-        title__item.innerHTML = `
-        <div class="loader__placeholder">
-            <div class="lds-ellipsis loader"><div></div><div></div><div></div><div></div></div>
-        </div>`;
-        function init() {
-            item.innerHTML = `<img src="./img/404.gif" class="not__found">`;
-            title__item.innerHTML = `<h4 class="title">andrewsarkisyan@gmail.com</h4>`;
-        }
-        setTimeout(init, 1000)
+        title__item.innerHTML = `<h4 class="title">Форма обратной связи</h4>`;
         document.querySelector('.rec__list').innerHTML = '';
-        item.innerHTML = '';
         trending.innerHTML = '';
-        trailer.innerHTML = '';
+        item.innerHTML = '';
+        trailer.innerHTML = `
+            <form>
+                <div>
+                    <textarea class="form-control msg" placeholder="Ваше сообщение" required></textarea>
+                </div>
+                <div class="request__row">
+                    <input class="form-control name" placeholder="Ваше имя" type="text" maxlength="128" required>
+                    <input class="form-control email" placeholder="Адрес электронной почты" type="email" maxlength="128" required>
+                    <button class="btn__request" onclick="sendRequest()">Отправить</button>
+                </div>
+            </form>
+            `;
     }
