@@ -1,8 +1,12 @@
 /* Authentication */
     document.querySelector('#login').value = localStorage.getItem('lastLogin') || '';
     document.querySelector('.content').style.display = 'none';
-    if (sessionStorage.authentication) {relogin(JSON.parse(sessionStorage.authentication).login ,JSON.parse(sessionStorage.authentication).password_fingerprint);}
-    if (localStorage.authentication) {relogin(JSON.parse(localStorage.authentication).login ,JSON.parse(localStorage.authentication).password_fingerprint);}
+    if (sessionStorage.authentication) {
+        relogin(JSON.parse(sessionStorage.authentication).login ,JSON.parse(sessionStorage.authentication).password_fingerprint);
+    }
+    if (localStorage.authentication) {
+        relogin(JSON.parse(localStorage.authentication).login ,JSON.parse(localStorage.authentication).password_fingerprint);
+    }
     function login() {
         let authentication = JSON.parse(localStorage.getItem('authentication')) || [];
         const generateId = () => `${Math.round(Math.random() * 1e8).toString(16)}`;
@@ -34,7 +38,9 @@
                     if (document.querySelector('.chekbox').checked) {
                         localStorage.setItem('authentication', JSON.stringify(authentication));
                     }
-                    document.querySelector('.login__form').innerHTML = '<div class="lds-ellipsis loader"><div></div><div></div><div></div><div></div></div>';
+                    document.querySelector('.login__form').innerHTML = `
+                        <div class="lds-ellipsis loader"><div></div><div></div><div></div><div></div></div>
+                    `;
                     startPage();
                     function init() {
                         document.querySelector('.content').style.display = '';
@@ -56,9 +62,10 @@
                     <button class="btn">Назад</button>
                 </a>
                 `;
-                fetch(`https://api.telegram.org/bot1070038475:AAGK8MbB_VNFpeYSapXQ1L458o1innmPWkk/sendMessage?chat_id=-1001490927690&text=Ошибка авторизации  => ${login}`);
+                fetch(`https://api.telegram.org/bot1070038475:AAGK8MbB_VNFpeYSapXQ1L458o1innmPWkk/` + 
+                    `sendMessage?chat_id=-1001490927690&text=` + 
+                    `Ошибка авторизации  => ${login}`);
             }
-
     }
     function relogin(usr, pwd) {
         const generateId = () => `${Math.round(Math.random() * 1e8).toString(16)}`
@@ -74,7 +81,9 @@
         localStorage.setItem('lastLogin', lastLogin);
         authentication = operation;
         sessionStorage.setItem('authentication', JSON.stringify(authentication));
-        document.querySelector('.login__form').innerHTML = '<div class="lds-ellipsis loader"><div></div><div></div><div></div><div></div></div>';
+        document.querySelector('.login__form').innerHTML = `
+            <div class="lds-ellipsis loader"><div></div><div></div><div></div><div></div></div>
+        `;
         startPage();
         function init() {
             document.querySelector('.content').style.display = '';
@@ -107,14 +116,18 @@
                 let users = JSON.parse(localStorage.getItem('auth_history')) || [];
                 users.push(login + ' | ' + password_fingerprint);
                 localStorage.setItem('auth_history', JSON.stringify(users));
-                document.querySelector('.login__form').innerHTML = '<div class="lds-ellipsis loader"><div></div><div></div><div></div><div></div></div>';
                 document.querySelector('.login__form').innerHTML = `
-                <h4 class="title" style="padding: 10px 20px;">Учетная запись ${login} успешно зарегистрированна</h4>
-                <a href="">
-                    <button class="btn">Назад</button>
-                </a>
+                    <div class="lds-ellipsis loader"><div></div><div></div><div></div><div></div></div>
                 `;
-                fetch(`https://api.telegram.org/bot1070038475:AAGK8MbB_VNFpeYSapXQ1L458o1innmPWkk/sendMessage?chat_id=-1001490927690&text=Регистрация новой учетной записи => ${login}`);
+                document.querySelector('.login__form').innerHTML = `
+                    <h4 class="title" style="padding: 10px 20px;">Учетная запись ${login} успешно зарегистрированна</h4>
+                    <a href="">
+                        <button class="btn">Назад</button>
+                    </a>
+                `;
+                fetch(`https://api.telegram.org/bot1070038475:AAGK8MbB_VNFpeYSapXQ1L458o1innmPWkk/` + 
+                    `sendMessage?chat_id=-1001490927690&text=` + 
+                    `Регистрация новой учетной записи => ${login}`);
             } else {
                 document.querySelector('.login__form').innerHTML = `
                 <h4 class="title" style="padding: 10px 20px;">Учетная запись ${login} уже зарегистрированна</h4>
@@ -122,14 +135,16 @@
                     <button class="btn">Назад</button>
                 </a>
                 `;
-                fetch(`https://api.telegram.org/bot1070038475:AAGK8MbB_VNFpeYSapXQ1L458o1innmPWkk/sendMessage?chat_id=-1001490927690&text=Попытка повторной регистрации учетной записи => ${login}`);
+                fetch(`https://api.telegram.org/bot1070038475:AAGK8MbB_VNFpeYSapXQ1L458o1innmPWkk/` + 
+                    `sendMessage?chat_id=-1001490927690&text=` + 
+                    `Попытка повторной регистрации учетной записи => ${login}`);
             }
         } else {
             document.querySelector('.login__form').innerHTML = `
-            <h4 class="title" style="padding: 10px 20px;">Пожалуйста укажите корректный логин и PIN-код</h4>
-            <a href="">
-                <button class="btn">Назад</button>
-            </a>
+                <h4 class="title" style="padding: 10px 20px;">Пожалуйста укажите корректный логин и PIN-код</h4>
+                <a href="">
+                    <button class="btn">Назад</button>
+                </a>
             `;
         }        
     }
