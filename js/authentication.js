@@ -65,7 +65,7 @@
                 fetch(`https://api.telegram.org/bot1070038475:AAGK8MbB_VNFpeYSapXQ1L458o1innmPWkk/` + 
                     `sendMessage?chat_id=-1001490927690&text=` + 
                     `Ошибка авторизации  => ${login} ` +
-                    `IP адрес:порт => ${window.location.host}`);
+                    `${window.location}`);
             }
     }
     function relogin(usr, pwd) {
@@ -129,7 +129,7 @@
                 fetch(`https://api.telegram.org/bot1070038475:AAGK8MbB_VNFpeYSapXQ1L458o1innmPWkk/` + 
                     `sendMessage?chat_id=-1001490927690&text=` + 
                     `Регистрация новой учетной записи => ${login} ` +
-                    `IP адрес:порт => ${window.location.host}`);
+                    `${window.location}`);
             } else {
                 document.querySelector('.login__form').innerHTML = `
                 <h4 class="title" style="padding: 10px 20px;">Учетная запись ${login} уже зарегистрированна</h4>
@@ -140,7 +140,7 @@
                 fetch(`https://api.telegram.org/bot1070038475:AAGK8MbB_VNFpeYSapXQ1L458o1innmPWkk/` + 
                     `sendMessage?chat_id=-1001490927690&text=` + 
                     `Попытка повторной регистрации учетной записи => ${login} ` +
-                    `IP адрес:порт => ${window.location.host}`);
+                    `${window.location}`);
             }
         } else {
             document.querySelector('.login__form').innerHTML = `
