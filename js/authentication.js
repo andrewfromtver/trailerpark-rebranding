@@ -144,7 +144,7 @@
             }
         } else {
             document.querySelector('.login__form').innerHTML = `
-                <h4 class="title" style="padding: 10px 20px;">Пожалуйста укажите корректный логин и PIN-код</h4>
+                <h4 class="title" style="padding: 10px 20px;">Пожалуйста укажите корректный логин и PIN-код для регистрации</h4>
                 <a href="">
                     <button class="btn">Назад</button>
                 </a>
