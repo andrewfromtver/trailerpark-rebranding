@@ -509,6 +509,7 @@ table > thead > tr > th:nth-child(1) {
 }
 /* Request form */
 .msg {
+    margin-top: 0;
     width: -webkit-fill-available;
     height: 175px;
     resize: none;
