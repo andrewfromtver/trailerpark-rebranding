@@ -440,6 +440,15 @@ const img = 'https://image.tmdb.org/t/p/w500';
         document.querySelector('.rec__list').innerHTML = '';
         trending.innerHTML = `<img src='./img/404.gif' class='search__image'>`;
         trailer.innerHTML = '';
+        if (document.documentElement.clientWidth > 900 && document.documentElement.clientWidth < 1500) {
+            document.querySelector(".search__image").style.display = "";
+        }
+        else if (document.documentElement.clientWidth > 1500) {
+            document.querySelector(".search__image").style.display = "";
+        }
+        else {
+            document.querySelector(".search__image").style.display = "none";
+        }
         fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=dcaf7f5ea224596464b7714bac28142f&language=ru`)
         .then(function(value){
             if(value.status !== 200){
