@@ -570,7 +570,7 @@ table > thead > tr > th:nth-child(1) {
 /* Footer */
 .footer {
     box-shadow: 10px 7px 15px #333;
-    opacity: 0.5;
+    opacity: 0.75;
     text-align: center;
     color: #fff;
     padding: 10px;
