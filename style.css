@@ -511,7 +511,7 @@ table > thead > tr > th:nth-child(1) {
 .msg {
     margin-top: 0;
     width: -webkit-fill-available;
-    height: 175px;
+    height: 170px;
     resize: none;
     background-image: url(./img/text.gif);
     background-position: center;
