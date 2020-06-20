@@ -229,6 +229,7 @@ table > thead > tr > th:nth-child(1) {
     box-shadow: 10px 7px 15px #333;
 }
 .btn__filter {
+    height: 29px;
     width: 20%;
     margin: 15px 7px 0 7px;
     background-color: darkgreen;
@@ -243,11 +244,12 @@ table > thead > tr > th:nth-child(1) {
     box-shadow: 10px 7px 15px #333;
 }
 .gen, .year, .searchType {
+    height: 29px;
     width: 50%;
     margin: 15px 7px 0 7px;
     border: 2px solid #ccc;
     border-radius: 5px;
-    padding:  10px 5px;
+    padding:  1px 5px;
     box-shadow: 10px 7px 15px #333;
 }
 /* Content type section */
