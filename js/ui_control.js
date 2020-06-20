@@ -7,6 +7,7 @@
             document.querySelector(".header__link1__desc").style.display = "";
             document.querySelector(".header__link2__desc").style.display = "";
             document.querySelector(".header__link3__desc").style.display = "";
+            document.querySelector(".up__btn").style = "margin-bottom: 50px;";
         }
         else if (document.documentElement.clientWidth > 1500) {
             document.querySelector(".main__section").style = "margin: 0 25vw 0 25vw;";
@@ -15,6 +16,7 @@
             document.querySelector(".header__link1__desc").style.display = "";
             document.querySelector(".header__link2__desc").style.display = "";
             document.querySelector(".header__link3__desc").style.display = "";
+            document.querySelector(".up__btn").style = "margin-bottom: 50px;";
         }
         else {
             document.querySelector(".main__section").style = "";
@@ -24,6 +26,7 @@
             document.querySelector(".header__link2__desc").style.display = "none";
             document.querySelector(".header__link3__desc").style.display = "none";
             small__frame.innerHTML = '';
+            document.querySelector(".up__btn").style = "";
         };
         if (document.documentElement.clientWidth < 460) {
             if (document.querySelector(".item__poster")) {
