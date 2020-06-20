@@ -252,6 +252,13 @@ table > thead > tr > th:nth-child(1) {
     padding:  1px 5px;
     box-shadow: 10px 7px 15px #333;
 }
+.search__image {
+    opacity: 0.75;
+    margin-top: 13px;
+    width: 100%;
+    height: 325px;
+    border-radius: 1000px;
+}
 /* Content type section */
 .type, .main__section__search {
     display: flex;
