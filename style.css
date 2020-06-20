@@ -290,7 +290,7 @@ table > thead > tr > th:nth-child(1) {
     height: 253px;
 }
 .row::-webkit-scrollbar-track {border-radius: 5px;}
-.row::-webkit-scrollbar {height: 7px;}
+.row::-webkit-scrollbar {height: 4px;}
 .row::-webkit-scrollbar-thumb {border-radius: 5px;background: #242424;}
 .row:hover::-webkit-scrollbar-thumb {background: #777;}
 .item {
@@ -426,7 +426,7 @@ table > thead > tr > th:nth-child(1) {
     background-color: #242424;
 }
 .rec__list::-webkit-scrollbar-track {border-radius: 5px;}
-.rec__list::-webkit-scrollbar {height: 7px;}
+.rec__list::-webkit-scrollbar {height: 4px;}
 .rec__list::-webkit-scrollbar-thumb {border-radius: 5px;background: #242424;}
 .rec__list:hover::-webkit-scrollbar-thumb {background: #777;}
 /* Youtube trailers */
