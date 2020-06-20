@@ -68,11 +68,13 @@
                     `${window.location}`);
             }
     }
-    document.querySelector('#login').addEventListener('keypress', function (e) {
-        if (e.key === 'Enter') {
-            document.getElementById("password").focus();
-        }
-    });
+    if (!sessionStorage.reloaded) {
+        document.querySelector('#login').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                document.getElementById("password").focus();
+            }
+        });
+    }
     document.querySelector('#password').addEventListener('keypress', function (e) {
         if (e.key === 'Enter') {
           login();
