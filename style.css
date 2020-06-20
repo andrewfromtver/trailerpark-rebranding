@@ -274,7 +274,7 @@ table > thead > tr > th:nth-child(1) {
 .title, .titleContent {
     box-shadow: 10px 7px 15px #333;
     text-align: center;
-    min-height: 18px;
+    min-height: 20px;
     margin: 20px 7px;
     background-color: #fff;
     border: 2px solid #ccc;
@@ -586,7 +586,7 @@ table > thead > tr > th:nth-child(1) {
     display: inline-block;
     position: relative;
     width: 80px;
-    height: 12px;
+    height: 14px;
 }
 .lds-ellipsis div {
     position: absolute;
