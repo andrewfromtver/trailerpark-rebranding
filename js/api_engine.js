@@ -189,7 +189,7 @@ const img = 'https://image.tmdb.org/t/p/w500';
                     title__item.innerHTML = `<h4 class="title">${output.name}</h4>`;
                     let bio = '';
                     if (output.biography) {
-                        bio = output.biography.substr(0, 600) + '...';
+                        bio = output.biography;
                     }else {
                         bio = 'К сожалению биография отсутствует';
                     }
