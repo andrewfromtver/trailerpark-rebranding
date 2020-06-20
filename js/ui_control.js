@@ -7,7 +7,7 @@
             document.querySelector(".header__link1__desc").style.display = "";
             document.querySelector(".header__link2__desc").style.display = "";
             document.querySelector(".header__link3__desc").style.display = "";
-            document.querySelector(".up__btn").style.margin = "0 50px";
+            document.querySelector(".up__btn").style.margin = "50px 0";
         }
         else if (document.documentElement.clientWidth > 1500) {
             document.querySelector(".main__section").style = "margin: 0 25vw 0 25vw;";
@@ -16,7 +16,7 @@
             document.querySelector(".header__link1__desc").style.display = "";
             document.querySelector(".header__link2__desc").style.display = "";
             document.querySelector(".header__link3__desc").style.display = "";
-            document.querySelector(".up__btn").style.margin = "0 50px";
+            document.querySelector(".up__btn").style.margin = "50px 0";
         }
         else {
             document.querySelector(".main__section").style = "";
