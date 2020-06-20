@@ -438,7 +438,7 @@ const img = 'https://image.tmdb.org/t/p/w500';
             <button onclick="filter()" class="btn__filter" id="search">Найти</button>
         `;
         document.querySelector('.rec__list').innerHTML = '';
-        trending.innerHTML = '';
+        trending.innerHTML = `<img src='./img/404.gif' class='search__image'>`;
         trailer.innerHTML = '';
         fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=dcaf7f5ea224596464b7714bac28142f&language=ru`)
         .then(function(value){
