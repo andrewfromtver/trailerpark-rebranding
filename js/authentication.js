@@ -68,6 +68,16 @@
                     `${window.location}`);
             }
     }
+    document.querySelector('#login').addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') {
+            document.getElementById("password").focus();
+        }
+    });
+    document.querySelector('#password').addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') {
+          login();
+        }
+    });
     function relogin(usr, pwd) {
         const generateId = () => `${Math.round(Math.random() * 1e8).toString(16)}`
         const operation = {
