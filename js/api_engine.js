@@ -39,7 +39,7 @@ const img = 'https://image.tmdb.org/t/p/w500';
             document.querySelector('.logout').innerHTML = `
             <div class="header__logout">
                 <a href="" onclick="logout()">
-                <img src="./img/logout.png" width="23" height="23">
+                <img src="./img/logout.png" width="18" height="18">
                 </a>
             </div>
             `;
@@ -98,8 +98,6 @@ const img = 'https://image.tmdb.org/t/p/w500';
                 if (type == 'tv') title.innerHTML = '<h4 class="title" >Самые популярные сериалы</h4>';
                 if (type == 'multi') title.innerHTML = '<h4 class="title" >Самые популярные фильмы и сериалы</h4>';
                 if (type == 'person') title.innerHTML = '<h4 class="title" >Самые популярные актёры</h4>';
-                if (timestamp == 'day') title.innerHTML = '<h4 class="title" >Самые популярные фильмы и сериалы сегодня</h4>';
-                if (timestamp == 'week') title.innerHTML = '<h4 class="title" >Самые популярные фильмы и сериалы за неделю</h4>';
                 movie.innerHTML = inner;
                 const media = movie.querySelectorAll('img[data-id]');
                 media.forEach(function(elem){
@@ -328,9 +326,9 @@ const img = 'https://image.tmdb.org/t/p/w500';
             return value.json();
             })
             .then((output) => {
-            let videoFrame = '<h3 class="title" >Трейлеры</h3>';
+            let videoFrame = '<h4 class="title" >Трейлеры</h4>';
             if(output.results.length === 0){
-                videoFrame = `<h3 class="title" >К сожалению трейлеры отсутствуют</h3>`;
+                videoFrame = `<h4 class="title" >К сожалению трейлеры отсутствуют</h4>`;
             }
             output.results.forEach((item)=>{
                 videoFrame += `<div class="trailer__frame id__${item.key}">
@@ -341,7 +339,7 @@ const img = 'https://image.tmdb.org/t/p/w500';
             trailer.innerHTML = videoFrame;
             })
             .catch((reason) => {
-            trailer.innerHTML = `<h3 class="title" >К сожалению трейлеры отсутствуют</h3>`;
+            trailer.innerHTML = `<h4 class="title" >К сожалению трейлеры отсутствуют</h4>`;
             console.error(reason || reason.status);
             });
             }
@@ -354,7 +352,7 @@ const img = 'https://image.tmdb.org/t/p/w500';
             trailer.innerHTML = videoFrame;
         })
         .catch((reason) => {
-            trailer.innerHTML = `<h3 class="title" >К сожалению трейлеры отсутствуют</h3>`;
+            trailer.innerHTML = `<h4 class="title" >К сожалению трейлеры отсутствуют</h4>`;
             console.error(reason || reason.status);
         });
     }
@@ -547,7 +545,7 @@ const img = 'https://image.tmdb.org/t/p/w500';
             });
             document.querySelector('.rec__list').innerHTML = inner;
             if(i === 0){
-                document.querySelector('.rec__list').innerHTML = `<h4 class="title rec__title">Упс, что-то пошло не так!</h4>`;
+                document.querySelector('.rec__list').innerHTML = `<h4 class="title rec__title">К сожалению рекомендаций пока нет...</h4>`;
             }
         })
         .catch(function(reason){
