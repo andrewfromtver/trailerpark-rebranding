@@ -142,9 +142,6 @@ table > thead > tr > th:nth-child(1) {
     border: 3px solid #ccc;
     border-radius: 50px;
     box-shadow: 10px 7px 10px #333;
-    background-color: #ccc;
-}
-.up__btn > img:hover {
     background-color: #fff;
 }
 /* Header */
@@ -277,8 +274,7 @@ table > thead > tr > th:nth-child(1) {
 .title, .titleContent {
     box-shadow: 10px 7px 15px #333;
     text-align: center;
-    font-size: 19px;
-    min-height: 26px;
+    min-height: 18px;
     margin: 20px 7px;
     background-color: #fff;
     border: 2px solid #ccc;
@@ -590,7 +586,7 @@ table > thead > tr > th:nth-child(1) {
     display: inline-block;
     position: relative;
     width: 80px;
-    height: 20px;
+    height: 12px;
 }
 .lds-ellipsis div {
     position: absolute;
