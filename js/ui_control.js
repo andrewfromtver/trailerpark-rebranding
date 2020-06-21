@@ -112,12 +112,22 @@
             movieCount += 1;
         });
         if (resultMovies.length == 0) {
-            contentMovie += `
-            <tr>
-                <th scope="row"></th>
-                <td>Нет избранных фильмов</td>
-            </tr>
-            `;
+            if (document.documentElement.clientWidth > 900) {
+                contentMovie += `
+                <tr>
+                    <th scope="row"></th>
+                    <td>Добавьте понравившиеся фильмы в избранное и сможете увидеть их здесь</td>
+                </tr>
+                `;
+            }
+            else {
+                contentMovie += `
+                <tr>
+                    <th scope="row"></th>
+                    <td>Нет избранных фильмов</td>
+                </tr>
+                `;
+            }
         }
         inner += contentMovie;
         inner += `
@@ -152,12 +162,22 @@
             tvCount += 1;
         });
         if (resultTvs.length == 0) {
-            contentTv += `
-            <tr>
-                <th scope="row"></th>
-                <td>Нет избранных сериалов</td>
-            </tr>
-            `;
+            if (document.documentElement.clientWidth > 900) {
+                contentTv += `
+                <tr>
+                    <th scope="row"></th>
+                    <td>Добавьте понравившиеся сериалы в избранное и сможете увидеть их здесь</td>
+                </tr>
+                `;
+            }
+            else {
+                contentTv += `
+                <tr>
+                    <th scope="row"></th>
+                    <td>Нет избранных сериалов</td>
+                </tr>
+                `;
+            }
         }
         inner += contentTv;
         inner += `
