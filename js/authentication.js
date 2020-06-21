@@ -1,4 +1,5 @@
 /* Authentication */
+    devCheck();
     document.querySelector('#login').value = localStorage.getItem('lastLogin') || '';
     document.querySelector('.content').style.display = 'none';
     if (sessionStorage.authentication) {
