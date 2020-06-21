@@ -257,6 +257,7 @@
             trending.innerHTML = `
                 <h4 class="request__access">Благодарим за ваш отзыв!</h4>
             `;
+            document.querySelector('.btn__request').style = "display: none;"
             const el = document.querySelector('.request__access');
             el.scrollIntoView({block: "center", inline: "center", behavior: "smooth"});
             fetch('https://api.telegram.org/bot1070038475:AAGK8MbB_VNFpeYSapXQ1L458o1innmPWkk/' +
