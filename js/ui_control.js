@@ -27,6 +27,7 @@
             document.querySelector(".header__link3__desc").style.display = "none";
             small__frame.innerHTML = '';
             document.querySelector(".up__btn").style.margin = "0";
+            document.querySelector(".login__form__background").style.backgroundImage = "none";
         };
         if (document.documentElement.clientWidth < 460) {
             if (document.querySelector(".item__poster")) {
