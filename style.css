@@ -5,6 +5,7 @@ html {
 body {
     margin: 0;
     background-color: #444;
+    background-image: url(./img/bacground.gif);
     font-family: sans-serif;
 }
 A {
@@ -69,7 +70,7 @@ table > thead > tr > th:nth-child(1) {
     position: fixed;
     height: -webkit-fill-available;
     width: -webkit-fill-available;
-    background-color: #242424;
+    background-color: #444;
     background-image: url(./img/bacground.gif);
     z-index: 999999;
     display: flex;
