@@ -111,6 +111,14 @@
             `;
             movieCount += 1;
         });
+        if (resultMovies.length == 0) {
+            contentMovie += `
+            <tr>
+                <th scope="row"></th>
+                <td>Добавьте понравившиеся фильмы в избранное и сможете увидеть их здесь</td>
+            </tr>
+            `;
+        }
         inner += contentMovie;
         inner += `
                 </tbody>
@@ -143,6 +151,14 @@
             `;
             tvCount += 1;
         });
+        if (resultTvs.length == 0) {
+            contentTv += `
+            <tr>
+                <th scope="row"></th>
+                <td>Добавьте понравившиеся сериалы в избранное и сможете увидеть их здесь</td>
+            </tr>
+            `;
+        }
         inner += contentTv;
         inner += `
                 </tbody>
