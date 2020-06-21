@@ -39,7 +39,7 @@ const img = 'https://image.tmdb.org/t/p/w500';
             document.querySelector('.logout').innerHTML = `
             <div class="header__logout">
                 <a href="" onclick="logout()">
-                <img src="./img/logout.png" width="18" height="18">
+                <img src="./img/logout.png" width="21" height="21">
                 </a>
             </div>
             `;
