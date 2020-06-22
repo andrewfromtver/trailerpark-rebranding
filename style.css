@@ -566,7 +566,7 @@ table > thead > tr > th:nth-child(1) {
     text-align: center;
     padding: 10px;
     border-radius: 5px;
-    margin: 0 7px;
+    margin: 20px 7px 41px 7px;
 }
 .request__alert {
     background-color: tomato;
