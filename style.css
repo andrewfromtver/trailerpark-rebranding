@@ -5,7 +5,9 @@ html {
 body {
     margin: 0;
     background-color: #444;
+    background-repeat: no-repeat;
     background-attachment: fixed;
+    background-position: center;
     font-family: sans-serif;
 }
 A {
