@@ -102,7 +102,6 @@ const img = 'https://image.tmdb.org/t/p/w500';
                 media.forEach(function(elem){
                     elem.addEventListener('click', showFullInfo);
                 });
-                devCheck();
             })
             .catch(function(reason){
                 title.innerHTML = `<h4 class="title">Упс, что-то пошло не так!</h4>`;
@@ -112,6 +111,7 @@ const img = 'https://image.tmdb.org/t/p/w500';
         const el = document.getElementById('movies');
         el.scrollIntoView({block: "center", inline: "center", behavior: "smooth"});
         setTimeout(init, 1000);
+        devCheck();
     }
     function showFullInfo(){
         title__item.innerHTML = `
