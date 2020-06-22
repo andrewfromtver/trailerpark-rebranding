@@ -34,7 +34,7 @@
             document.querySelector(".login__form__background").style.backgroundImage = "none";
             document.body.style.backgroundImage = "none";
         };
-        if (document.documentElement.clientWidth < 460) {
+        if (document.documentElement.clientWidth < 560) {
             if (document.querySelector(".item__poster")) {
                 document.querySelector(".item__poster").style.display = "none";
             }
