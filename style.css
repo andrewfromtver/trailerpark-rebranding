@@ -16,9 +16,8 @@ body {
     overflow-y: scroll;
 }
 body::-webkit-scrollbar-track {border-radius: 5px;}
-body::-webkit-scrollbar {width: 4px;}
-body::-webkit-scrollbar-thumb {border-radius: 5px;background: #242424;}
-body:hover::-webkit-scrollbar-thumb {background: #777;}
+body::-webkit-scrollbar {width: 8px;}
+body::-webkit-scrollbar-thumb {border-radius: 5px;background: #777;}
 A {
     color: #ddd;
     font-size: 12px;
