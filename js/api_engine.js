@@ -47,7 +47,6 @@ const img = 'https://image.tmdb.org/t/p/w500';
     }
 /* Main features */
     function show(type, time, timestamp) {
-        devCheck();
         title.innerHTML = `
         <div class="loader__placeholder">
             <div class="lds-ellipsis loader"><div></div><div></div><div></div><div></div></div>
@@ -103,6 +102,7 @@ const img = 'https://image.tmdb.org/t/p/w500';
                 media.forEach(function(elem){
                     elem.addEventListener('click', showFullInfo);
                 });
+                devCheck();
             })
             .catch(function(reason){
                 title.innerHTML = `<h4 class="title">Упс, что-то пошло не так!</h4>`;
