@@ -5,6 +5,7 @@ html {
 body {
     margin: 0;
     background-color: #444;
+    background-attachment: fixed;
     font-family: sans-serif;
 }
 A {
