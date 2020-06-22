@@ -44,6 +44,7 @@ const img = 'https://image.tmdb.org/t/p/w500';
             </div>
             `;
             genChek();
+            setTimeout(devCheck, 2050);
     }
 /* Main features */
     function show(type, time, timestamp) {
@@ -111,7 +112,6 @@ const img = 'https://image.tmdb.org/t/p/w500';
         const el = document.getElementById('movies');
         el.scrollIntoView({block: "center", inline: "center", behavior: "smooth"});
         setTimeout(init, 1000);
-        devCheck();
     }
     function showFullInfo(){
         title__item.innerHTML = `
@@ -221,7 +221,6 @@ const img = 'https://image.tmdb.org/t/p/w500';
                     </div>
                     `;
                     trailer.innerHTML = '';
-                    devCheck();
                 }else {
                     if (true) {
                         if (liked.includes(`${output.id}`)) {
@@ -290,7 +289,6 @@ const img = 'https://image.tmdb.org/t/p/w500';
                     </a>
                     `;
                     getVideo(id, type);
-                    devCheck();
                 }
             })
             .catch(function(reason){
@@ -640,7 +638,6 @@ const img = 'https://image.tmdb.org/t/p/w500';
                         <p class="btn__watch__online">Искать</p>
                     </a>
                     `;
-                    devCheck();
             })
             .catch(function(reason){
                 title__item.innerHTML = `<h4 class="title">Упс, что-то пошло не так!</h4>`;
