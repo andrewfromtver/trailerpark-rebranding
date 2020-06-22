@@ -16,7 +16,7 @@ body {
     overflow-y: scroll;
 }
 body::-webkit-scrollbar-track {border-radius: 5px;}
-body::-webkit-scrollbar {width: 8px;}
+body::-webkit-scrollbar {width: 12px;}
 body::-webkit-scrollbar-thumb {border-radius: 5px;background: #777;}
 A {
     color: #ddd;
