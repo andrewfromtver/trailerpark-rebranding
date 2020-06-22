@@ -10,8 +10,8 @@
             document.querySelector(".header__link2__desc").style.display = "";
             document.querySelector(".header__link3__desc").style.display = "";
             document.querySelector(".up__btn").style.margin = "50px 0";
-            document.querySelector(".login__form__background").style.backgroundImage = "url(./img/bacground.gif)";
-            document.body.style.backgroundImage = `url(./img/bacgrounds/${imgCount}.jpg)`;
+            document.querySelector(".login__form__background").style.backgroundImage = "url(./img/background.gif)";
+            document.body.style.backgroundImage = `url(./img/backgrounds/${imgCount}.jpg)`;
         }
         else if (document.documentElement.clientWidth > 1500) {
             document.querySelector(".main__section").style = "margin: 0 25vw 0 25vw;";
@@ -21,8 +21,8 @@
             document.querySelector(".header__link2__desc").style.display = "";
             document.querySelector(".header__link3__desc").style.display = "";
             document.querySelector(".up__btn").style.margin = "50px 0";
-            document.querySelector(".login__form__background").style.backgroundImage = "url(./img/bacground.gif)";
-            document.body.style.backgroundImage = `url(./img/bacgrounds/${imgCount}.jpg)`;
+            document.querySelector(".login__form__background").style.backgroundImage = "url(./img/background.gif)";
+            document.body.style.backgroundImage = `url(./img/backgrounds/${imgCount}.jpg)`;
         }
         else {
             document.querySelector(".main__section").style = "";
