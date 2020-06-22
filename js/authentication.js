@@ -105,7 +105,6 @@
         if (!sessionStorage.reloaded) {
             sessionStorage.setItem('reloaded', true);
             window.location.reload();
-            devCheck();
         }
     }
     function logout() {
