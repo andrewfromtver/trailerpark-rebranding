@@ -112,6 +112,7 @@ const img = 'https://image.tmdb.org/t/p/w500';
         const el = document.getElementById('movies');
         el.scrollIntoView({block: "center", inline: "center", behavior: "smooth"});
         setTimeout(init, 1000);
+        devCheck();
     }
     function showFullInfo(){
         title__item.innerHTML = `
@@ -296,9 +297,10 @@ const img = 'https://image.tmdb.org/t/p/w500';
                 item.innerHTML = '';
                 trailer.innerHTML = '';
                 console.error('error: ' + reason);
-            });
-            trending.innerHTML = '';
-            document.querySelector('.rec__list').innerHTML = ``;
+        });
+        trending.innerHTML = '';
+        document.querySelector('.rec__list').innerHTML = ``;
+        devCheck();
     }
 /* Youtube trailers search */
     function getVideo(id, type){
@@ -353,6 +355,7 @@ const img = 'https://image.tmdb.org/t/p/w500';
             trailer.innerHTML = `<h4 class="title" >К сожалению трейлеры отсутствуют</h4>`;
             console.error(reason || reason.status);
         });
+        devCheck();
     }
 /* TMDB API Search */
     function apiSearch(event){
@@ -415,6 +418,7 @@ const img = 'https://image.tmdb.org/t/p/w500';
                 `;
                 console.error('error: ' + reason);
             });
+        devCheck();
     }
     function yearCheck() {
         if (document.querySelector('.searchType')[document.querySelector('.searchType').selectedIndex].id === 'tv') {
@@ -518,6 +522,7 @@ const img = 'https://image.tmdb.org/t/p/w500';
         });
         const el = document.getElementById('movies');
         el.scrollIntoView({block: "center", inline: "center", behavior: "smooth"});
+        devCheck();
     }
 /* Recomendations */
     function showRecomendations(id, type) {
@@ -561,6 +566,7 @@ const img = 'https://image.tmdb.org/t/p/w500';
         });
         const el = document.getElementById('movies__rec');
         el.scrollIntoView({block: "center", inline: "center", behavior: "smooth"});
+        devCheck();
     }
     function showById(id, type){
         title__item.innerHTML = `
@@ -651,4 +657,5 @@ const img = 'https://image.tmdb.org/t/p/w500';
         const el = document.getElementById('item');
         el.scrollIntoView({block: "center", inline: "center", behavior: "smooth"});
         setTimeout(init, 1000);
+        devCheck();
     }
