@@ -163,7 +163,7 @@
                 <th scope="row">${tvCount}</th>
                 <td onclick="showById(${element.split('|')[1]})">${element.split('|')[0]}</td>
                 <td class="deleteRow" onclick="deleteRow(${element.split('|')[1]},'${element.split('|')[0]}')">
-                    <img src="./img/delete.png" width="15" height="15">
+                    <img src="./img/delete.png" width="12" height="12">
                 </td>
             </tr>
             `;
