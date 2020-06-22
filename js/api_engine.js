@@ -108,11 +108,11 @@ const img = 'https://image.tmdb.org/t/p/w500';
                 title.innerHTML = `<h4 class="title">Упс, что-то пошло не так!</h4>`;
                 console.error('error: ' + reason);
             });
+            devCheck();
         }
         const el = document.getElementById('movies');
         el.scrollIntoView({block: "center", inline: "center", behavior: "smooth"});
         setTimeout(init, 1000);
-        devCheck();
     }
     function showFullInfo(){
         title__item.innerHTML = `
@@ -653,9 +653,9 @@ const img = 'https://image.tmdb.org/t/p/w500';
             });
             trending.innerHTML = '';
             getVideo(id, type);
+            devCheck();
         }
         const el = document.getElementById('item');
         el.scrollIntoView({block: "center", inline: "center", behavior: "smooth"});
         setTimeout(init, 1000);
-        devCheck();
     }
