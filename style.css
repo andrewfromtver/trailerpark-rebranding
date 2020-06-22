@@ -13,10 +13,12 @@ body {
     -o-background-size: cover;
     background-size: cover;
     font-family: sans-serif;
+    overflow-y: scroll;
 }
-body::-webkit-scrollbar { 
-    display: none; 
-}
+body::-webkit-scrollbar-track {border-radius: 5px;}
+body::-webkit-scrollbar {height: 4px;}
+body::-webkit-scrollbar-thumb {border-radius: 5px;background: #242424;}
+body:hover::-webkit-scrollbar-thumb {background: #777;}
 A {
     color: #ddd;
     font-size: 12px;
