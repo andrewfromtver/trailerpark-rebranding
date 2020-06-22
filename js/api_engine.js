@@ -43,7 +43,7 @@ const img = 'https://image.tmdb.org/t/p/w500';
                 </a>
             </div>
             `;
-            devCheck();
+            genChek();
     }
 /* Main features */
     function show(type, time, timestamp) {
