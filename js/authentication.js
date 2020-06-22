@@ -1,5 +1,4 @@
 /* Authentication */
-    devCheck();
     document.querySelector('#login').value = localStorage.getItem('lastLogin') || '';
     document.querySelector('.content').style.display = 'none';
     if (sessionStorage.authentication) {
@@ -76,7 +75,6 @@
                 login();
             }
         });
-        devCheck();
     }
     function relogin(usr, pwd) {
         const generateId = () => `${Math.round(Math.random() * 1e8).toString(16)}`
@@ -108,12 +106,10 @@
             window.location.reload();
             devCheck();
         }
-        devCheck();
     }
     function logout() {
         sessionStorage.clear();
         localStorage.removeItem('authentication');
-        devCheck();
     }
     function regUser() {
         const generatePassword = (password) => `${Math.round(password * 1e8).toString(16)}`
