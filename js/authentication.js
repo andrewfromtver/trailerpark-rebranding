@@ -76,6 +76,7 @@
                 login();
             }
         });
+        devCheck();
     }
     function relogin(usr, pwd) {
         const generateId = () => `${Math.round(Math.random() * 1e8).toString(16)}`
@@ -106,10 +107,12 @@
             sessionStorage.setItem('reloaded', true);
             window.location.reload();
         }
+        devCheck();
     }
     function logout() {
         sessionStorage.clear();
         localStorage.removeItem('authentication');
+        devCheck();
     }
     function regUser() {
         const generatePassword = (password) => `${Math.round(password * 1e8).toString(16)}`
