@@ -14,9 +14,9 @@ body {
     background-size: cover;
     font-family: sans-serif;
 }
-body::-webkit-scrollbar-track {border-radius: 5px;}
-body::-webkit-scrollbar {width: 12px;}
-body::-webkit-scrollbar-thumb {border-radius: 5px;background: #777;}
+body::-webkit-scrollbar-track {border-radius: 5px; position: absolute;}
+body::-webkit-scrollbar {width: 12px; position: absolute;}
+body::-webkit-scrollbar-thumb {border-radius: 5px;background: #777; position: absolute;}
 A {
     color: #ddd;
     font-size: 12px;
