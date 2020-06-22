@@ -113,7 +113,7 @@
                 <th scope="row">${movieCount}</th>
                 <td onclick="showById(${element.split('|')[1]})">${element.split('|')[0]}</td>
                 <td class="deleteRow" onclick="deleteRow(${element.split('|')[1]},'${element.split('|')[0]}')">
-                    <img src="./img/delete.png" width="12" height="12">
+                    <img src="./img/delete.png" width="11" height="11">
                 </td>
             </tr>
             `;
@@ -163,7 +163,7 @@
                 <th scope="row">${tvCount}</th>
                 <td onclick="showById(${element.split('|')[1]})">${element.split('|')[0]}</td>
                 <td class="deleteRow" onclick="deleteRow(${element.split('|')[1]},'${element.split('|')[0]}')">
-                    <img src="./img/delete.png" width="12" height="12">
+                    <img src="./img/delete.png" width="11" height="11">
                 </td>
             </tr>
             `;
