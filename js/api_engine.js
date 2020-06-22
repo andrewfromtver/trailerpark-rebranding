@@ -644,6 +644,7 @@ const img = 'https://image.tmdb.org/t/p/w500';
                         <p class="btn__watch__online">Искать</p>
                     </a>
                     `;
+                devCheck();
             })
             .catch(function(reason){
                 title__item.innerHTML = `<h4 class="title">Упс, что-то пошло не так!</h4>`;
@@ -653,7 +654,6 @@ const img = 'https://image.tmdb.org/t/p/w500';
             });
             trending.innerHTML = '';
             getVideo(id, type);
-            devCheck();
         }
         const el = document.getElementById('item');
         el.scrollIntoView({block: "center", inline: "center", behavior: "smooth"});
