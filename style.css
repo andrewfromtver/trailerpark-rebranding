@@ -80,7 +80,8 @@ table > thead > tr > th:nth-child(1) {
 }
 /* Login form */
 .login {
-    min-width: 300px;
+    width: 90vw;
+    max-width: 500px;
 }
 .login__form__background {
     position: fixed;
