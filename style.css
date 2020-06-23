@@ -79,6 +79,9 @@ table > thead > tr > th:nth-child(1) {
     background-color: #fff;
 }
 /* Login form */
+.login {
+    min-width: 300px;
+}
 .login__form__background {
     position: fixed;
     height: 100%;
