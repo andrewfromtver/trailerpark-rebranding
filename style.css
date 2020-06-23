@@ -535,6 +535,7 @@ table > thead > tr > th:nth-child(1) {
 .msg {
     margin-top: 0;
     width: -webkit-fill-available;
+    width: -moz-available;
     height: 170px;
     resize: none;
     background-image: url(./img/text.gif);
