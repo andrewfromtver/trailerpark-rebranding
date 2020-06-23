@@ -25,7 +25,8 @@ A:hover {
     color: #fff;
 }
 table {
-    width: -webkit-fill-available;
+    width: 90vw;
+    max-width: 500px;
     text-align: center;
     background-color: #242424;
     color: #aaa;
