@@ -121,7 +121,7 @@ table > thead > tr > th:nth-child(1) {
     font-weight: 700;
     padding: 10px;
     cursor: pointer;
-    margin: 330px 10px 0 10px;
+    margin: 337px 10px 0 10px;
 }
 .chekbox {
     margin: 0 5px;
@@ -133,7 +133,7 @@ table > thead > tr > th:nth-child(1) {
     padding: 10px;
     box-shadow: 10px 7px 15px #333;
     position: absolute;
-    margin: 280px 10px;
+    margin: 290px 10px;
     background-color: tomato;
     border-width: 2px;
     border-style: solid;
