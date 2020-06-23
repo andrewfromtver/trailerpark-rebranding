@@ -80,8 +80,8 @@ table > thead > tr > th:nth-child(1) {
 /* Login form */
 .login__form__background {
     position: fixed;
-    height: -webkit-fill-available;
-    width: -webkit-fill-available;
+    height: 100%;
+    width: 100%;
     background-color: #444;
     z-index: 999999;
     display: flex;
