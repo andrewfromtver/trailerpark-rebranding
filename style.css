@@ -338,11 +338,17 @@ table > thead > tr > th:nth-child(1) {
 }
 .item > h5 {
     margin: 0;
-    font-size: 12px;
+    font-size: 11px;
 }
 .poster {
     max-height: 175px;
     max-width: 125px;
+}
+.rate {
+    font-size: 11px;
+    color: #fff;
+    margin: 0;
+    opacity: 0.9;
 }
 /* Info section */
 .container {
