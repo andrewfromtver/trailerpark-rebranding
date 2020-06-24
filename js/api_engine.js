@@ -523,9 +523,23 @@ const img = 'https://image.tmdb.org/t/p/w500';
                     if (liked.includes(`${item.id}`)) {
                         cheked = `<img src='./img/chek.png' width="25" height="25" class='chek'>`;
                     }
-                }
                 inner += `
                     <div class="item">
+                `;
+                }
+                if (item.vote_average > 0 && item.vote_average < 5) {
+                    inner += `<p class="rate" style="background-color: tomato;">${item.vote_average}</p>`;
+                }
+                if (item.vote_average >= 5 && item.vote_average < 8) {
+                    inner += `<p class="rate" style="background-color: darkorange;">${item.vote_average}</p>`;
+                }
+                if (item.vote_average >= 8) {
+                    inner += `<p class="rate" style="background-color: darkgreen;">${item.vote_average}</p>`;
+                }
+                if (item.vote_average == 0) {
+                    inner += `<p class="rate" style="background-color: tomato;">н/д</p>`;
+                }
+                inner += `
                     <img src="${poster}" class="poster" onclick="showById(${item.id}, '${type}')" alt ="${nameItem}">
                     <h5>${nameItem.substr(0, 25)}</h5>
                     </div>
