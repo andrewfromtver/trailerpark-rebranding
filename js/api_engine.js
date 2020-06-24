@@ -47,7 +47,7 @@ const img = 'https://image.tmdb.org/t/p/w500';
             setTimeout(devCheck, 2050);
     }
 /* Main features */
-    function show(type, time, timestamp) {
+    function show(type, time) {
         title.innerHTML = `
         <div class="loader__placeholder">
             <div class="lds-ellipsis loader"><div></div><div></div><div></div><div></div></div>
@@ -88,6 +88,20 @@ const img = 'https://image.tmdb.org/t/p/w500';
                     let dataInfo = `data-id="${item.id}" data-type="${mediaType}"`;
                     inner += `
                         <div class="item">
+                    `;
+                    if (item.vote_average > 0 && item.vote_average < 5) {
+                        inner += `<p class="rate" style="background-color: tomato;">${item.vote_average}</p>`;
+                    }
+                    if (item.vote_average >= 5 && item.vote_average < 8) {
+                        inner += `<p class="rate" style="background-color: darkorange;">${item.vote_average}</p>`;
+                    }
+                    if (item.vote_average >= 8) {
+                        inner += `<p class="rate" style="background-color: darkgreen;">${item.vote_average}</p>`;
+                    }
+                    if (item.vote_average == 0) {
+                        inner += `<p class="rate" style="background-color: tomato;">н/д</p>`;
+                    }
+                    inner += `
                         <img src="${poster}" class="poster" alt="${nameItem}" ${dataInfo}>
                         <h5>${nameItem.substr(0, 25)}</h5>
                         </div>
@@ -397,6 +411,20 @@ const img = 'https://image.tmdb.org/t/p/w500';
                     }    
                     inner += `
                     <div class="item">
+                    `;
+                    if (item.vote_average > 0 && item.vote_average < 5) {
+                        inner += `<p class="rate" style="background-color: tomato;">${item.vote_average}</p>`;
+                    }
+                    if (item.vote_average >= 5 && item.vote_average < 8) {
+                        inner += `<p class="rate" style="background-color: darkorange;">${item.vote_average}</p>`;
+                    }
+                    if (item.vote_average >= 8) {
+                        inner += `<p class="rate" style="background-color: darkgreen;">${item.vote_average}</p>`;
+                    }
+                    if (item.vote_average == 0) {
+                        inner += `<p class="rate" style="background-color: tomato;">н/д</p>`;
+                    }
+                    inner += `
                         <img src="${poster}" class="poster" alt="${nameItem}" ${dataInfo}>
                         <h5>${nameItem.substr(0, 25)}</h5>
                     </div>
@@ -549,6 +577,20 @@ const img = 'https://image.tmdb.org/t/p/w500';
                 }
                 inner += `
                     <div class="item">
+                `;
+                if (item.vote_average > 0 && item.vote_average < 5) {
+                    inner += `<p class="rate" style="background-color: tomato;">${item.vote_average}</p>`;
+                }
+                if (item.vote_average >= 5 && item.vote_average < 8) {
+                    inner += `<p class="rate" style="background-color: darkorange;">${item.vote_average}</p>`;
+                }
+                if (item.vote_average >= 8) {
+                    inner += `<p class="rate" style="background-color: darkgreen;">${item.vote_average}</p>`;
+                }
+                if (item.vote_average == 0) {
+                    inner += `<p class="rate" style="background-color: tomato;">н/д</p>`;
+                }
+                inner += `
                     <img src="${poster}" class="poster" onclick="showById(${item.id}, '${type}')" alt ="${nameItem}">
                     <h5>${nameItem.substr(0, 25)}</h5>
                     </div>
