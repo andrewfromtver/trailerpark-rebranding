@@ -195,6 +195,7 @@ const img = 'https://image.tmdb.org/t/p/w500';
                         if(i === 0){
                             document.querySelector('.rec__list').innerHTML = `<h4 class="title rec__title">Упс, что-то пошло не так!</h4>`;
                         }
+                        devCheck();
                     })
                     .catch(function(reason){
                         document.querySelector('.rec__list').innerHTML = `<h4 class="title rec__title">Упс, что-то пошло не так!</h4>`;
