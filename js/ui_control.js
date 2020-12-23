@@ -34,7 +34,7 @@
             small__frame.innerHTML = '';
             document.querySelector(".up__btn").style.margin = "0";
             document.querySelector(".login__form__background").style.backgroundImage = "none";
-            document.body.style.backgroundImage = "url(./img/background.gif)";
+            document.body.style.backgroundImage = "none";
         };
         if (document.documentElement.clientWidth < 560) {
             if (document.querySelector(".item__poster")) {
