@@ -608,7 +608,7 @@ table > thead > tr > th:nth-child(1) {
     background-color: #242424;
     border: 1px solid #242424;
     border-radius: 5px;
-    margin: 20px 7px 0 7px;
+    margin: 15px 7px 0 7px;
     padding-bottom: 10px;
 }
 /* Loader animation */
